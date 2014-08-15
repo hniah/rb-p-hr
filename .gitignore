@@ -21,3 +21,6 @@
 # Ignore VIM swp files
 *.swp
 *.swo
+
+# Ignore RubyMine
+.idea
