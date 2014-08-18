@@ -1,0 +1,28 @@
+en:
+  user:
+    message:
+      create_success: 'Staff is created'
+      create_failed: 'Failed to create staff'
+      update_success: 'Staff is updated'
+      update_failed: 'Failed to update staff'
+      delete_success: 'Staff is deleted'
+      delete_failed: 'Failed to delete staff'
+      select_user: 'Please select staff'
+      delete_confirmation: 'Confirm delete this staff?'
+  helpers:
+    label:
+      user:
+        first_name: 'First name'
+        last_name: 'Last name'
+        action: 'Action'
+        TrueClass: 'Yes'
+        FalseClass: 'No'
+        encrypted_password: 'Password'
+        admin: 'Administrator'
+        is_admin: 'Make User An Administrator'
+  activerecord:
+    errors:
+      models:
+        user:
+          blank: "Please fill in %{attribute}"
+          invalid: 'Please fill in the correct format of %{attribute}'

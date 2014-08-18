@@ -1,0 +1,13 @@
+html
+  head
+    title HR System
+    == stylesheet_link_tag    'application', media: 'all', data: { turbolinks_track: true }
+    == javascript_include_tag 'application', data: { turbolinks_track: true }
+    == csrf_meta_tags
+    body
+      div.wrapper.container-fluid
+        div.main-body
+          div.container
+            - if flash_messages.present?
+              div.flash-messages = flash_messages
+          == yield

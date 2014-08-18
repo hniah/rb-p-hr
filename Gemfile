@@ -25,11 +25,13 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 
-gem 'haml' #Layout engine
-gem 'bootstrap_form', '~> 2.1.1' #Bootstrap Form builder for Rails form_for
+gem 'slim' #Layout engine
+gem 'formtastic'
 gem 'rails_utils' # Generate flash message (Bootstrap)
 gem 'will_paginate', '~> 3.0' # Rails pagination
 gem 'will_paginate-bootstrap' # Bootstrap renderer for will_paginate
+gem 'devise'
+gem 'decent_exposure'
 
 group :development do
   gem 'spring'

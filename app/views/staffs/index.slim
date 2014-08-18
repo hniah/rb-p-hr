@@ -1,0 +1,19 @@
+=display_page_title('Staff List')
+.container.content
+  table
+    thead
+      tr
+        th= label_name('staff.name')
+        th= label_name('staff.english_name')
+        th= label_name('staff.email')
+        th= label_name('staff.phone_number')
+        th= label_name('staff.started_on')
+      - @staffs.each do |staff|
+        tr
+          td = staff.name
+          td = staff.english_name
+          td = staff.email
+          td = staff.phone_number
+          td = staff.started_on
+  .pagination
+    = bootstrap_paginate(@staffs)
