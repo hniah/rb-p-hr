@@ -12,9 +12,14 @@
   @extend .btn;
   @extend .btn-warning;
   @extend .btn-xs;
+  margin: 0 2px;
 }
 .list-delete-button {
   @extend .btn;
   @extend .btn-danger;
   @extend .btn-xs;
+  margin: 0 2px;
+}
+.btn-u {
+  margin: 0 2px;
 }

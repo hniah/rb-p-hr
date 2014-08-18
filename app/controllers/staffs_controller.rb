@@ -15,9 +15,33 @@ class StaffsController < ApplicationController
     end
   end
 
+  def update
+    @staff = Staff.find(staff_id)
+    if @staff.update(staff_param)
+      redirect_to staffs_path, notice: t('staff.message.update_success')
+    else
+      flash[:alert] = t('staff.message.update_failed')
+      render :edit
+    end
+  end
+
+  def destroy
+    @staff = Staff.find(staff_id)
+    if @staff.destroy
+      redirect_to staffs_path, notice: t('staff.message.delete_success')
+    else
+      flash[:alert] = t('staff.message.delete_failed')
+      render :index
+    end
+  end
+
   protected
   def page
     params[:page]
+  end
+
+  def staff_id
+    params.require(:id)
   end
 
   def staff_param

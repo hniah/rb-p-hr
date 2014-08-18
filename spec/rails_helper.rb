@@ -27,6 +27,7 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
 
   config.include FactoryGirl::Syntax::Methods
+  config.include(FeatureHelper, type: :feature)
   config.include Devise::TestHelpers, type: :controller
 
   # RSpec Rails can automatically mix in different behaviours to your tests
