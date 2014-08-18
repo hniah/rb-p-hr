@@ -10,4 +10,8 @@ class Staff < ActiveRecord::Base
   validates :email, format: { :with => /\A([^@\s]+)@(futureworkz.com)\Z/i }
   validates :personal_email, format:  { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i }
 
+  private
+  def password_required?
+    new_record? || password.present? || password_confirmation.present?
+  end
 end

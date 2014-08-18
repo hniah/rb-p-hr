@@ -1,6 +1,6 @@
 =display_page_title('Staff List')
 .container.content
-  table
+  table.list-table
     thead
       tr
         th= label_name('staff.name')
@@ -8,6 +8,7 @@
         th= label_name('staff.email')
         th= label_name('staff.phone_number')
         th= label_name('staff.started_on')
+        th= label_name('staff.action')
       - @staffs.each do |staff|
         tr
           td = staff.name
@@ -15,5 +16,9 @@
           td = staff.email
           td = staff.phone_number
           td = staff.started_on
+          td
+            = list_edit_button(staff)
+            = list_delete_button(staff)
+  = link_to 'Add new staff', new_staff_path, class: 'link-button'
   .pagination
     = bootstrap_paginate(@staffs)

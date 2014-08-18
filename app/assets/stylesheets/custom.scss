@@ -1,0 +1,20 @@
+.flash-messages {
+  margin: 20px 0;
+}
+
+.list-table {
+  @extend .table;
+  @extend .table-striped;;
+  @extend .table-hover;
+}
+
+.list-edit-button {
+  @extend .btn;
+  @extend .btn-warning;
+  @extend .btn-xs;
+}
+.list-delete-button {
+  @extend .btn;
+  @extend .btn-danger;
+  @extend .btn-xs;
+}
