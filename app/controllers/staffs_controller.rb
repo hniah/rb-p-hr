@@ -35,6 +35,10 @@ class StaffsController < ApplicationController
     end
   end
 
+  def show
+    @staff = Staff.find(staff_id)
+  end
+
   protected
   def page
     params[:page]
@@ -45,7 +49,7 @@ class StaffsController < ApplicationController
   end
 
   def staff_param
-    params.require(:staff).permit(:email, :name, :english_name, :personal_email, :address, :phone_number, :basic_salary, :started_on, :probation_end_on, :password, :password_confirmation)
+    params.require(:staff).permit(:email, :name, :english_name, :personal_email, :address, :birthday, :note, :social_insurance, :phone_number, :basic_salary, :pay_increment, :started_on, :probation_end_on, :password, :password_confirmation)
   end
 
 end
