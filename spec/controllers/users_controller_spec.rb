@@ -154,7 +154,7 @@ describe UsersController do
         get :show, id: user.id
       end
 
-      it 'render template show project detail and finds project' do
+      it 'render template show staff detail and finds staff' do
         sign_in admin
         do_request
 

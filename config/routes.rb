@@ -33,9 +33,6 @@ Rails.application.routes.draw do
     resources :users
   end
 
-  resources :staffs, except: [:index, :new, :destroy]
-
-
   # Example resource route with sub-resources:
   #   resources :products do
   #     resources :comments, :sales

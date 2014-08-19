@@ -1,5 +1,9 @@
 = form_for user do |f|
   .form-group
+    = f.label :designation, class: 'control-label'
+    br
+    = f.text_field :designation, class: 'form-control'
+  .form-group
     = f.label :name, class: 'control-label'
     br
     = f.text_field :name, class: 'form-control'
@@ -55,7 +59,7 @@
     = f.check_box :is_admin
     = f.label :is_admin
   = f.submit 'Submit', class: 'btn-u'
-  - if user.id.nil?
+  -if user.id.nil?
     = f.hidden_field :password, class: 'form-control', value: '123123123'
     = f.hidden_field :password_confirmation, class: 'form-control', value: '123123123'
   = link_to 'Back', users_path, class: 'btn-u btn-u-default'

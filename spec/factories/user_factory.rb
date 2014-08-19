@@ -13,6 +13,7 @@ FactoryGirl.define do
     basic_salary '456'
     started_on '20/06/2012'
     probation_end_on '20/08/2012'
+    designation 'Coder'
 
     factory :admin do
       is_admin true

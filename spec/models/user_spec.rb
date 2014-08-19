@@ -10,6 +10,7 @@ describe User do
     it { is_expected.to validate_presence_of :basic_salary }
     it { is_expected.to validate_presence_of :started_on }
     it { is_expected.to validate_presence_of :probation_end_on }
+    it { is_expected.to validate_presence_of :designation }
     it { is_expected.to validate_numericality_of(:phone_number) }
   end
 

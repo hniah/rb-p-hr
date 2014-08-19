@@ -3,6 +3,7 @@
   table.list-table
     thead
       tr
+        th= label_name('user.designation')
         th= label_name('user.name')
         th= label_name('user.english_name')
         th= label_name('user.email')
@@ -11,6 +12,7 @@
         th= label_name('user.action')
       - @users.each do |user|
         tr
+          td = user.designation
           td = user.name
           td = user.english_name
           td = user.email

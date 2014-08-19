@@ -11,6 +11,7 @@ describe 'Create new Staff' do
 
       click_on 'Add New Staff'
 
+      fill_in 'Designation', with: 'Coder 123'
       fill_in 'Name', with: 'Vu Quang Thang'
       fill_in 'English name', with: 'Martin'
       fill_in 'Email', with: 'martin@futureworkz.com'
@@ -39,6 +40,7 @@ describe 'Create new Staff' do
 
       click_on 'Add New Staff'
 
+      fill_in 'Designation', with: 'Coder'
       fill_in 'Name', with: 'Vu Quang Thang'
       fill_in 'English name', with: 'Martin'
       fill_in 'Email', with: 'martin@futureworkz1.com'
