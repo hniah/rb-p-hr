@@ -71,6 +71,11 @@ Rails.application.configure do
   # Send deprecation notices to registered listeners.
   config.active_support.deprecation = :notify
 
+  config.assets.paths << Rails.root.join('vendor', 'assets', 'fonts')
+  config.assets.paths << Rails.root.join('app', 'assets', 'images')
+
+  config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/
+
   # Disable automatic flushing of the log to improve performance.
   # config.autoflush_log = false
 
