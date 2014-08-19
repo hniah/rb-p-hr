@@ -1,0 +1,25 @@
+=display_page_title('Staff List')
+.container.content
+  table.list-table
+    thead
+      tr
+        th= label_name('user.name')
+        th= label_name('user.english_name')
+        th= label_name('user.email')
+        th= label_name('user.phone_number')
+        th= label_name('user.started_on')
+        th= label_name('user.action')
+      - @users.each do |user|
+        tr
+          td = user.name
+          td = user.english_name
+          td = user.email
+          td = user.phone_number
+          td = user.started_on
+          td
+            = list_edit_button(user)
+            = list_delete_button(user)
+            = link_to 'Detail', user_path(user.id), class: 'list-edit-button', data: {test: "view-user-#{user.id}"}
+  = link_to 'Add new staff', new_user_path, class: 'link-button'
+  .pagination
+    = bootstrap_paginate(@users)

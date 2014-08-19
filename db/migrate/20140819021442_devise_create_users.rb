@@ -1,9 +1,9 @@
-class DeviseCreateStaffs < ActiveRecord::Migration
+class DeviseCreateUsers < ActiveRecord::Migration
   def change
-    create_table(:staffs) do |t|
+    create_table(:users) do |t|
       ## Database authenticatable
-      t.string :email,              null: false, default: ''
-      t.string :encrypted_password, null: false, default: ''
+      t.string :email,              null: false, default: ""
+      t.string :encrypted_password, null: false, default: ""
 
       ## Recoverable
       t.string   :reset_password_token
@@ -29,7 +29,6 @@ class DeviseCreateStaffs < ActiveRecord::Migration
       # t.integer  :failed_attempts, default: 0, null: false # Only if lock strategy is :failed_attempts
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
-
       t.string  :name
       t.string  :english_name
       t.string  :personal_email, null: false, defalut: ''
@@ -49,9 +48,9 @@ class DeviseCreateStaffs < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :staffs, :email,                unique: true
-    add_index :staffs, :reset_password_token, unique: true
-    # add_index :staffs, :confirmation_token,   unique: true
-    # add_index :staffs, :unlock_token,         unique: true
+    add_index :users, :email,                unique: true
+    add_index :users, :reset_password_token, unique: true
+    # add_index :users, :confirmation_token,   unique: true
+    # add_index :users, :unlock_token,         unique: true
   end
 end

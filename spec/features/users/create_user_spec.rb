@@ -4,7 +4,7 @@ describe 'Create new Staff' do
 
   context 'Valid data' do
     it 'Create new staff' do
-      visit staffs_path
+      visit users_path
 
       click_on 'Add new staff'
 
@@ -24,7 +24,7 @@ describe 'Create new Staff' do
       click_on 'Submit'
 
       expect(page).to have_content 'Staff List'
-      expect(page).to have_content I18n.t('staff.message.create_success')
+      expect(page).to have_content I18n.t('user.message.create_success')
       expect(page).to have_content 'Vu Quang Thang'
 
     end

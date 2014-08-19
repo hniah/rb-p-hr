@@ -1,5 +1,5 @@
 en:
-  staff:
+  user:
     message:
       create_success: 'Staff is created'
       create_failed: 'Failed to create staff'
@@ -7,19 +7,19 @@ en:
       update_failed: 'Failed to update staff'
       delete_success: 'Staff is deleted'
       delete_failed: 'Failed to delete staff'
-      select_user: 'Please select staff'
+      select_staff: 'Please select staff'
       delete_confirmation: 'Confirm delete this staff?'
   helpers:
     label:
       user:
-        first_name: 'First name'
-        last_name: 'Last name'
         action: 'Action'
         TrueClass: 'Yes'
         FalseClass: 'No'
         encrypted_password: 'Password'
         admin: 'Administrator'
-        is_admin: 'Make User An Administrator'
+        is_admin: 'Make Staff An Administrator'
+        salary: '%{count} USD'
+        pay_increment_value: '%{count}%'
   activerecord:
     errors:
       models:

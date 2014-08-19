@@ -1,4 +1,4 @@
-= form_for staff do |f|
+= form_for user do |f|
   .form-group
     = f.label :name, class: 'control-label'
     br
@@ -60,4 +60,4 @@
     br
     = f.password_field :password_confirmation, class: 'form-control'
   = f.submit 'Submit', class: 'btn-u'
-  = link_to 'Back', staffs_path, class: 'btn-u btn-u-default'
+  = link_to 'Back', users_path, class: 'btn-u btn-u-default'
