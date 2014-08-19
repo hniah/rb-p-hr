@@ -26,3 +26,5 @@ en:
         user:
           blank: "Please fill in %{attribute}"
           invalid: 'Please fill in the correct format of %{attribute}'
+    models:
+      user: Staff

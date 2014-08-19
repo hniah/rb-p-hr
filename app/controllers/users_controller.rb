@@ -27,6 +27,7 @@ class UsersController < ApplicationController
   def update
     @staff = User.find(user_id)
     if @staff.update(user_param)
+      t('.success')
       redirect_to users_path, notice: t('user.message.update_success')
     else
       flash[:alert] = t('user.message.update_failed')
