@@ -24,7 +24,7 @@ describe 'Display Edit form' do
     fill_in 'Started on', with: '20/09/02014'
     fill_in 'Probation end on', with: '20/09/02014'
     fill_in 'Note', with: 'Lorem lorem'
-    click_on 'Submit'
+    click_on 'Update Staff'
 
 
     expect(page).to have_content 'Staff List'
