@@ -30,6 +30,8 @@ RSpec.configure do |config|
   config.include(FeatureHelper, type: :feature)
   config.include Devise::TestHelpers, type: :controller
 
+  config.include Warden::Test::Helpers
+  Warden.test_mode!
 
   OmniAuth.config.test_mode = true
   OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({

@@ -3,9 +3,11 @@ require 'rails_helper'
 describe 'Show staff detail' do
   context 'Show staff detail' do
     let!(:user) { create(:user) }
+    let!(:admin) { create :admin }
 
     it 'show project detail' do
       visit root_path
+      feature_login admin
 
       visit users_path
 

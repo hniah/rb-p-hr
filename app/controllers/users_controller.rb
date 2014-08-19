@@ -1,11 +1,13 @@
 class UsersController < ApplicationController
-  expose(:user)
-
   before_filter :authenticate_user!
   before_filter :authenticate_admin!
 
   def index
     @users = User.paginate(page: page)
+  end
+
+  def new
+    @user = User.new
   end
 
   def create
@@ -16,6 +18,10 @@ class UsersController < ApplicationController
       flash[:alert] = t('user.message.create_failed')
       render :new
     end
+  end
+
+  def edit
+    @user = User.find(user_id)
   end
 
   def update

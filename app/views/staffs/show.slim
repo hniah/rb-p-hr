@@ -1,0 +1,47 @@
+= display_page_title('Staff Detail')
+  .container
+    .content
+      .col-md-12
+        h2 = 'Staff detail'
+        table.list-table
+          thead
+            tr
+              th=label_name('user.name')
+              td= staff.name
+            tr
+              th=label_name('user.english_name')
+              td= user.english_name
+            tr
+              th=label_name('user.email')
+              td= user.email
+            tr
+              th=label_name('user.personal_email')
+              td= user.personal_email
+            tr
+              th=label_name('user.birthday')
+              td= user.birthday
+            tr
+              th=label_name('user.address')
+              td= user.address
+            tr
+              th=label_name('user.phone_number')
+              td= user.phone_number
+            tr
+              th=label_name('user.basic_salary')
+              td= I18n.t('helpers.label.user.salary', count: user.basic_salary)
+            tr
+              th=label_name('user.pay_increment')
+              td= I18n.t('helpers.label.user.pay_increment_value', count: user.pay_increment)
+            tr
+              th=label_name('user.social_insurance')
+              td= user.social_insurance
+            tr
+              th=label_name('user.started_on')
+              td= user.started_on
+            tr
+              th=label_name('user.probation_end_on')
+              td= user.probation_end_on
+            tr
+              th=label_name('user.note')
+              td= user.note
+      = link_to 'Back', users_path, class: 'btn-u btn-u-default'

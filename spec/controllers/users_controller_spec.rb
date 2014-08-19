@@ -1,9 +1,8 @@
 require 'rails_helper'
 
 describe UsersController do
+  let!(:admin) { create :admin }
   describe 'Get #index' do
-    let!(:user) { create(:user) }
-
     def do_request
       get :index
     end
@@ -11,10 +10,22 @@ describe UsersController do
     before{ create_list(:user, 3) }
     context 'Admin logged in' do
       it 'fetches all users and renders index view' do
+        sign_in admin
         do_request
 
         expect(assigns(:users).size).to eq 4
         expect(response).to render_template :index
+      end
+    end
+
+    context 'User logged in' do
+      let(:user) { create :user }
+      it 'redirects to root, sets alert flash' do
+        sign_in user
+        do_request
+
+        expect(response).to redirect_to root_path
+        expect(flash[:alert]).to_not be_nil
       end
     end
   end
@@ -25,7 +36,9 @@ describe UsersController do
     end
 
     it 'renders new template' do
+      sign_in admin
       do_request
+
       expect(response).to render_template :new
     end
   end
@@ -39,6 +52,7 @@ describe UsersController do
       end
 
       it 'creates a new user, redirects to list and sets notice flash' do
+        sign_in admin
         do_request
 
         expect(User.first.email).to eq 'james@futureworkz.com'
@@ -55,6 +69,7 @@ describe UsersController do
       end
 
       it 'renders template new and sets alert flash' do
+        sign_in admin
         do_request
 
         expect(response).to render_template :new
@@ -71,6 +86,7 @@ describe UsersController do
     end
 
     it 'renders edit form' do
+      sign_in admin
       do_request
 
       expect(response).to render_template :edit
@@ -82,15 +98,17 @@ describe UsersController do
       let(:user) { create(:user) }
 
       def do_request
-        patch :update, id: user.id, user: attributes_for(:user, email: 'martin1234@futureworkz.com')
+        patch :update, id: user.id, user: attributes_for(:user, email: 'martin1234@futureworkz.com', password: '123123123', password_confirmation: '123123123')
       end
 
       it 'updates user, redirects to list and sets notice flash' do
+        sign_in admin
         do_request
 
         expect(response).to redirect_to users_path
         expect(flash[:notice]).to_not be_nil
         expect(user.reload.email).to eq 'martin1234@futureworkz.com'
+        expect(user.password).to eq '123123123'
       end
     end
 
@@ -102,6 +120,7 @@ describe UsersController do
       end
 
       it 'renders template edit and sets alert flash' do
+        sign_in admin
         do_request
 
         expect(response).to render_template :edit
@@ -119,6 +138,7 @@ describe UsersController do
       end
 
       it 'redirects to list and sets notice flash' do
+        sign_in admin
         expect { do_request }.to change(User, :count).by(-1)
 
         expect(response).to redirect_to users_path
@@ -135,6 +155,7 @@ describe UsersController do
       end
 
       it 'render template show project detail and finds project' do
+        sign_in admin
         do_request
 
         expect(response).to render_template :show
