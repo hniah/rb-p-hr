@@ -6,6 +6,21 @@ html
     == csrf_meta_tags
     body
       div.wrapper.container-fluid
+        .header.row
+          .container
+            .topbar
+              .container
+                ul.loginbar.pull-right
+                  - if current_user.present?
+                    li= "Welcome #{current_user.name}"
+                    li.topbar-devider
+                    li= link_to 'Logout', destroy_user_session_path, method: :delete
+                  - else
+                    li= link_to 'Sign in with Google', user_omniauth_authorize_path(:google_oauth2)
+              .navbar.navbar-default
+                .navbar-header
+                  = link_to(image_tag('neember-logo.png', height: 30), root_path)
+                = render_navigation expand_all: true, renderer: :bootstrap
         div.main-body
           div.container
             - if flash_messages.present?

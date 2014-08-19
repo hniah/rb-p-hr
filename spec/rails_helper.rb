@@ -30,6 +30,17 @@ RSpec.configure do |config|
   config.include(FeatureHelper, type: :feature)
   config.include Devise::TestHelpers, type: :controller
 
+
+  OmniAuth.config.test_mode = true
+  OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({
+    :provider => 'google_oauth2',
+    :uid => '123456789',
+    :info => {
+      :email => 'martin@futureworkz.com',
+      :name => 'John'
+    },
+  })
+
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
   # `post` in specs under `spec/controllers`.

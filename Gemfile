@@ -32,6 +32,9 @@ gem 'will_paginate', '~> 3.0' # Rails pagination
 gem 'will_paginate-bootstrap' # Bootstrap renderer for will_paginate
 gem 'devise'
 gem 'decent_exposure'
+gem 'omniauth-google-oauth2'
+gem 'simple-navigation'
+gem 'simple-navigation-bootstrap'
 
 group :development do
   gem 'spring'
@@ -50,6 +53,8 @@ group :test do
   gem 'factory_girl_rails'
   gem 'capybara'
 end
+
+gem 'dotenv-rails', groups: [:development, :test] # load ENV param
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

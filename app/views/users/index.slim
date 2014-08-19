@@ -20,6 +20,5 @@
             = list_edit_button(user)
             = list_delete_button(user)
             = link_to 'Detail', user_path(user.id), class: 'list-edit-button', data: {test: "view-user-#{user.id}"}
-  = link_to 'Add new staff', new_user_path, class: 'link-button'
   .pagination
     = bootstrap_paginate(@users)

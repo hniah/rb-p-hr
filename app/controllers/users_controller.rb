@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
   expose(:user)
 
+  before_filter :authenticate_user!
+  before_filter :authenticate_admin!
+
   def index
     @users = User.paginate(page: page)
   end
@@ -49,7 +52,7 @@ class UsersController < ApplicationController
   end
 
   def user_param
-    params.require(:user).permit(:email, :name, :english_name, :personal_email, :address, :birthday, :note, :social_insurance, :phone_number, :basic_salary, :pay_increment, :started_on, :probation_end_on, :password, :password_confirmation)
+    params.require(:user).permit(:email, :name, :english_name, :personal_email, :address, :birthday, :note, :social_insurance, :phone_number, :basic_salary, :pay_increment, :started_on, :probation_end_on, :password, :password_confirmation, :is_admin)
   end
 
 end

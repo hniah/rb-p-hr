@@ -59,5 +59,8 @@
     = f.label :password_confirmation, class: 'control-label'
     br
     = f.password_field :password_confirmation, class: 'form-control'
+  .form-group
+    = f.check_box :is_admin
+    = f.label :is_admin
   = f.submit 'Submit', class: 'btn-u'
   = link_to 'Back', users_path, class: 'btn-u btn-u-default'

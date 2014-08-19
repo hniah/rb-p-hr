@@ -18,8 +18,8 @@ en:
         encrypted_password: 'Password'
         admin: 'Administrator'
         is_admin: 'Make Staff An Administrator'
-        salary: '%{count} USD'
-        pay_increment_value: '%{count}%'
+        salary: "%{count} USD"
+        pay_increment_value: "%{count}%"
   activerecord:
     errors:
       models:
