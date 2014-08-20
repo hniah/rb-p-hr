@@ -5,6 +5,13 @@ en:
         pending: 'Pending'
         approve: 'Approve'
         reject: 'Reject'
+      types:
+        unpaid: 'Unpaid'
+        sick: 'Sick'
+        annual: 'Annual'
+        compassionate: 'Compassionate'
+        maternity: 'Maternity'
+        urgent: 'Urgent'
       kind:
         whole_day: 'Whole day'
         morning: 'Morning'

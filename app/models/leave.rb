@@ -8,11 +8,12 @@ class Leave < ActiveRecord::Base
 
   belongs_to :staff
 
-  validates :date, :status, :staff, presence: true
+  validates :date, :status, :staff, :types, presence: true
   validates :note, presence: {if: -> {status.present? && status.reject?}}
 
   enumerize :kind, in: [:whole_day, :morning, :afternoon], default: :whole_day
   enumerize :status, in: [:pending, :approve, :reject], default: :pending
+  enumerize :types, in: [:unpaid, :sick, :annual, :compassionate, :maternity, :urgent], default: :annual
 
   def assigns_default_values
     self.date ||= Date.today
