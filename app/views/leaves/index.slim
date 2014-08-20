@@ -9,7 +9,9 @@
         th= label_name('leave.kind')
         th= label_name('leave.reason_leave')
         th= label_name('leave.staff')
-        th= label_name('leave.action')
+        th= label_name('leave.note')
+        - if current_user.is_admin?
+          th= label_name('leave.action')
     - @leaves.each do |leave|
       tr
         td= leave.status.text
@@ -17,9 +19,11 @@
         td= leave.kind.text
         td= leave.reason_leave
         td= leave.staff_english_name
-        td
-          = list_edit_button(leave)
-          = list_delete_button(leave)
+        th= leave.note
+        - if current_user.is_admin?
+          td
+            = list_edit_button(leave)
+            = list_delete_button(leave)
   .pagination
     = bootstrap_paginate(@leaves)
 

@@ -105,4 +105,60 @@ describe LeavesController do
       end
     end
   end
+
+  describe 'get #edit' do
+    let!(:leave) { create(:leave) }
+
+    def do_request
+      get :edit, id: leave.id
+    end
+
+    it 'renders template edit and finds work log' do
+      sign_in staff
+
+      do_request
+
+      expect(response).to render_template :edit
+      expect(assigns(:leave)).to_not be_nil
+    end
+  end
+
+  describe 'PATCH #update' do
+    context 'success' do
+      let(:leave_param) { attributes_for(:leave, kind: :morning, date: '10/07/2014')}
+      let(:leave) { create(:leave) }
+
+      def do_request
+        patch :update, id: leave.id, leave: leave_param
+      end
+
+      it 'updates work log, redirects to list and sets notice flash' do
+        sign_in staff
+
+        do_request
+
+        expect(leave.reload.kind.text).to eq 'Morning'
+        expect(response).to redirect_to leaves_path
+        expect(flash[:notice]).to_not be_nil
+      end
+    end
+
+    context 'failed' do
+      let(:leave_param) { attributes_for(:leave, kind: 'Lorem', date: '10/07/2014', reason: '') }
+      let(:leave) { create(:leave) }
+
+      def do_request
+        patch :update, id: leave.id, leave: leave_param
+      end
+
+      it 'renders template edit and sets alert flash' do
+        sign_in staff
+
+        do_request
+
+        expect(response).to render_template :edit
+        expect(flash[:alert]).to_not be_nil
+      end
+    end
+  end
 end

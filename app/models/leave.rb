@@ -12,7 +12,7 @@ class Leave < ActiveRecord::Base
   validates :note, presence: {if: -> {status.present? && status.reject?}}
 
   enumerize :kind, in: [:whole_day, :morning, :afternoon], default: :whole_day
-  enumerize :status, in: [:approve, :reject], default: :approve
+  enumerize :status, in: [:pending, :approve, :reject], default: :pending
 
   def assigns_default_values
     self.date ||= Date.today

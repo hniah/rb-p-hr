@@ -2,6 +2,7 @@ en:
   enumerize:
     leave:
       status:
+        pending: 'Pending'
         approve: 'Approve'
         reject: 'Reject'
       kind:
