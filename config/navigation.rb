@@ -56,6 +56,11 @@ SimpleNavigation::Configuration.run do |navigation|
     #
     # primary.item :key_1, 'name', url, options
 
+    primary.item :leaves, 'Leave', leaves_path, if: -> { user_signed_in? } do |submenu|
+      submenu.item :index, 'Leaves List', leaves_path
+      submenu.item :new, 'Add New Leave', new_leave_path
+    end
+
     primary.item :users, 'Staff', users_path, if: -> { user_signed_in? && current_user.is_admin? } do |submenu|
       submenu.item :index, 'Staff List', users_path
       submenu.item :new, 'Add New Staff', new_user_path

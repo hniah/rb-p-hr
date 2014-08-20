@@ -1,0 +1,27 @@
+= display_page_title ('Leaves List')
+
+.container.content
+  table.list-table
+    thead
+      tr
+        th= label_name('leave.status')
+        th= label_name('leave.date')
+        th= label_name('leave.kind')
+        th= label_name('leave.reason_leave')
+        th= label_name('leave.coder_id')
+        th= label_name('leave.action')
+    - @leaves.each do |leave|
+      tr
+        td= leave.status.text
+        td= leave.date
+        td= leave.kind
+        td= leave.reason_leave
+        td= leave.staff_english_name
+        td
+          = list_edit_button(leave)
+          = list_delete_button(leave)
+  .pagination
+    = bootstrap_paginate(@leaves)
+
+
+

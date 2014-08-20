@@ -33,6 +33,8 @@ Rails.application.routes.draw do
     resources :users
   end
 
+  resources :leaves
+
   # Example resource route with sub-resources:
   #   resources :products do
   #     resources :comments, :sales
