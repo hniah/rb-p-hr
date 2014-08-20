@@ -26,6 +26,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 
 gem 'slim' #Layout engine
+gem 'enumerize' # Enum in Rails
 gem 'formtastic', '~> 3.0.0.rc'
 gem 'formtastic-bootstrap'
 gem 'rails_utils' # Generate flash message (Bootstrap)

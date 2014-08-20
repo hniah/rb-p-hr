@@ -1,0 +1,10 @@
+en:
+  enumerize:
+    leave:
+      status:
+        approve: 'Approve'
+        reject: 'Reject'
+      kind:
+        whole_day: 'Whole day'
+        morning: 'Morning'
+        afternoon: 'Afternoon'

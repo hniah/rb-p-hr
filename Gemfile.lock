@@ -61,6 +61,8 @@ GEM
     dotenv-deployment (0.0.2)
     dotenv-rails (0.11.1)
       dotenv (= 0.11.1)
+    enumerize (0.8.0)
+      activesupport (>= 3.2)
     erubis (2.7.0)
     execjs (2.2.1)
     factory_girl (4.4.0)
@@ -228,6 +230,7 @@ DEPENDENCIES
   decent_exposure
   devise
   dotenv-rails
+  enumerize
   factory_girl_rails
   formtastic (~> 3.0.0.rc)
   formtastic-bootstrap
