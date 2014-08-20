@@ -161,4 +161,21 @@ describe LeavesController do
       end
     end
   end
+
+  describe 'delete #destroy' do
+    let!(:leave) { create(:leave) }
+
+    def do_request
+      delete :destroy, id: leave.id
+    end
+
+    it 'deletes work log, redirects to list and sets notice flash' do
+      sign_in staff
+
+      do_request
+
+      expect(response).to redirect_to leaves_path
+      expect(flash[:notice]).to_not be_nil
+    end
+  end
 end
