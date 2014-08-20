@@ -55,5 +55,54 @@ describe LeavesController do
     end
   end
 
-  
+  describe 'GET #new' do
+    def do_request
+      get :new
+    end
+    it 'renders template new and assigns new leave' do
+      sign_in staff
+
+      do_request
+
+      expect(response).to render_template :new
+      expect(assigns(:leave)).to_not be_nil
+    end
+  end
+
+  describe 'POST #create' do
+    context 'Success' do
+      let(:leave_param) { attributes_for(:leave, date: '10/07/2014', kind: :morning) }
+      let(:leave) { Leave.first }
+      def do_request
+        post :create, leave: leave_param
+      end
+
+      it 'creates leave, redirect to list, sets notice flash' do
+        sign_in staff
+
+        do_request
+
+        expect(response).to redirect_to leaves_path
+        expect(leave.kind).to eq 'morning'
+        expect(leave.staff).to eq staff
+        expect(flash[:notice]).to_not be_nil
+      end
+    end
+    context 'Failed' do
+      let(:leave_param) { attributes_for(:leave, date: '') }
+      let(:leave) { Leave.first }
+      def do_request
+        post :create, leave: leave_param
+      end
+
+      it 'renders template new and sets the alert flash' do
+        sign_in staff
+
+        do_request
+
+        expect(response).to render_template :new
+        expect(flash[:alert]).to_not be_nil
+      end
+    end
+  end
 end

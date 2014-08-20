@@ -6,7 +6,9 @@ FactoryGirl.define do
 
     password '123123123'
     name 'Vu Quang Thang'
-    english_name 'Martin'
+    sequence :english_name do |n|
+      "Martin#{n}"
+    end
     personal_email 'vuquangthang87@gmail.com'
     address 'Viet name'
     phone_number '091234564'
