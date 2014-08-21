@@ -2,7 +2,7 @@
 .container
   .content
     .col-md-12
-      h2 = 'My account'
+      h2 = 'My profile'
       table.list-table
         thead
           tr
@@ -38,4 +38,22 @@
           tr
             th=label_name('user.note')
             td= @staff.note
+    .col-md-12
+      h2 = 'My Leaves'
+      table.list-table
+        thead
+          th= 'No.'
+          th= label_name('leave.status')
+          th= label_name('leave.types')
+          th= label_name('leave.date')
+          th= label_name('leave.reason_leave')
+          th= label_name('leave.kind')
+        - @staff.leaves.current_year.each_with_index do |leave, index|
+          tr
+            td= index + 1
+            td= leave.status.text
+            td= leave.types.text
+            td= leave.date
+            td= leave.reason_leave
+            td= leave.kind.text
     = link_to 'Back', root_path, class: 'btn-u btn-u-default'

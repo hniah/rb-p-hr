@@ -3,6 +3,7 @@ class Leave < ActiveRecord::Base
   default_scope -> { order(date: :desc, id: :asc) }
   scope :approve, -> { where(status: :approve) }
   scope :reject, -> { where(status: :reject) }
+  scope :current_year, -> { where("date < ?", "#{Time.now.year}-12-31") }
 
   delegate :english_name, to: :staff, prefix: true, allow_nil: true
 
