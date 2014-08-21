@@ -5,14 +5,18 @@ html
     table.list-table
       thead
         tr
-          th= 'Type'
+          td
+            strong= 'Type'
           td= @leave.types.text
         tr
-          th= 'Staff'
+          td
+            strong= 'Staff'
           td= @leave.staff_english_name
         tr
-          th= 'Date'
+          td
+            strong= 'Date'
           td= @leave.date
         tr
-          th= 'Reason Leave'
+          td
+            strong= 'Reason Leave'
           td= @leave.reason_leave
