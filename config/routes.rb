@@ -34,6 +34,9 @@ Rails.application.routes.draw do
   end
 
   resources :leaves
+  resources :staffs, only: [:show]
+
+  get 'my-account' => 'staffs#show'
 
   # Example resource route with sub-resources:
   #   resources :products do

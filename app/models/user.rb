@@ -17,6 +17,10 @@ class User < ActiveRecord::Base
     User.where(email: (data['email']).downcase).first
   end
 
+  def eql?(obj)
+    obj.id == self.id && obj.is_a?(User)
+  end
+
   private
   def password_required?
     new_record? || password.present? || password_confirmation.present?

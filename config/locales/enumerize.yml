@@ -3,8 +3,8 @@ en:
     leave:
       status:
         pending: 'Pending'
-        approve: 'Approve'
-        reject: 'Reject'
+        approved: 'Approved'
+        rejected: 'Rejected'
       types:
         unpaid: 'Unpaid'
         sick: 'Sick'

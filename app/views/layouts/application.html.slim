@@ -13,6 +13,9 @@ html
                 ul.loginbar.pull-right
                   - if current_user.present?
                     li= "Welcome #{current_user.name}"
+                    - if !current_user.is_admin?
+                      li.topbar-devider
+                        li= link_to 'My Account', my_account_path
                     li.topbar-devider
                     li= link_to 'Logout', destroy_user_session_path, method: :delete
                   - else

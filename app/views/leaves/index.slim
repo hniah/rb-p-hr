@@ -4,6 +4,7 @@
   table.list-table
     thead
       tr
+        th= label_name('leave.types')
         th= label_name('leave.status')
         th= label_name('leave.date')
         th= label_name('leave.kind')
@@ -14,6 +15,7 @@
           th= label_name('leave.action')
     - @leaves.each do |leave|
       tr
+        td= leave.types.text
         td= leave.status.text
         td= leave.date
         td= leave.kind.text
