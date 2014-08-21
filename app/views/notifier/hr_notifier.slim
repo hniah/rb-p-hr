@@ -1,12 +1,11 @@
 html
   head
   body
-    h1
-      'There is new leave application'
+    h2= 'There is new leave application'
     table.list-table
       thead
         tr
-          th= I18n.t('helpers.label.leave.types')
+          th= 'Type'
           td= @leave.types.text
         tr
           th= 'Staff'
