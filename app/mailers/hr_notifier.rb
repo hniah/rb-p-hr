@@ -1,5 +1,5 @@
 class HrNotifier < ActionMailer::Base
-  default from: 'no-reply@example.com'
+  default from: 'mailer@futureworkz.com'
 
   def leave_come(email, leave)
     @leave = leave
