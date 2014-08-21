@@ -5,7 +5,8 @@ FactoryGirl.define do
     end
     kind :whole_day
     reason_leave 'Sickly'
-    status :approve
+    status :approved
+    types :unpaid
     staff
   end
 end

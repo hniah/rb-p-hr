@@ -9,7 +9,7 @@ class Leave < ActiveRecord::Base
   belongs_to :staff
 
   validates :date, :status, :staff, :types, presence: true
-  validates :note, presence: {if: -> {status.present? && status.reject?}}
+  validates :note, presence: {if: -> {status.present? && status.rejected?}}
 
   enumerize :kind, in: [:whole_day, :morning, :afternoon], default: :whole_day
   enumerize :status, in: [:pending, :approved, :rejected], default: :pending

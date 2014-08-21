@@ -19,7 +19,7 @@ describe 'Edit Work Log' do
       fill_in 'Date', with: '10/07/2014'
       select 'Whole day', from: 'Kind'
       fill_in 'Reason', with: 'Lorem lorem'
-      select 'Approve', from: 'Status'
+      select 'Approved', from: 'Status'
       click_on 'Update Leave'
 
       expect(page).to have_content 'Leaves List'
