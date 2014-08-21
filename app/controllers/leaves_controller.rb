@@ -18,6 +18,7 @@ class LeavesController < ApplicationController
     end
 
     if @leave.save
+      HrNotifier.leave_come(ENV['EMAIL_NOTIFIER'], @leave).deliver
       redirect_to leaves_path, notice: t('leave.message.create_success')
     else
       flash[:alert] = t('leave.message.create_failed')

@@ -73,6 +73,7 @@ describe LeavesController do
     context 'Success' do
       let(:leave_param) { attributes_for(:leave, date: '10/07/2014', kind: :morning) }
       let(:leave) { Leave.first }
+      let(:last_email) { ActionMailer::Base.deliveries.last }
       def do_request
         post :create, leave: leave_param
       end
@@ -85,6 +86,9 @@ describe LeavesController do
         expect(response).to redirect_to leaves_path
         expect(leave.kind).to eq 'morning'
         expect(leave.staff).to eq staff
+        expect(last_email.to).to eq [ENV['EMAIL_NOTIFIER']]
+        expect(last_email.body).to have_content 'There is new leave application'
+        expect(last_email.body).to have_content leave.reason_leave
         expect(flash[:notice]).to_not be_nil
       end
     end

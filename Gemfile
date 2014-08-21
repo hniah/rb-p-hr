@@ -42,6 +42,7 @@ group :development do
   gem 'spring'
   gem 'better_errors'
   gem 'pry'
+  gem 'letter_opener'
 end
 
 group :production do

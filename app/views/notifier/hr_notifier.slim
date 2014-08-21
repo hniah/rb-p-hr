@@ -1,0 +1,19 @@
+html
+  head
+  body
+    h1
+      'There is new leave application'
+    table.list-table
+      thead
+        tr
+          th= I18n.t('helpers.label.leave.types')
+          td= @leave.types.text
+        tr
+          th= 'Staff'
+          td= @leave.staff_english_name
+        tr
+          th= 'Date'
+          td= @leave.date
+        tr
+          th= 'Reason Leave'
+          td= @leave.reason_leave
