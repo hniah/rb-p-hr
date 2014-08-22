@@ -7,6 +7,8 @@ en:
       update_failed: 'Failed to update leave'
       delete_success: 'Leave is deleted'
       delete_failed: 'Failed to delete leave'
+      approve_leave: 'Leave is approved'
+      reject_leave: 'Leave is rejected'
       select_staff: 'Please select staff'
       select_kind: 'Please select kind'
       select_types: 'Please select type'

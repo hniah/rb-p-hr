@@ -3,7 +3,7 @@
     = f.label :types, class: 'control-label'
     br
     = f.select :types, Leave.types.options, {include_blank: t('leave.message.select_types')}, { class: 'form-control' }
-  = f.input :date, as: :date_picker
+  = f.input :date, as: :date_picker, input_html: { min: Date.today }
   .form-group
     = f.label :kind, class: 'control-label'
     br
@@ -14,11 +14,5 @@
       = f.label :staff_id, class: 'control-label'
       br
       = f.select :staff_id, staff_options(Staff.all), {include_blank: t('leave.message.select_staff')}, { class: 'form-control' }
-  -if leave.id
-    .form-group
-      = f.label :status, class: 'control-label'
-      br
-      = f.select :status, Leave.status.options, {include_blank: t('leave.message.select_status')},{ class: 'form-control' }
-    = f.input :note, input_html: { rows: 2 }
   = f.submit class: 'btn-u'
   = link_to 'Back', leaves_path, class: 'btn-u btn-u-default'

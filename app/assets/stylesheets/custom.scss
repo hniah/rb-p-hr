@@ -20,6 +20,12 @@
   @extend .btn-xs;
   margin: 0 2px;
 }
+.list-approve-button {
+  @extend .btn;
+  @extend .btn-xs;
+  @extend .btn-success;
+  margin: 0 2px;
+}
 .btn-u {
   margin: 0 2px;
 }

@@ -4,6 +4,7 @@ describe Leave do
   context 'validations' do
     it { is_expected.to validate_presence_of :date }
     it { is_expected.to validate_presence_of :status }
+    it { is_expected.to validate_presence_of :reason_leave }
     it { is_expected.to validate_presence_of :staff }
     it { is_expected.to validate_presence_of :types }
     it { is_expected.to enumerize(:status).in(:pending, :approved, :rejected) }
