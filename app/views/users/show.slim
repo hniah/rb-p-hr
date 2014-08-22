@@ -27,12 +27,6 @@
             th=label_name('user.phone_number')
             td= @user.phone_number
           tr
-            th=label_name('user.basic_salary')
-            td= I18n.t('helpers.label.user.salary', count: @user.basic_salary)
-          tr
-            th=label_name('user.pay_increment')
-            td= I18n.t('helpers.label.user.pay_increment_value', count: @user.pay_increment)
-          tr
             th=label_name('user.social_insurance')
             td= @user.social_insurance
           tr
