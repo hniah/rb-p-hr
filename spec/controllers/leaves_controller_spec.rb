@@ -92,6 +92,7 @@ describe LeavesController do
         expect(flash[:notice]).to_not be_nil
       end
     end
+
     context 'Failed' do
       let(:leave_param) { attributes_for(:leave, date: '', reason_leave: '') }
       let(:leave) { Leave.first }

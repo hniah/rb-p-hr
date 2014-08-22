@@ -17,7 +17,8 @@ class LeavesController < ApplicationController
       @leave = Leave.new(leave_param.merge(staff: current_staff))
     end
     if @leave.save
-      HrNotifier.leave_come(ENV['EMAIL_NOTIFIER'], @leave).deliver
+      # Notify HR when new leave come
+      SystemNotifier.notify(ENV['EMAIL_NOTIFIER'], @leave, ENV['EMAIL_NOTIFY_HR_SUBJECT'], ENV['EMAIL_NOTIFY_HR_TEMPLATE']).deliver
       redirect_to leaves_path, notice: t('leave.message.create_success')
     else
       flash[:alert] = t('leave.message.create_failed')

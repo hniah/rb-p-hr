@@ -6,7 +6,7 @@ class Leave < ActiveRecord::Base
   scope :reject, -> { where(status: :reject) }
   scope :current_year, -> { where("date < ?", "#{Time.now.year}-12-31") }
 
-  delegate :english_name, to: :staff, prefix: true, allow_nil: true
+  delegate :id, :english_name, :email, to: :staff, prefix: true, allow_nil: true
 
   belongs_to :staff
 

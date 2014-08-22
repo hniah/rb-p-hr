@@ -2,7 +2,10 @@ require 'rails_helper'
 
 describe AdminsController do
   let(:admin) { create :admin }
-  let(:leave) { create :leave, status: :pending }
+  let(:staff) { create :staff }
+  let(:leave) { create :leave, status: :pending, staff: staff }
+  let(:last_email) { ActionMailer::Base.deliveries.last }
+
   describe '#approve' do
     def do_request
       get :approve, id: leave.id
@@ -15,6 +18,9 @@ describe AdminsController do
 
         expect(response).to redirect_to leaves_path
         expect(leave.reload.status.text).to eq 'Approved'
+        expect(last_email.to).to eq ["#{leave.staff_email}"]
+        expect(last_email.body).to have_content "Dear #{leave.staff_english_name}"
+        expect(last_email.body).to have_content 'approved'
       end
     end
   end
@@ -49,6 +55,9 @@ describe AdminsController do
         expect(response).to redirect_to leaves_path
         expect(leave.reload.status.text).to eq 'Rejected'
         expect(leave.reload.note).to eq 'Reject by your teamleader'
+        expect(last_email.to).to eq ["#{leave.staff_email}"]
+        expect(last_email.body).to have_content "Dear #{leave.staff_english_name}"
+        expect(last_email.body).to have_content 'rejected'
       end
     end
   end
