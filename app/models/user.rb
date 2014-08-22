@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
   default_scope -> { order(name: :asc, id: :desc) }
 
-  validates :name, :english_name, :personal_email, :address, :phone_number, :basic_salary, :started_on, :probation_end_on, :designation, presence: true
+  validates :name, :english_name, :personal_email, :address, :phone_number, :started_on, :probation_end_on, :designation, presence: true
   validates :phone_number, presence: true, numericality: { only_integer: true }
   validates :email, format: { :with => /\A([^@\s]+)@(futureworkz.com)\Z/i }
   validates :personal_email, format:  { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i }

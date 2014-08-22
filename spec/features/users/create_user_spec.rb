@@ -19,7 +19,6 @@ describe 'Create new Staff' do
       fill_in 'Birthday', with: '20/07/1987'
       fill_in 'Address', with: 'Lorem ipsum Lorem ipsum'
       fill_in 'Phone number', with: '012344567'
-      fill_in 'Basic salary', with: 456
       fill_in 'Started on', with: '20/09/02014'
       fill_in 'Probation end on', with: '20/09/02014'
       fill_in 'Note', with: 'Lorem lorem'
@@ -48,7 +47,6 @@ describe 'Create new Staff' do
       fill_in 'Birthday', with: '20/07/1987'
       fill_in 'Address', with: 'Lorem ipsum Lorem ipsum'
       fill_in 'Phone number', with: '012344567'
-      fill_in 'Basic salary', with: 456
       fill_in 'Started on', with: '20/09/02014'
       fill_in 'Probation end on', with: '20/09/02014'
       fill_in 'Note', with: 'Lorem lorem'
