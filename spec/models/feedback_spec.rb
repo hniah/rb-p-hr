@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Feedback do
   context 'validations' do
-    it { is_expected.to validate_presence_of :type }
+    it { is_expected.to validate_presence_of :kind }
     it { is_expected.to validate_presence_of :content }
   end
 
@@ -11,7 +11,7 @@ describe Feedback do
   end
 
   context 'enumerize' do
-    it { is_expected.to enumerize(:type).in(:feedback, :bug, :suggestion) }
+    it { is_expected.to enumerize(:kind).in(:feedback, :bug, :suggestion) }
   end
 end
 
