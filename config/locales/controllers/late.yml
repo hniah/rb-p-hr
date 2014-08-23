@@ -1,0 +1,7 @@
+en:
+  admin:
+    lates:
+      create:
+        message:
+          success: Late is successfully created.
+          failure: Failed to create late.

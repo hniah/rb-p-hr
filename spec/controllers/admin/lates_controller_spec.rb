@@ -29,11 +29,23 @@ describe Admin::LatesController do
     before { sign_in admin }
 
     context 'Admin fills in valid data' do
-      let(:late_params) { attributes_for(:late) }
+      let(:staff) { create :staff }
+      let(:late_params) { attributes_for(:late).merge(staff_id: staff.id) }
 
       it 'creates lates and set notice message' do
         expect { do_request }.to change(Late, :count).by(1)
+        expect(response).to redirect_to admin_lates_url
         expect(flash[:notice]).to_not be_nil
+      end
+    end
+
+    context 'Admin fills in invalid data' do
+      let(:late_params) { {lorem: 'ipsum'} }
+
+      it 'creates lates and set notice message' do
+        expect { do_request }.to_not change(Late, :count)
+        expect(response).to render_template(:new)
+        expect(flash[:alert]).to_not be_nil
       end
     end
   end

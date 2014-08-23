@@ -5,22 +5,24 @@ class Admin::LatesController < AdminsController
   end
 
   def create
-    @late = Late.new(late_params.merge(staff: current_user.becomes(Staff)))
+    @late = Late.new(late_params)
     
-    if @late.save!
-      redirect_to root_path, notice: t('.message.success')
+    if @late.save
+      redirect_to admin_lates_url, notice: t('.message.success')
     else
+      flash[:alert] = t('.message.failure')
       render :new
     end
   end
 
   def index
     @lates = Late.all
+    render :index
   end
 
   protected
   def late_params
-    params.require(:late).permit(:note)
+    params.require(:late).permit(:note, :staff_id)
   end
 end
 
