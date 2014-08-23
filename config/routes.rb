@@ -44,7 +44,7 @@ Rails.application.routes.draw do
 
   get 'my-account' => 'staffs#show'
   patch 'admin/approve/:id' => 'admin/leaves#approve', as: 'approve'
-  get 'admin/reject/:id' => 'admin/leaves#reject', as: 'reject'
+  get 'admin/leaves/reject/:id' => 'admin/leaves#reject', as: 'reject'
   patch 'admin/reject/:id' => 'admin/leaves#reject_action', as: 'reject_action'
 
   # Example resource route with sub-resources:

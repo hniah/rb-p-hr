@@ -29,7 +29,8 @@
             br
             br
             - if leave.status.pending?
-              = link_to Leave.human_attribute_name('approve'), approve_path(leave.id), class: 'list-approve-button'
-              = link_to Leave.human_attribute_name('reject'), reject_path(leave.id), class: 'list-delete-button', data: {test: "reject-leave-#{leave.id}"}
+              = semantic_form_for leave, url: approve_path(leave.id) do |f|
+                = f.submit Leave.human_attribute_name('approve'), class: 'list-approve-button'
+                = link_to Leave.human_attribute_name('reject'), reject_path(leave.id), class: 'list-delete-button', data: {test: "reject-leave-#{leave.id}"}
   .pagination
     = bootstrap_paginate(@leaves)
