@@ -10,6 +10,7 @@ describe FeedbackNotifier do
       FeedbackNotifier.new_feedback(feedback).deliver
       expect(ActionMailer::Base.deliveries.size).to eq 1
       expect(ActionMailer::Base.deliveries.first.subject).to include("New feedback from user")
+      expect(ActionMailer::Base.deliveries.first.to).to include 'jack@futureworkz.com'
     end
   end
 end
