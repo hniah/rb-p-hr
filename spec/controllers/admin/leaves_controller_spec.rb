@@ -8,7 +8,7 @@ describe Admin::LeavesController do
 
   describe '#approve' do
     def do_request
-      get :approve, id: leave.id
+      patch :approve, id: leave.id
     end
 
     context 'approve' do

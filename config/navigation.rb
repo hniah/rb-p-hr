@@ -67,6 +67,7 @@ SimpleNavigation::Configuration.run do |navigation|
     end
 
     primary.item :feedbacks, 'Feedback/Bug Report', new_feedback_path, if: -> { user_signed_in? } 
+    primary.item :feedbacks, 'Feedbacks List', admin_feedbacks_path, if: -> { user_signed_in? && current_user.is_admin? }
     # Add an item which has a sub navigation (same params, but with block)
     # primary.item :key_2, 'name', url, options do |sub_nav|
       # Add an item to the sub navigation (same params again)

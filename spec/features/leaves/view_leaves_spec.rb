@@ -11,7 +11,6 @@ describe 'View Leaves List' do
       visit leaves_path
       expect(page).to have_content 'Leaves List'
     end
-
   end
 
   context 'When admin logged in' do

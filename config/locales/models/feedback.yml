@@ -1,0 +1,12 @@
+en:
+  activerecord:
+    attributes:
+      feedback:
+        kind: 'Kind'
+        content: 'Content'
+        staff_id: 'Staff name'
+        action: 'action'
+    errors:
+      models:
+        feedback:
+          blank: "Please fill in %{attribute}"

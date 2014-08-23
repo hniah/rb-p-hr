@@ -33,12 +33,17 @@ Rails.application.routes.draw do
     resources :users
   end
 
+  namespace :admin do
+    resources :feedbacks, only: [:index]
+  end
+
   resources :leaves
   resources :staffs, only: [:show]
   resources :feedbacks, only: [:new, :create]
 
+
   get 'my-account' => 'staffs#show'
-  get 'admin/approve/:id' => 'admin/leaves#approve', as: 'approve'
+  patch 'admin/approve/:id' => 'admin/leaves#approve', as: 'approve'
   get 'admin/reject/:id' => 'admin/leaves#reject', as: 'reject'
   patch 'admin/reject/:id' => 'admin/leaves#reject_action', as: 'reject_action'
 
