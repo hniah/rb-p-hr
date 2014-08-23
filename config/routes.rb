@@ -28,6 +28,9 @@ Rails.application.routes.draw do
   #       get 'sold'
   #     end
   #   end
+  namespace :admin do
+    resources :lates, only: [:index, :new, :create]
+  end
 
   scope :admin do
     resources :users
