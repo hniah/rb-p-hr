@@ -28,3 +28,5 @@ en:
       subject: 'Your Leave is Approved'
     reject:
       subject: 'Your Leave is Rejected'
+    sickly:
+      subject: 'Your Sick Leave is Approved'

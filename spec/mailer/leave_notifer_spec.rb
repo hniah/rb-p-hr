@@ -35,6 +35,23 @@ describe SystemNotifier do
     end
   end
 
+  describe 'notify staff when sick leave is approved' do
+    let(:leave) { create :leave, types: :sick }
+    before do
+      LeaveNotifier.approved(leave).deliver
+    end
+
+    let(:last_email) { ActionMailer::Base.deliveries.last }
+
+    context 'notify hr when sick leave is approved' do
+      it 'notify hr when sick leave is approved' do
+        expect(last_email.to).to eq ["#{leave.staff_email}"]
+        expect(last_email.subject).to eq 'Your Sick Leave is Approved'
+        expect(last_email.body).to include 'Take good care and we wish you full recovery soon.'
+      end
+    end
+  end
+
   describe 'notify staff when leave is rejected' do
     let(:leave) { create :leave }
     before do
