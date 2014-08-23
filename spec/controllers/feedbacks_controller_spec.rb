@@ -26,6 +26,7 @@ describe FeedbacksController do
 
       it 'creates a feedback then redirects user back to home page' do
         expect { do_request }.to change(Feedback, :count).by(1)
+        expect(ActionMailer::Base.deliveries.size).to eq 1
         expect(response).to redirect_to root_url
       end
     end

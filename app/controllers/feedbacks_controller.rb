@@ -10,6 +10,7 @@ class FeedbacksController < ApplicationController
     @feedback = Feedback.new(feedback_params.merge(staff: current_user.becomes(Staff)))
 
     if @feedback.save
+      FeedbackNotifier.new_feedback(@feedback).deliver
       redirect_to root_path, notice: 'Thanks for your submission'
     else
       flash[:alert] = t('.message.failure')

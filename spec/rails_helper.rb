@@ -33,6 +33,10 @@ RSpec.configure do |config|
   config.include Warden::Test::Helpers
   Warden.test_mode!
 
+  config.before(:each) do
+    ActionMailer::Base.deliveries = []
+  end
+
   OmniAuth.config.test_mode = true
   OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({
     :provider => 'google_oauth2',
