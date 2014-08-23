@@ -88,13 +88,13 @@ describe LeavesController do
         expect(leave.staff).to eq staff
         expect(last_email.to).to eq [ENV['EMAIL_NOTIFIER']]
         expect(last_email.body).to have_content 'New leave application'
-        expect(last_email.body).to have_content leave.reason_leave
+        expect(last_email.body).to have_content leave.reason
         expect(flash[:notice]).to_not be_nil
       end
     end
 
     context 'Failed' do
-      let(:leave_param) { attributes_for(:leave, date: '', reason_leave: '') }
+      let(:leave_param) { attributes_for(:leave, date: '', reason: '') }
       let(:leave) { Leave.first }
       def do_request
         post :create, leave: leave_param

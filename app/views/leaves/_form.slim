@@ -8,7 +8,7 @@
     = f.label :kind, class: 'control-label'
     br
     = f.select :kind, Leave.kind.options, {include_blank: t('leave.message.select_kind')}, { class: 'form-control' }
-  = f.input :reason_leave, input_html: { rows: 2 }
+  = f.input :reason, input_html: { rows: 2 }
   -if current_user.is_admin?
     .form-group
       = f.label :staff_id, class: 'control-label'

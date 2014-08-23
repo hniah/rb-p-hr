@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140820081627) do
+ActiveRecord::Schema.define(version: 20140823012236) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20140820081627) do
   create_table "leaves", force: true do |t|
     t.date     "date"
     t.string   "kind"
-    t.text     "reason_leave"
+    t.text     "reason"
     t.integer  "staff_id"
     t.string   "status"
     t.text     "note"

@@ -8,7 +8,7 @@
         th= label_name('leave.status')
         th= label_name('leave.date')
         th= label_name('leave.kind')
-        th.col-md-3= label_name('leave.reason_leave')
+        th.col-md-3= label_name('leave.reason')
         th= label_name('leave.staff')
         th.col-md-3= label_name('leave.note')
         - if current_user.is_admin?
@@ -19,7 +19,7 @@
         td= leave.status.text
         td= leave.date
         td= leave.kind.text
-        td= leave.reason_leave
+        td= leave.reason
         td= leave.staff_english_name
         td= leave.note
         - if current_user.is_admin?
