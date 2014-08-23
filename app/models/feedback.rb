@@ -1,11 +1,11 @@
 class Feedback < ActiveRecord::Base
-  include Enumerize
+  extend Enumerize
 
-  validates :type, presence: true
+  validates :kind, presence: true
   validates :content, presence: true
 
   belongs_to :staff
 
-  enumerize :type, in: [:feedback, :bug, :suggestion]
+  enumerize :kind, in: [:feedback, :bug, :suggestion]
 end
 

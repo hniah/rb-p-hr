@@ -35,6 +35,7 @@ Rails.application.routes.draw do
 
   resources :leaves
   resources :staffs, only: [:show]
+  resources :feedbacks, only: [:new, :create]
 
   get 'my-account' => 'staffs#show'
   get 'admin/approve/:id' => 'admin/leaves#approve', as: 'approve'

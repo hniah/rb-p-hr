@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20140823022841) do
   enable_extension "plpgsql"
 
   create_table "feedbacks", force: true do |t|
-    t.string  "type",     default: "feedback"
+    t.string  "kind",     default: "feedback"
     t.text    "content"
     t.integer "staff_id"
   end
