@@ -21,15 +21,24 @@ en:
         status: 'Status'
         date: 'Date'
         kind: 'Kind'
-        reason_leave: 'Reason'
-        staff_id: 'Staff Name'
-        action: 'Action'
     help:
       leave:
         date: 'Your leave day'
         kind: 'Your leave kind'
         reason_leave: 'Your leave reason'
   activerecord:
+    attributes:
+      leave:
+        types: 'Types'
+        status: 'Status'
+        date: 'Date'
+        kind: 'Kind'
+        reason: 'Reason'
+        staff: 'Staff Name'
+        note: 'Note'
+        action: 'action'
+        approve: 'Approve'
+        reject: 'Reject'
     errors:
       models:
         leave:

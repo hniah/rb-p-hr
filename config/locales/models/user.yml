@@ -1,0 +1,41 @@
+en:
+  user:
+    message:
+      create_success: 'Staff is created'
+      create_failed: 'Failed to create staff'
+      update_success: 'Staff is updated'
+      update_failed: 'Failed to update staff'
+      delete_success: 'Staff is deleted'
+      delete_failed: 'Failed to delete staff'
+      select_staff: 'Please select staff'
+      delete_confirmation: 'Confirm delete this staff?'
+  activerecord:
+    errors:
+      models:
+        user:
+          blank: "Please fill in %{attribute}"
+          invalid: 'Please fill in the correct format of %{attribute}'
+    models:
+      user: Staff
+    attributes:
+      user:
+        encrypted_password: 'Password'
+        name: 'Name'
+        english_name: 'English name'
+        email: 'Email'
+        personal_email: 'Personal email'
+        birthday: 'Birthday'
+        address: 'Address'
+        basic_salary: 'Basic salary'
+        pay_increment: 'Pay increment'
+        social_insurance: 'Social insurance'
+        thirty_month_bonus: 'Thirty month bonus'
+        phone_number: 'Phone number'
+        started_on: 'Started on'
+        probation_end_on: 'Probation end on'
+        designation: 'Designation'
+        admin: 'Administrator'
+        is_admin: 'Make staff an administrator'
+        action: 'Action'
+        salary: "%{count} USD"
+        pay_increment_value: "%{count}%"

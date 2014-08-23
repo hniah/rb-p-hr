@@ -4,15 +4,15 @@
   table.list-table
     thead
       tr
-        th= label_name('leave.types')
-        th= label_name('leave.status')
-        th= label_name('leave.date')
-        th= label_name('leave.kind')
-        th.col-md-3= label_name('leave.reason')
-        th= label_name('leave.staff')
-        th.col-md-3= label_name('leave.note')
+        th= Leave.human_attribute_name('types')
+        th= Leave.human_attribute_name('status')
+        th= Leave.human_attribute_name('date')
+        th= Leave.human_attribute_name('kind')
+        th.col-md-3= Leave.human_attribute_name('reason')
+        th= Leave.human_attribute_name('staff')
+        th.col-md-3= Leave.human_attribute_name('kind')
         - if current_user.is_admin?
-          th= label_name('leave.action')
+          th= Leave.human_attribute_name('action')
     - @leaves.each do |leave|
       tr
         td= leave.types.text
@@ -29,7 +29,7 @@
             br
             br
             - if leave.status.pending?
-              = link_to 'Approve', approve_path(leave.id), class: 'list-approve-button'
-              = link_to 'Reject', reject_path(leave.id), class: 'list-delete-button', data: {test: "reject-leave-#{leave.id}"}
+              = link_to Leave.human_attribute_name('approve'), approve_path(leave.id), class: 'list-approve-button'
+              = link_to Leave.human_attribute_name('reject'), reject_path(leave.id), class: 'list-delete-button', data: {test: "reject-leave-#{leave.id}"}
   .pagination
     = bootstrap_paginate(@leaves)

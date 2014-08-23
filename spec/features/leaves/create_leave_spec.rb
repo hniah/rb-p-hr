@@ -39,7 +39,7 @@ describe 'Display New Leave form' do
       fill_in 'Date', with: '10/07/2014'
       select 'Whole day', from: 'Kind'
       fill_in 'Reason', with: 'Lorem lorem'
-      select staff.english_name, from: 'Staff Name'
+      select staff.english_name, from: 'Staff'
       click_on 'Create Leave'
 
       expect(page).to have_content 'Leaves List'
