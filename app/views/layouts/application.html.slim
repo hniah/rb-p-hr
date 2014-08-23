@@ -12,6 +12,7 @@ html
             .container
               ul.loginbar.pull-right
                 - if current_user.present?
+                  li= link_to "Feedback/Bug Report", new_feedback_path
                   li= "Welcome #{current_user.name}"
                   - if !current_user.is_admin?
                     li.topbar-devider
