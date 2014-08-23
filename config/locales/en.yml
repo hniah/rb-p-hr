@@ -21,3 +21,10 @@
 
 en:
   hello: "Hello world"
+  mail:
+    hr:
+      subject: 'New Leave Application'
+    approve:
+      subject: 'Your Leave is Approved'
+    reject:
+      subject: 'Your Leave is Rejected'

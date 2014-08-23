@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe AdminsController do
+describe Admin::LeavesController do
   let(:admin) { create :admin }
   let(:staff) { create :staff }
   let(:leave) { create :leave, status: :pending, staff: staff }
