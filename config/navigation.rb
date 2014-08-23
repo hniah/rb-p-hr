@@ -66,6 +66,7 @@ SimpleNavigation::Configuration.run do |navigation|
       submenu.item :new, 'Add New Staff', new_user_path
     end
 
+    primary.item :feedbacks, 'Feedback/Bug Report', new_feedback_path, if: -> { user_signed_in? } 
     # Add an item which has a sub navigation (same params, but with block)
     # primary.item :key_2, 'name', url, options do |sub_nav|
       # Add an item to the sub navigation (same params again)
