@@ -34,6 +34,6 @@ class Admin::LeavesController < AdminsController
   end
 
   def leave_param
-    params.require(:leave).permit(:note)
+    params.require(:leave).permit(:rejection_note)
   end
 end

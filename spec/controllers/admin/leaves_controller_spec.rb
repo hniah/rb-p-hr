@@ -42,7 +42,7 @@ describe Admin::LeavesController do
   end
 
   describe '#reject_action' do
-    let(:leave_param) { attributes_for(:leave, note: 'Reject by your teamleader')}
+    let(:leave_param) { attributes_for(:leave, rejection_note: 'Reject by your teamleader')}
     def do_request
       patch :reject_action, id: leave.id, leave: leave_param
     end
@@ -54,7 +54,7 @@ describe Admin::LeavesController do
 
         expect(response).to redirect_to leaves_path
         expect(leave.reload.status.text).to eq 'Rejected'
-        expect(leave.reload.note).to eq 'Reject by your teamleader'
+        expect(leave.reload.rejection_note).to eq 'Reject by your teamleader'
         expect(last_email.to).to eq ["#{leave.staff_email}"]
         expect(last_email.body).to have_content "Dear #{leave.staff_english_name}"
         expect(last_email.body).to have_content 'rejected'

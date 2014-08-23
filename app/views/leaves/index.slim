@@ -4,24 +4,24 @@
   table.list-table
     thead
       tr
-        th= Leave.human_attribute_name('types')
+        th= Leave.human_attribute_name('category')
         th= Leave.human_attribute_name('status')
         th= Leave.human_attribute_name('date')
         th= Leave.human_attribute_name('kind')
         th.col-md-3= Leave.human_attribute_name('reason')
         th= Leave.human_attribute_name('staff')
-        th.col-md-3= Leave.human_attribute_name('kind')
+        th.col-md-2= Leave.human_attribute_name('rejection_note')
         - if current_user.is_admin?
           th= Leave.human_attribute_name('action')
     - @leaves.each do |leave|
       tr
-        td= leave.types.text
+        td= leave.category.text
         td= leave.status.text
         td= leave.date
         td= leave.kind.text
         td= leave.reason
         td= leave.staff_english_name
-        td= leave.note
+        td= leave.rejection_note
         - if current_user.is_admin?
           td
             = list_edit_button(leave)

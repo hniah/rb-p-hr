@@ -60,7 +60,7 @@ class LeavesController < ApplicationController
   end
 
   def leave_param
-    params.require(:leave).permit(:date, :kind, :reason, :status, :note, :staff_id, :types)
+    params.require(:leave).permit(:date, :kind, :reason, :staff_id, :category)
   end
 
   def current_staff

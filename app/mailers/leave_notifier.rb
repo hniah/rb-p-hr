@@ -9,7 +9,7 @@ class LeaveNotifier < SystemNotifier
 
   def approved(leave)
     @leave = leave
-    if !leave.types.sick?
+    if !leave.category.sick?
       mail(to: @leave.staff_email, subject: t('mail.approve.subject')) do |format|
         format.html {render 'notifier/approved_leave'
         }

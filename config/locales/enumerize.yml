@@ -5,7 +5,7 @@ en:
         pending: 'Pending'
         approved: 'Approved'
         rejected: 'Rejected'
-      types:
+      category:
         unpaid: 'Unpaid'
         sick: 'Sick'
         annual: 'Annual'

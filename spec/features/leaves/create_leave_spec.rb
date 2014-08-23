@@ -11,7 +11,7 @@ describe 'Display New Leave form' do
 
       click_on 'Add New Leave'
 
-      select 'Annual', from: 'Types'
+      select 'Annual', from: 'Category'
       fill_in 'Date', with: '10/07/2014'
       select 'Whole day', from: 'Kind'
       fill_in 'Reason', with: 'Lorem lorem'
@@ -35,7 +35,7 @@ describe 'Display New Leave form' do
 
       click_on 'Add New Leave'
 
-      select 'Annual', from: 'Types'
+      select 'Annual', from: 'Category'
       fill_in 'Date', with: '10/07/2014'
       select 'Whole day', from: 'Kind'
       fill_in 'Reason', with: 'Lorem lorem'

@@ -36,7 +36,7 @@ describe SystemNotifier do
   end
 
   describe 'notify staff when sick leave is approved' do
-    let(:leave) { create :leave, types: :sick }
+    let(:leave) { create :leave, category: :sick }
     before do
       LeaveNotifier.approved(leave).deliver
     end

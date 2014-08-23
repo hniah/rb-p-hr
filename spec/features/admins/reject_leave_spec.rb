@@ -13,7 +13,7 @@ describe 'Display note to reject Leave' do
 
     get_element("reject-leave-#{leave.id}").click
 
-    fill_in 'Note', with: 'Not approved by your leader'
+    fill_in 'Rejection note', with: 'Not approved by your leader'
     click_on 'Reject Leave'
 
     expect(page).to have_content 'Leaves List'

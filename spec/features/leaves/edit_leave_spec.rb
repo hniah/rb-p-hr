@@ -15,7 +15,7 @@ describe 'Edit Work Log' do
 
       get_element("edit-leave-#{leave.id}").click
 
-      select 'Compassionate', from: 'Types'
+      select 'Compassionate', from: 'Category'
       fill_in 'Date', with: '10/07/2014'
       select 'Whole day', from: 'Kind'
       fill_in 'Reason', with: 'Lorem lorem'

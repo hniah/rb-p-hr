@@ -24,14 +24,14 @@ ActiveRecord::Schema.define(version: 20140823022841) do
 
   create_table "leaves", force: true do |t|
     t.date     "date"
+    t.string   "status"
+    t.string   "category"
     t.string   "kind"
     t.text     "reason"
+    t.text     "rejection_note"
     t.integer  "staff_id"
-    t.string   "status"
-    t.text     "note"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "types"
   end
 
   create_table "users", force: true do |t|
