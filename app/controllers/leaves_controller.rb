@@ -12,11 +12,7 @@ class LeavesController < ApplicationController
   end
 
   def create
-    if current_user.is_admin?
-      @leave = Leave.new(leave_param)
-    else
-      @leave = Leave.new(leave_param.merge(staff: current_staff))
-    end
+    @leave = Leave.new(leave_param.merge(staff: current_staff))
     if @leave.save
       # Notify HR when new leave come
       LeaveNotifier.new_leave(@leave).deliver

@@ -11,5 +11,9 @@
         br
         = ld.select :kind, LeaveDay.kind.options, {include_blank: t('leave.message.select_kind')}, { class: 'form-control' }
   = f.input :reason, input_html: { rows: 2 }
+  .form-group
+    = f.label :staff_id, class: 'control-label'
+    br
+    = f.select :staff_id, staff_options(Staff.all), {include_blank: t('leave.message.select_staff')}, { class: 'form-control' }
   = f.submit class: 'btn-u'
   = link_to 'Back', leaves_path, class: 'btn-u btn-u-default'

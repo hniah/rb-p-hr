@@ -38,6 +38,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :feedbacks, only: [:index]
+    resources :leaves, only: [:new, :create]
   end
 
   resources :leaves

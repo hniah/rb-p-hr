@@ -48,14 +48,14 @@
           th= Leave.human_attribute_name('date_from')
           th= Leave.human_attribute_name('date_to')
           th= Leave.human_attribute_name('reason')
-          th= Leave.human_attribute_name('kind')
+          th= Leave.human_attribute_name('day')
         - @staff.leaves.each_with_index do |leave, index|
           tr
             td= index + 1
             td= leave.status.text
             td= leave.category.text
-            td= leave.leave_days_first_date
-            td= leave.leave_days_last_date
+            td= leave.first_date
+            td= leave.last_date
             td= leave.reason
-            td= leave.kind.text
+            td= leave.days_total
     = link_to 'Back', root_path, class: 'btn-u btn-u-default'

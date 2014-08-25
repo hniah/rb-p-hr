@@ -36,7 +36,7 @@ en:
         reason: 'Reason'
         staff: 'Staff Name'
         rejection_note: 'Rejection note'
-        action: 'action'
+        action: 'Action'
         approve: 'Approve'
         reject: 'Reject'
         date_from: 'Date from'

@@ -1,7 +1,7 @@
 class Leave < ActiveRecord::Base
   extend Enumerize
 
-  default_scope -> { order(date: :desc, id: :asc) }
+  default_scope -> { order(id: :desc) }
   scope :approve, -> { where(status: :approve) }
   scope :reject, -> { where(status: :reject) }
 
@@ -18,23 +18,23 @@ class Leave < ActiveRecord::Base
   enumerize :status, in: [:pending, :approved, :rejected], default: :pending
   enumerize :category, in: [:unpaid, :sick, :annual, :compassionate, :maternity, :urgent], default: :annual
 
-  def leave_days_first_date
+  def first_date
     self.leave_days.first.date
   end
 
-  def leave_days_last_date
+  def last_date
     self.leave_days.last.date
   end
 
-  def leave_days_count
-    self.leave_days.whole_day.count + self.leave_days.half_day.count
+  def days_total
+    self.leave_days.whole_day.count + self.leave_days.half_day.count / 2.0
   end
 
-  def leave_dates
+  def dates
     if self.leave_days.count == 1
-      "on #{leave_days_first_date}"
+      "on #{first_date}"
     else
-      "from #{leave_days_first_date} to #{leave_days_last_date}"
+      "from #{first_date} to #{last_date}"
     end
   end
 
