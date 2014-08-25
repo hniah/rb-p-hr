@@ -6,8 +6,8 @@
       tr
         th= Leave.human_attribute_name('category')
         th= Leave.human_attribute_name('status')
-        th= Leave.human_attribute_name('date')
-        th= Leave.human_attribute_name('kind')
+        th= Leave.human_attribute_name('date_from')
+        th= Leave.human_attribute_name('date_to')
         th.col-md-3= Leave.human_attribute_name('reason')
         th= Leave.human_attribute_name('staff')
         th.col-md-2= Leave.human_attribute_name('rejection_note')
@@ -17,8 +17,8 @@
       tr
         td= leave.category.text
         td= leave.status.text
-        td= leave.date
-        td= leave.kind.text
+        td= leave.leave_days_first_date
+        td= leave.leave_days_last_date
         td= leave.reason
         td= leave.staff_english_name
         td= leave.rejection_note

@@ -3,7 +3,7 @@ require 'rails_helper'
 describe Admin::LeavesController do
   let(:admin) { create :admin }
   let(:staff) { create :staff }
-  let(:leave) { create :leave, status: :pending, staff: staff }
+  let(:leave) { create :leave, :with_leave_days, status: :pending, staff: staff }
   let(:last_email) { ActionMailer::Base.deliveries.last }
 
   describe '#approve' do
@@ -21,6 +21,8 @@ describe Admin::LeavesController do
         expect(last_email.to).to eq ["#{leave.staff_email}"]
         expect(last_email.body).to have_content "Dear #{leave.staff_english_name}"
         expect(last_email.body).to have_content 'approved'
+        expect(last_email.body).to have_content "#{leave.leave_days_count} days"
+        expect(last_email.body).to have_content leave.leave_dates
       end
     end
   end
@@ -58,6 +60,8 @@ describe Admin::LeavesController do
         expect(last_email.to).to eq ["#{leave.staff_email}"]
         expect(last_email.body).to have_content "Dear #{leave.staff_english_name}"
         expect(last_email.body).to have_content 'rejected'
+        expect(last_email.body).to have_content "#{leave.leave_days_count} day"
+        expect(last_email.body).to have_content leave.leave_dates
       end
     end
   end

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe SystemNotifier do
   describe 'notify hr' do
-    let(:leave) { create :leave }
+    let(:leave) { create :leave, :with_leave_days }
     before do
       LeaveNotifier.new_leave(leave).deliver
     end
@@ -19,7 +19,7 @@ describe SystemNotifier do
   end
 
   describe 'notify staff when leave is approved' do
-    let(:leave) { create :leave }
+    let(:leave) { create :leave, :with_leave_days }
     before do
       LeaveNotifier.approved(leave).deliver
     end
@@ -36,7 +36,7 @@ describe SystemNotifier do
   end
 
   describe 'notify staff when sick leave is approved' do
-    let(:leave) { create :leave, category: :sick }
+    let(:leave) { create :leave, :with_leave_days, category: :sick }
     before do
       LeaveNotifier.approved(leave).deliver
     end
@@ -53,7 +53,7 @@ describe SystemNotifier do
   end
 
   describe 'notify staff when leave is rejected' do
-    let(:leave) { create :leave }
+    let(:leave) { create :leave, :with_leave_days }
     before do
       LeaveNotifier.rejected(leave).deliver
     end

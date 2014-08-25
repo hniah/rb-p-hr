@@ -8,10 +8,11 @@ class LeavesController < ApplicationController
 
   def new
     @leave = Leave.new
+    1.times { @leave.leave_days.build }
   end
 
   def create
-    if current_user.is_admin? then
+    if current_user.is_admin?
       @leave = Leave.new(leave_param)
     else
       @leave = Leave.new(leave_param.merge(staff: current_staff))
@@ -60,7 +61,7 @@ class LeavesController < ApplicationController
   end
 
   def leave_param
-    params.require(:leave).permit(:date, :kind, :reason, :staff_id, :category)
+    params.require(:leave).permit(:reason, :staff_id, :category, leave_days_attributes: [ :date, :kind, :id ])
   end
 
   def current_staff

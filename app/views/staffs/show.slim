@@ -45,15 +45,17 @@
           th= 'No.'
           th= Leave.human_attribute_name('status')
           th= Leave.human_attribute_name('category')
-          th= Leave.human_attribute_name('date')
+          th= Leave.human_attribute_name('date_from')
+          th= Leave.human_attribute_name('date_to')
           th= Leave.human_attribute_name('reason')
           th= Leave.human_attribute_name('kind')
-        - @staff.leaves.current_year.each_with_index do |leave, index|
+        - @staff.leaves.each_with_index do |leave, index|
           tr
             td= index + 1
             td= leave.status.text
             td= leave.category.text
-            td= leave.date
+            td= leave.leave_days_first_date
+            td= leave.leave_days_last_date
             td= leave.reason
             td= leave.kind.text
     = link_to 'Back', root_path, class: 'btn-u btn-u-default'

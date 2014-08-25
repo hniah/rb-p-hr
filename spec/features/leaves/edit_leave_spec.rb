@@ -5,7 +5,7 @@ describe 'Edit Work Log' do
   context 'Admin logged in' do
     let(:admin) { create(:admin) }
     let!(:staff) { create(:staff) }
-    let!(:leave) { create(:leave, staff: staff) }
+    let!(:leave) { create(:leave, :with_leave_days, staff: staff) }
     before{ create :staff }
 
     it 'Create new leave' do
@@ -16,8 +16,6 @@ describe 'Edit Work Log' do
       get_element("edit-leave-#{leave.id}").click
 
       select 'Compassionate', from: 'Category'
-      fill_in 'Date', with: '10/07/2014'
-      select 'Whole day', from: 'Kind'
       fill_in 'Reason', with: 'Lorem lorem'
       click_on 'Update Leave'
 

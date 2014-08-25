@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Delete Leave' do
   let(:admin) { create :admin }
-  let!(:leave) { create :leave }
+  let!(:leave) { create :leave, :with_leave_days }
 
   it 'Delete Leave' do
     feature_login admin

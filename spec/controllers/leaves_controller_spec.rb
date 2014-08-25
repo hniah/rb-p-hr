@@ -71,7 +71,8 @@ describe LeavesController do
 
   describe 'POST #create' do
     context 'Success' do
-      let(:leave_param) { attributes_for(:leave, date: '10/07/2014', kind: :morning) }
+      let(:leave_days) { [attributes_for(:leave_day)] }
+      let(:leave_param) { attributes_for(:leave, leave_days_attributes: leave_days) }
       let(:leave) { Leave.first }
       let(:last_email) { ActionMailer::Base.deliveries.last }
       def do_request
@@ -80,12 +81,11 @@ describe LeavesController do
 
       it 'creates leave, redirect to list, sets notice flash' do
         sign_in staff
-
         do_request
 
         expect(response).to redirect_to leaves_path
-        expect(leave.kind).to eq 'morning'
         expect(leave.staff).to eq staff
+        expect(leave.reload.leave_days.size).to eq 1
         expect(last_email.to).to eq [ENV['EMAIL_NOTIFIER']]
         expect(last_email.body).to have_content 'New leave application'
         expect(last_email.body).to have_content leave.reason
@@ -130,7 +130,8 @@ describe LeavesController do
 
   describe 'PATCH #update' do
     context 'success' do
-      let(:leave_param) { attributes_for(:leave, kind: :morning, date: '10/07/2014')}
+      let(:leave_days) { [attributes_for(:leave_day, kind: :morning)] }
+      let(:leave_param) { attributes_for(:leave, leave_days_attributes: leave_days)}
       let(:leave) { create(:leave) }
 
       def do_request
@@ -142,14 +143,15 @@ describe LeavesController do
 
         do_request
 
-        expect(leave.reload.kind.text).to eq 'Morning'
+        expect(leave.reload.leave_days.first.kind.text).to eq 'Morning'
         expect(response).to redirect_to leaves_path
         expect(flash[:notice]).to_not be_nil
       end
     end
 
     context 'failed' do
-      let(:leave_param) { attributes_for(:leave, kind: 'Lorem', date: '10/07/2014', reason: '') }
+      let(:leave_days) { [attributes_for(:leave_day, kind: '', date: '')] }
+      let(:leave_param) { attributes_for(:leave, leave_days_attributes: leave_days) }
       let(:leave) { create(:leave) }
 
       def do_request
