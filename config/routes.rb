@@ -38,10 +38,10 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :feedbacks, only: [:index]
-    resources :leaves, only: [:new, :create]
+    resources :leaves
   end
 
-  resources :leaves
+  resources :leaves, only: [:index, :new, :create, :show]
   resources :staffs, only: [:show]
   resources :feedbacks, only: [:new, :create]
 

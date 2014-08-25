@@ -9,7 +9,7 @@ describe 'Display note to reject Leave' do
   it 'Display note to admin inputs and reject leave' do
     feature_login admin
     visit root_path
-    visit leaves_path
+    visit admin_leaves_path
 
     get_element("reject-leave-#{leave.id}").click
 

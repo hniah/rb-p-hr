@@ -31,28 +31,6 @@ describe LeavesController do
         expect(flash[:alert]).to_not be_nil
       end
     end
-
-    context 'Admin logged in' do
-      let!(:admin) { create :admin }
-
-      before do
-        create_list(:leave, 2, staff: staff)
-        create_list(:leave, 2, staff: admin.becomes(Staff))
-      end
-
-      def do_request
-        get :index
-      end
-
-      it 'fetches all leaves date' do
-        sign_in admin
-
-        do_request
-
-        expect(response).to render_template :index
-        expect(assigns(:leaves).size).to eq 4
-      end
-    end
   end
 
   describe 'GET #new' do
@@ -75,6 +53,7 @@ describe LeavesController do
       let(:leave_param) { attributes_for(:leave, leave_days_attributes: leave_days) }
       let(:leave) { Leave.first }
       let(:last_email) { ActionMailer::Base.deliveries.last }
+
       def do_request
         post :create, leave: leave_param
       end
@@ -108,81 +87,6 @@ describe LeavesController do
         expect(response).to render_template :new
         expect(flash[:alert]).to_not be_nil
       end
-    end
-  end
-
-  describe 'get #edit' do
-    let!(:leave) { create(:leave) }
-
-    def do_request
-      get :edit, id: leave.id
-    end
-
-    it 'renders template edit and finds work log' do
-      sign_in staff
-
-      do_request
-
-      expect(response).to render_template :edit
-      expect(assigns(:leave)).to_not be_nil
-    end
-  end
-
-  describe 'PATCH #update' do
-    context 'success' do
-      let(:leave_days) { [attributes_for(:leave_day, kind: :morning)] }
-      let(:leave_param) { attributes_for(:leave, leave_days_attributes: leave_days)}
-      let(:leave) { create(:leave) }
-
-      def do_request
-        patch :update, id: leave.id, leave: leave_param
-      end
-
-      it 'updates work log, redirects to list and sets notice flash' do
-        sign_in staff
-
-        do_request
-
-        expect(leave.reload.leave_days.first.kind.text).to eq 'Morning'
-        expect(response).to redirect_to leaves_path
-        expect(flash[:notice]).to_not be_nil
-      end
-    end
-
-    context 'failed' do
-      let(:leave_days) { [attributes_for(:leave_day, kind: '', date: '')] }
-      let(:leave_param) { attributes_for(:leave, leave_days_attributes: leave_days) }
-      let(:leave) { create(:leave) }
-
-      def do_request
-        patch :update, id: leave.id, leave: leave_param
-      end
-
-      it 'renders template edit and sets alert flash' do
-        sign_in staff
-
-        do_request
-
-        expect(response).to render_template :edit
-        expect(flash[:alert]).to_not be_nil
-      end
-    end
-  end
-
-  describe 'delete #destroy' do
-    let!(:leave) { create(:leave) }
-
-    def do_request
-      delete :destroy, id: leave.id
-    end
-
-    it 'deletes work log, redirects to list and sets notice flash' do
-      sign_in staff
-
-      do_request
-
-      expect(response).to redirect_to leaves_path
-      expect(flash[:notice]).to_not be_nil
     end
   end
 end

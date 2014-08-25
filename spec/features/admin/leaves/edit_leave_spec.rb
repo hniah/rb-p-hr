@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Edit Work Log' do
+describe 'Edit Leave' do
 
   context 'Admin logged in' do
     let(:admin) { create(:admin) }
@@ -8,15 +8,17 @@ describe 'Edit Work Log' do
     let!(:leave) { create(:leave, :with_leave_days, staff: staff) }
     before{ create :staff }
 
-    it 'Create new leave' do
+    it 'Edit Leave' do
       feature_login(admin)
 
-      visit leaves_path
+      visit admin_leaves_path
 
       get_element("edit-leave-#{leave.id}").click
 
       select 'Compassionate', from: 'Category'
       fill_in 'Reason', with: 'Lorem lorem'
+      get_element('fill-in-date-0').set('10/07/2014')
+      get_element('select-kind-0').select('Whole day')
       click_on 'Update Leave'
 
       expect(page).to have_content 'Leaves List'

@@ -1,13 +1,16 @@
 require 'rails_helper'
 
 describe 'Display New Leave form' do
-  context 'Staff logged in' do
-    let(:staff) { create(:staff) }
+
+  context 'Admin logged in' do
+    let(:admin) { create(:admin) }
+    let!(:staff) { create(:staff) }
+    before{ create :staff }
 
     it 'Create new leave' do
-      feature_login(staff)
+      feature_login(admin)
 
-      visit leaves_path
+      visit admin_leaves_path
 
       click_on 'Add New Leave'
 
@@ -15,6 +18,7 @@ describe 'Display New Leave form' do
       get_element('fill-in-date-0').set('10/07/2014')
       get_element('select-kind-0').select('Whole day')
       fill_in 'Reason', with: 'Lorem lorem'
+      select staff.english_name, from: 'Staff'
       click_on 'Create Leave'
 
       expect(page).to have_content 'Leaves List'

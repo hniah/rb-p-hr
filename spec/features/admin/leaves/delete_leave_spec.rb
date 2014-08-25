@@ -7,7 +7,7 @@ describe 'Delete Leave' do
   it 'Delete Leave' do
     feature_login admin
 
-    visit leaves_path
+    visit admin_leaves_path
 
     get_element("delete-leave-#{leave.id}").click
 

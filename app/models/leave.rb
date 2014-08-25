@@ -9,7 +9,7 @@ class Leave < ActiveRecord::Base
   delegate :id, :date, :kind, to: :leave_day, prefix: true, allow_nil: true
 
   has_many :leave_days, dependent: :delete_all
-  accepts_nested_attributes_for :leave_days, :update_only => true
+  accepts_nested_attributes_for :leave_days, :update_only => true, :allow_destroy => true
   belongs_to :staff
 
   validates :status, :reason, :staff, :category, presence: true

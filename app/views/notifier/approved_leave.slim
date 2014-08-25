@@ -3,4 +3,4 @@ html
   body
     p= "Dear #{@leave.staff_english_name},"
     p
-    p= "Your request for #{pluralize(@leave.days_total, 'day')} #{@leave.category.text} leave on #{@leave.dates} is approved"
+    p= "Your request for #{pluralize(@leave.days_total, 'day')} #{@leave.category.text} leave submitted on #{@leave.created_at} is approved"
