@@ -21,6 +21,7 @@ describe Admin::LatesController do
 
   describe '#create' do
     let(:admin) { create :admin }
+    let(:staff) { create :staff }
 
     def do_request
       post :create, late: late_params
@@ -29,7 +30,6 @@ describe Admin::LatesController do
     before { sign_in admin }
 
     context 'Admin fills in valid data' do
-      let(:staff) { create :staff }
       let(:late_params) { attributes_for(:late).merge(staff_id: staff.id) }
 
       it 'creates lates and set notice message' do
@@ -40,7 +40,9 @@ describe Admin::LatesController do
     end
 
     context 'Admin fills in invalid data' do
-      let(:late_params) { {lorem: 'ipsum'} }
+      let(:late_params) { {lorem: 'ipsum', staff_id: staff.id} }
+
+      before { staff.lates << create_list(:late, 10) }
 
       it 'creates lates and set notice message' do
         expect { do_request }.to_not change(Late, :count)

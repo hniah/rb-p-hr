@@ -5,12 +5,13 @@ class Admin::LatesController < AdminsController
   end
 
   def create
-    @late = Late.new(late_params)
+    @staff = Staff.find(staff_id)
+    @late = @staff.lates.new(late_params)
     
-    if @late.save
+    if @staff.save
       redirect_to admin_lates_url, notice: t('.message.success')
     else
-      flash[:alert] = t('.message.failure')
+      flash[:alert] = @staff.errors.full_messages.join('<br>')
       render :new
     end
   end
@@ -23,6 +24,10 @@ class Admin::LatesController < AdminsController
   protected
   def late_params
     params.require(:late).permit(:note, :staff_id)
+  end
+
+  def staff_id
+    params.require(:late).fetch(:staff_id, 0)
   end
 end
 

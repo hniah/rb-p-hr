@@ -2,7 +2,6 @@
 .container.content
   .col-md-5
     = semantic_form_for @late, url: admin_lates_path do |f|
-      = @late.errors.full_messages
       .form-group
         = f.label :staff_id, class: 'control-label'
         br
