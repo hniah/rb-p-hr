@@ -59,6 +59,8 @@ end
 
 gem 'dotenv-rails', groups: [:development, :test] # load ENV param
 
+gem 'seedbank'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

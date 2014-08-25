@@ -8,16 +8,18 @@
 puts 'Start seeding admin'
 
 admins_data = [
-  { name: 'Vu Quang Thang', english_name: 'Martin', email: 'martin@futureworkz.com', personal_email: 'vuquangthang87@gmail.com', address: 'Viet Nam', phone_number: '0123213123', basic_salary: '123', started_on: '2012/06/16', probation_end_on: '2012/08/16', designation: 'Coder' },
-  { name: 'Jack', english_name: 'Jack', email: 'jack@futureworkz.com', personal_email: 'jack@futureworkz.com', address: 'Viet Nam', phone_number: '0123213123', basic_salary: '123', started_on: '2012/06/16', probation_end_on: '2012/08/16', designation: 'Coder' },
-  { name: 'Emily', english_name: 'Emily', email: 'emily@futureworkz.com', personal_email: 'emily@gmail.com', address: 'Viet Nam', phone_number: '034543534', basic_salary: '223', started_on: '2014/06/16', probation_end_on: '2014/08/16', designation: 'HR' }
+  { name: 'Human Resources', english_name: 'Human Resources', email: 'hr@futureworkz.com', personal_email: 'hr@futureworkz.com', address: 'Singapore'}
 ]
 
 admins_data.each do |admin_data|
   admin = Staff.find_or_initialize_by(admin_data)
-  admin.password = '123456789'
+  admin.password = Random.rand(10000000..99999999999999)
   admin.is_admin = true
-  admin.save
+  admin.designation = 'HR'
+  admin.phone_number = '000000000'
+  admin.started_on = Date.today
+  admin.probation_end_on = Date.today
+  admin.save!
 end
 
 puts 'Admin seeded'
