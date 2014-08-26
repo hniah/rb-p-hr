@@ -3,5 +3,5 @@ html
   body
     p= "Dear #{@leave.staff_english_name},"
     p
-    p= "Your request for #{@leave.days_total} day(s) #{@leave.category.text} leave from #{@leave.created_at} is rejected"
+    p= "Your request for #{@leave.leave_days.size} day(s) #{@leave.category.text} leave on #{@leave.leave_days.to_sentence} is rejected"
     p= "Reason: #{@leave.rejection_note}"

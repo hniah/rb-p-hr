@@ -4,6 +4,7 @@ class LeaveDay < ActiveRecord::Base
   scope :current_year, -> { where("date < ?", "#{Time.now.year}-12-31") }
   scope :whole_day, -> { where(kind: :whole_day) }
   scope :half_day, -> { where("kind = 'morning' OR kind = 'afternoon'") }
+  scope :to_sentence, -> { pluck(:date).to_sentence }
 
   belongs_to :leave
 

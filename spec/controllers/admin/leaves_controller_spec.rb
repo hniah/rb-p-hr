@@ -21,8 +21,8 @@ describe Admin::LeavesController do
         expect(last_email.to).to eq ["#{leave.staff_email}"]
         expect(last_email.body).to have_content "Dear #{leave.staff_english_name}"
         expect(last_email.body).to have_content 'approved'
-        expect(last_email.body).to have_content "#{leave.days_total} days"
-        expect(last_email.body).to have_content leave.created_at
+        expect(last_email.body).to have_content "#{leave.leave_days.size} days"
+        expect(last_email.body).to have_content leave.leave_days.to_sentence
       end
     end
   end
@@ -60,8 +60,8 @@ describe Admin::LeavesController do
         expect(last_email.to).to eq ["#{leave.staff_email}"]
         expect(last_email.body).to have_content "Dear #{leave.staff_english_name}"
         expect(last_email.body).to have_content 'rejected'
-        expect(last_email.body).to have_content "#{leave.days_total} day"
-        expect(last_email.body).to have_content leave.created_at
+        expect(last_email.body).to have_content "#{leave.leave_days.size} day"
+        expect(last_email.body).to have_content leave.leave_days.to_sentence
       end
     end
   end

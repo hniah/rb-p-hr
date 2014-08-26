@@ -3,10 +3,6 @@ html
     body
       p= "Dear #{@leave.staff_english_name},"
       p
-      p= 'We have recorded your'
-      - @leave.leave_days.each do |leave_day|
-        = "#{leave_day.date} - #{leave_day.kind.text}"
-        br
-      p= " sick leave on #{@leave.created_at}."
+      p= "We have recorded your #{pluralize(@leave.days_total, 'day')} sick leave on #{@leave.leave_days.to_sentence}."
       p= 'Please submit a softcopy medical certificate or letter (if any) to me upon return to work.'
       p= 'Take good care and we wish you full recovery soon.'
