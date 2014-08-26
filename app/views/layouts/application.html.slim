@@ -5,7 +5,7 @@ html
     == javascript_include_tag 'application', data: { turbolinks_track: true }
     == csrf_meta_tags
   body
-    div.wrapper.container-fluid
+    .wrapper.container-fluid
       .header.row
         .container
           .topbar
@@ -24,8 +24,8 @@ html
               .navbar-header
                 = link_to(image_tag('neember-logo.png', height: 30), root_path)
               = render_navigation expand_all: true, renderer: :bootstrap
-      div.main-body
-        div.container
-          - if flash_messages.present?
-            div.flash-messages = flash_messages
+      .main-body
+        .container
+          .flash-messages= flash_messages
         == yield
+
