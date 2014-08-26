@@ -15,7 +15,10 @@ html
         tr
           td
             strong= 'Date'
-          td= @leave.dates
+          td
+            - @leave.leave_days.each do |leave_day|
+              = "#{leave_day.date} - #{leave_day.kind.text}"
+              br
         tr
           td
             strong= 'Reason Leave'

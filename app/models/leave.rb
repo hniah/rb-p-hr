@@ -18,24 +18,8 @@ class Leave < ActiveRecord::Base
   enumerize :status, in: [:pending, :approved, :rejected], default: :pending
   enumerize :category, in: [:unpaid, :sick, :annual, :compassionate, :maternity, :urgent], default: :annual
 
-  def first_date
-    self.leave_days.first.date
-  end
-
-  def last_date
-    self.leave_days.last.date
-  end
-
   def days_total
     self.leave_days.whole_day.count + self.leave_days.half_day.count / 2.0
-  end
-
-  def dates
-    if self.leave_days.count == 1
-      "on #{first_date}"
-    else
-      "from #{first_date} to #{last_date}"
-    end
   end
 
 end

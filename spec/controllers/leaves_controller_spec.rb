@@ -89,4 +89,22 @@ describe LeavesController do
       end
     end
   end
+
+  describe 'GET #show' do
+    context 'show leave detail' do
+      let(:leave) { create :leave }
+      def do_request
+        get :show, id: leave.id
+      end
+
+      it 'render template show project detail and finds project' do
+        sign_in staff
+
+        do_request
+
+        expect(response).to render_template :show
+        expect(assigns(:leave)).to_not be_nil
+      end
+    end
+  end
 end

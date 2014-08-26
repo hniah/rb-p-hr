@@ -22,9 +22,17 @@ class LeavesController < ApplicationController
     end
   end
 
+  def show
+    @leave = Leave.find(leave_id)
+  end
+
   protected
   def page
     params[:page]
+  end
+
+  def leave_id
+    params.require(:id)
   end
 
   def leave_param
