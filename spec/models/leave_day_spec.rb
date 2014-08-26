@@ -27,20 +27,34 @@ describe LeaveDay do
     end
   end
 
-  context 'calculated_as' do
-    let(:leave_day) { create :leave_day, date: '2013-03-03', kind: :morning }
+  describe '#calculated_as' do
+    context 'leave is approved' do
+      let(:leave) { create :leave, status: :approved }
 
-    it 'calculated as leave a haft day' do
-      expect(leave_day.calculated_as).to eq 0.5
+      context 'whole day leave' do
+        let(:leave_day) { create :leave_day, date: '2013-03-03', kind: :whole_day, leave: leave }
+
+        it 'calculated as one day' do
+          expect(leave_day.calculated_as).to eq 1.0
+        end
+      end
+
+      context 'morning leave' do
+        let(:leave_day) { create :leave_day, date: '2013-03-03', kind: :morning, leave: leave }
+
+        it 'calculated as half day' do
+          expect(leave_day.calculated_as).to eq 0.5
+        end
+      end
+    end
+
+    context 'leave is rejected' do
+      let(:leave) { create :leave, status: :pending }
+      let(:leave_day) { create :leave_day, date: '2013-03-03', kind: :morning, leave: leave }
+
+      it 'does not count leave days' do
+        expect(leave_day.calculated_as).to eq 0
+      end
     end
   end
-
-  context 'calculated_as' do
-    let(:leave_day) { create :leave_day, date: '2013-03-03', kind: :whole_day }
-
-    it 'calculated as leave whole day' do
-      expect(leave_day.calculated_as).to eq 1.0
-    end
-  end
-
 end

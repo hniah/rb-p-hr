@@ -6,6 +6,7 @@ class LeaveDay < ActiveRecord::Base
   scope :whole_day, -> { where(kind: :whole_day) }
   scope :half_day, -> { where("kind = 'morning' OR kind = 'afternoon'") }
   scope :to_sentence, -> { pluck(:date).to_sentence }
+  scope :with_leave, -> { includes(:leave) }
 
   belongs_to :leave
 
@@ -20,12 +21,11 @@ class LeaveDay < ActiveRecord::Base
   end
 
   def calculated_as
-    self.kind.whole_day? ? 1.0 : 0.5
+    return 0 unless approved?
+    self.kind.whole_day? ? 1.0 : 0.5 if approved?
   end
 
-  def self.calculate_leave_days
-    collect(:calculated_as)
-    #inject(0) { |leave_day, total| total += leave_day.calculated_as }
+  def approved?
+    self.leave.status.approved?
   end
-
 end

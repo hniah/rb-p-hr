@@ -18,18 +18,47 @@ describe Staff do
     end
   end
 
-  context '#total_leave_days_in_this_year' do
+  describe '#total_leave_days_in_this_year' do
     let(:staff) { create :staff }
-    let(:leave_days_this_year) { create_list :leave_day, 3, date: '2014-08-09'}
-    let(:leave_days_last_year) { create_list :leave_day, 3, date: '2013-08-09'}
+    let(:leave_days_this_year) { create_list :leave_day, 3, date: Date.today }
+    let(:leave_days_last_year) { create_list :leave_day, 3, date: '2013-08-09' }
     let(:leave_this_year) { create :leave, status: :approved, leave_days: leave_days_this_year }
     let(:leave_last_year) { create :leave, status: :approved, leave_days: leave_days_last_year }
 
+    before { create :leave, status: :pending, staff: staff, leave_days: create_list(:leave_day, 5, date: Date.yesterday) }
     before { staff.leaves << leave_this_year }
     before { staff.leaves << leave_last_year }
 
-    it 'calculator total leave days in this year' do
+    it 'calculates total leave days in this year of the staff' do
       expect(staff.total_leave_days_in_this_year).to eq 3
+    end
+  end
+
+  describe '#cumulative_leaves' do
+    let(:staff) { create :staff }
+    let(:leave_days_last_year) { create_list :leave_day, 3, date: '2013-08-09' }
+    let(:leave_last_year) { create :leave, status: :approved, leave_days: leave_days_last_year }
+
+    before { staff.leaves << leave_last_year }
+
+    it 'calculates total leave days in this year of the staff' do
+      expect(staff.cumulative_leaves).to eq 7
+    end
+  end
+
+  describe '#remaining_leave_days' do
+    let(:staff) { create :staff }
+    let(:leave_days_this_year) { create_list :leave_day, 3, date: Date.today }
+    let(:leave_days_last_year) { create_list :leave_day, 12, date: '2013-08-09' }
+    let(:leave_this_year) { create :leave, status: :approved, leave_days: leave_days_this_year }
+    let(:leave_last_year) { create :leave, status: :approved, leave_days: leave_days_last_year }
+
+    before { create :leave, status: :pending, staff: staff, leave_days: create_list(:leave_day, 5, date: Date.yesterday) }
+    before { staff.leaves << leave_this_year }
+    before { staff.leaves << leave_last_year }
+
+    it 'calculates total leave days in this year of the staff' do
+      expect(staff.remaining_leave_days).to eq 13
     end
   end
 end

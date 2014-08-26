@@ -22,6 +22,4 @@ describe Leave do
       expect(leave.valid?).to eq false
     end
   end
-
-
 end

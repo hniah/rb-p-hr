@@ -18,6 +18,4 @@ class Leave < ActiveRecord::Base
   enumerize :status, in: [:pending, :approved, :rejected], default: :pending
   enumerize :category, in: [:unpaid, :sick, :annual, :compassionate, :maternity, :urgent], default: :annual
 
-
-
 end
