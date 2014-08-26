@@ -2,12 +2,14 @@ require 'rails_helper'
 
 describe UsersController do
   let!(:admin) { create :admin }
+
   describe 'Get #index' do
     def do_request
       get :index
     end
 
     before{ create_list(:user, 3) }
+
     context 'Admin logged in' do
       it 'fetches all users and renders index view' do
         sign_in admin
@@ -20,6 +22,7 @@ describe UsersController do
 
     context 'User logged in' do
       let(:user) { create :user }
+
       it 'redirects to root, sets alert flash' do
         sign_in user
         do_request
@@ -150,6 +153,7 @@ describe UsersController do
   describe 'get #show' do
     context 'show staff detail' do
       let(:user) { create :user }
+
       def do_request
         get :show, id: user.id
       end
