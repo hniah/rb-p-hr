@@ -5,3 +5,7 @@ en:
         message:
           success: Late is successfully created.
           failure: Failed to create late.
+      update:
+        message:
+          success: Late is successfully updated.
+          failure: Failed to update late.

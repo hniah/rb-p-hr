@@ -7,3 +7,4 @@ module FeatureHelper
     login_as user
   end
 end
+

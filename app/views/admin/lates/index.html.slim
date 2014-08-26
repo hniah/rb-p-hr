@@ -6,7 +6,10 @@
       tr
         th= Late.human_attribute_name('staff')
         th= Late.human_attribute_name('note')
+        th
     - @lates.each do |late|
       tr
         td= late.staff_english_name
         td= late.note
+        th= link_to 'Edit', edit_admin_late_path(late.id), class: 'list-edit-button', data: {test: "edit-late-#{late.id}"}
+

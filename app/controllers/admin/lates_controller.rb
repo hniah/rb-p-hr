@@ -21,6 +21,21 @@ class Admin::LatesController < AdminsController
     render :index
   end
 
+  def edit
+    @late = Late.find(late_id)
+    render :edit
+  end
+
+  def update
+    @late = Late.find(late_id)
+
+    if @late.update(late_params)
+      redirect_to admin_lates_url, notice: t('.message.success')
+    else
+      render :edit, failure: t('.message.failure')
+    end
+  end
+
   protected
   def late_params
     params.require(:late).permit(:note, :staff_id)
@@ -28,6 +43,10 @@ class Admin::LatesController < AdminsController
 
   def staff_id
     params.require(:late).fetch(:staff_id, 0)
+  end
+
+  def late_id
+    params.require(:id)
   end
 end
 

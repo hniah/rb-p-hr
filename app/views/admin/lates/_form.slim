@@ -1,0 +1,9 @@
+= semantic_form_for [:admin, late] do |f|
+  .form-group
+    = f.label :staff_id, class: 'control-label'
+    br
+    = f.select :staff_id, Staff.to_options, class: 'form-control'
+  = f.input :note
+  = f.submit class: 'btn-u'
+  = link_to 'Back', admin_lates_path, class: 'btn-u btn-u-default'
+

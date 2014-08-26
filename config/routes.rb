@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   #     end
   #   end
   namespace :admin do
-    resources :lates, only: [:index, :new, :create]
+    resources :lates, only: [:index, :new, :create, :edit, :update]
   end
 
   scope :admin do
