@@ -4,9 +4,9 @@
   table.list-table
     thead
       tr
-        th= Late.human_attribute_name('note')
         th= Late.human_attribute_name('staff')
+        th= Late.human_attribute_name('note')
     - @lates.each do |late|
       tr
-        td= late.note
         td= late.staff_english_name
+        td= late.note
