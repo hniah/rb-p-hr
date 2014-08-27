@@ -4,3 +4,4 @@ html
     p= "Dear #{@leave.staff_english_name},"
     p
     p= "Your request for #{pluralize(@leave.leave_days.size, 'day')} #{@leave.category.text} leave submitted on #{@leave.leave_days.to_sentence} is approved."
+    p= "Your leave days left in this year #{@leave.staff.remaining_leave_days_in(Time.now.year)}"

@@ -2,6 +2,9 @@ class Staff < User
 
   scope :to_options, -> { all.collect { |staff| [ staff.name, staff.id ] } }
 
+  LEAVE_DAYS = 14.0
+  MAX_CUMULATIVE_LEAVE_DAYS = 7.0
+
   has_many :leaves
   has_many :lates
   has_many :feedbacks
@@ -9,22 +12,25 @@ class Staff < User
 
   validates :lates, length: {maximum: 10, message: 'Staff cannot have more than 10 leaves. Send him a warning letter.'}
 
-  def total_leave_days_in_this_year
-    self.leave_days.current_year.with_leave.collect do |leave_day|
-      leave_day.calculated_as
-    end.sum
+  def remaining_leave_days_in(current_year)
+    started_year = self.started_on.year
+    cumulative_leaves = 0.0
+    cumulative_leaves = cumulative_leaves_in(started_year, current_year - 1) if started_year < current_year
+    LEAVE_DAYS + cumulative_leaves - total_leave_days_in(current_year)
   end
 
-  def remaining_leave_days
-    14 - total_leave_days_in_this_year + cumulative_leaves
+  def cumulative_leaves_in(started_year, year)
+    total = 0.0
+    started_year.upto(year).each do |y|
+      c = total_leave_days_in(y)
+      total = [MAX_CUMULATIVE_LEAVE_DAYS, LEAVE_DAYS + total - c].min
+    end
+    total
   end
 
-  def cumulative_leaves
-    total = self.leave_days.in_year(1.year.ago.year).with_leave.collect do |leave_day|
+  def total_leave_days_in(year)
+    self.leave_days.in_year(year).with_leave.collect do |leave_day|
       leave_day.calculated_as
     end.sum
-    total = 14 - total
-    [7, total].min
   end
 end
-
