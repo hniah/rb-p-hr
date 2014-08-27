@@ -5,7 +5,7 @@ class CreateLate < ActiveRecord::Migration
 
       t.references :staff
 
-      t.timestamp
+      t.timestamps
     end
   end
 end

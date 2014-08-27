@@ -23,8 +23,10 @@ ActiveRecord::Schema.define(version: 20140825065003) do
   end
 
   create_table "lates", force: true do |t|
-    t.text    "note"
-    t.integer "staff_id"
+    t.text     "note"
+    t.integer  "staff_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "leave_days", force: true do |t|

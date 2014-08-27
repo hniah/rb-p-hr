@@ -38,7 +38,13 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :feedbacks, only: [:index]
-    resources :leaves
+    resources :leaves do
+      member do
+        patch 'approve'
+        get 'reject'
+        patch 'reject_action'
+      end
+    end
   end
 
   resources :leaves, only: [:index, :new, :create, :show]
@@ -47,9 +53,10 @@ Rails.application.routes.draw do
 
 
   get 'my-account' => 'staffs#show'
-  patch 'admin/approve/:id' => 'admin/leaves#approve', as: 'approve'
-  get 'admin/leaves/reject/:id' => 'admin/leaves#reject', as: 'reject'
-  patch 'admin/reject/:id' => 'admin/leaves#reject_action', as: 'reject_action'
+  # patch 'admin/leaves/approve/:id' => 'admin/leaves#approve', as: 'approve'
+  # get 'admin/leaves/reject/:id' => 'admin/leaves#reject', as: 'reject'
+  # patch 'admin/leaves/reject/:id' => 'admin/leaves#reject_action', as: 'reject_action'
+  get 'admin/users/:id/leaves' => 'leaves#index', as: 'staff_leaves'
 
   # Example resource route with sub-resources:
   #   resources :products do
