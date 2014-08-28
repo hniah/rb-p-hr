@@ -50,7 +50,7 @@ Rails.application.routes.draw do
       get 'profile', to: 'staffs#show'
     end
     resources :leaves, only: [:index, :new, :create, :show], controller: 'leaves'
-    resources :lates, only: [:index], controller: 'lates'
+    resources :lates, only: [:index], controller: 'staff/lates'
   end
 
   resources :staffs, only: [:show]
