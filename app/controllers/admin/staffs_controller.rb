@@ -1,15 +1,15 @@
 class Admin::StaffsController < AdminsController
   def index
-    @users = User.paginate(page: page)
+    @staffs = Staff.paginate(page: page)
   end
 
   def new
-    @user = User.new
+    @staff = Staff.new
   end
 
   def create
-    @user = User.new(staff_param)
-    if @user.save
+    @staff = Staff.new(staff_param)
+    if @staff.save
       redirect_to admin_staffs_path, notice: t('staff.message.create_success')
     else
       flash[:alert] = t('staff.message.create_failed')
@@ -18,11 +18,11 @@ class Admin::StaffsController < AdminsController
   end
 
   def edit
-    @user = User.find(staff_id)
+    @staff = Staff.find(staff_id)
   end
 
   def update
-    @staff = User.find(staff_id)
+    @staff = Staff.find(staff_id)
     if @staff.update(staff_param)
       redirect_to admin_staffs_path, notice: t('staff.message.update_success')
     else
@@ -32,8 +32,8 @@ class Admin::StaffsController < AdminsController
   end
 
   def destroy
-    @user = User.find(staff_id)
-    if @user.destroy
+    @staff = Staff.find(staff_id)
+    if @staff.destroy
       redirect_to admin_staffs_path, notice: t('staff.message.delete_success')
     else
       flash[:alert] = t('staff.message.delete_failed')

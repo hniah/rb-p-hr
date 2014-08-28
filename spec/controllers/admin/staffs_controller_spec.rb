@@ -15,7 +15,7 @@ describe Admin::StaffsController do
         sign_in admin
         do_request
 
-        expect(assigns(:users).size).to eq 4
+        expect(assigns(:staffs).size).to eq 4
         expect(response).to render_template :index
       end
     end

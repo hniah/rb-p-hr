@@ -10,17 +10,17 @@
         th= User.human_attribute_name('phone_number')
         th= User.human_attribute_name('started_on')
         th= User.human_attribute_name('action')
-      - @users.each do |user|
+      - @staffs.each do |staff|
         tr
-          td = user.designation
-          td = user.name
-          td = user.english_name
-          td = user.email
-          td = user.phone_number
-          td = user.started_on
+          td = staff.designation
+          td = staff.name
+          td = staff.english_name
+          td = staff.email
+          td = staff.phone_number
+          td = staff.started_on
           td
-            = list_edit_admin_button(user.becomes(Staff))
-            = list_delete_admin_button(user.becomes(Staff))
-            = link_to 'Detail', admin_staff_path(user.id), class: 'list-edit-button', data: {test: "view-staff-#{user.id}"}
+            = list_edit_admin_button(staff)
+            = list_delete_admin_button(staff)
+            = link_to 'Detail', admin_staff_path(staff.id), class: 'list-edit-button', data: {test: "view-staff-#{staff.id}"}
   .pagination
-    = bootstrap_paginate(@users)
+    = bootstrap_paginate(@staffs)
