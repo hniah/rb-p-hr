@@ -13,5 +13,7 @@
         td= late.date
         td= late.staff_english_name
         td= late.note
-        th= link_to 'Edit', edit_admin_late_path(late.id), class: 'list-edit-button', data: {test: "edit-late-#{late.id}"}
+        th
+          = link_to 'Edit', edit_admin_late_path(late.id), class: 'list-edit-button', data: {test: "edit-late-#{late.id}"}
+          = link_to 'Delete', admin_late_path(late), method: :delete, class: 'list-delete-button', data: {test: "delete-late-#{late.id}"}
 
