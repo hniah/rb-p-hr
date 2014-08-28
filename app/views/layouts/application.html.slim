@@ -12,7 +12,7 @@ html
             .container
               ul.loginbar.pull-right
                 - if current_user.present?
-                  li= "Welcome #{current_user.name}"
+                  li= "#{current_user.email}"
                   - if !current_user.is_admin?
                     li.topbar-devider
                       li= link_to 'My Account', my_account_path
