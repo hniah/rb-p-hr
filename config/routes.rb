@@ -30,7 +30,7 @@ Rails.application.routes.draw do
   #   end
 
   namespace :admin do
-    resources :lates, only: [:index, :new, :create, :edit, :update]
+    resources :lates, except: [:show]
     resources :feedbacks, only: [:index]
     resources :leaves do
       member do

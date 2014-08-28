@@ -37,6 +37,18 @@ class Admin::LatesController < AdminsController
     end
   end
 
+  def destroy
+    @late = Late.find late_id
+
+    if @late.destroy!
+      flash[:notice] = t('.message.success')
+    else
+      flash[:alert] = t('.message.failure')
+    end
+
+    redirect_to admin_lates_url
+  end
+
   protected
   def late_params
     params.require(:late).permit(:note, :staff_id, :date)

@@ -99,5 +99,21 @@ describe Admin::LatesController do
       end
     end
   end
+
+  describe '#destroy' do
+    let!(:late) { create :late }
+
+    def do_request
+      delete :destroy, id: late.id
+    end
+
+    context 'success' do
+      it 'deletes late' do
+        expect { do_request }.to change(Late, :count).by(-1)
+        expect(flash[:notice]).to_not be_nil
+        expect(response).to redirect_to admin_lates_url
+      end
+    end
+  end
 end
 
