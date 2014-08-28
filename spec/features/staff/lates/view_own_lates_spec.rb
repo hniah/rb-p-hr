@@ -14,5 +14,6 @@ describe 'Staff can view his own lates' do
     click_on 'View all my lates'
 
     expect(page).to have_content late.note
+    expect(page.all('tr').count).to eql(4)
   end
 end
