@@ -38,7 +38,7 @@ class Admin::LatesController < AdminsController
 
   protected
   def late_params
-    params.require(:late).permit(:note, :staff_id)
+    params.require(:late).permit(:note, :staff_id, :date)
   end
 
   def staff_id

@@ -12,6 +12,7 @@ describe 'Admin updates late' do
     click_on 'Late List'
     get_element("edit-late-#{late.id}").click
 
+    fill_in 'Date', with: '20/08/2014'
     fill_in 'Note', with: 'Just another note'
     click_on 'Update Late'
 
