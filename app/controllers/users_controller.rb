@@ -25,8 +25,8 @@ class UsersController < ApplicationController
   end
 
   def update
-    @staff = User.find(user_id)
-    if @staff.update(user_param)
+    @user = User.find(user_id)
+    if @user.update(user_param)
       t('.success')
       redirect_to users_path, notice: t('user.message.update_success')
     else
