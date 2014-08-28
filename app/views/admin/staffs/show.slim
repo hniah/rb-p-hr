@@ -2,7 +2,8 @@
 .container
   .content
     .col-md-12
-      h2 = 'Staff detail'
+      .headline
+        h2 = 'Staff detail'
       table.list-table
         thead
           tr
@@ -39,7 +40,8 @@
             th=label_name('user.note')
             td= @staff.note
     .col-md-12
-      h2 = 'My Leaves'
+      .headline
+        h2 = 'My Leaves'
       table.list-table
         thead
           th= 'No.'
@@ -58,8 +60,10 @@
                 br
             td= leave.reason
       = link_to 'View all my leaves', admin_staff_leaves_path(@staff.id), class: 'btn-u btn-u-sm'
+      p
     .col-md-12
-      h2 = 'My Lates'
+      .headline
+        h2 = 'My Lates'
       table.list-table
         thead
           th= 'No.'
@@ -68,8 +72,32 @@
         - @lates.each_with_index do |late, index|
           tr
             td= index + 1
-            td= late.created_at.strftime('%d-%b-%Y')
+            td= late.date
             td= late.note
       = link_to 'View all my lates', admin_staff_lates_path(@staff.id), class: 'btn-u btn-u-sm'
       p
+    .col-md-12
+      .headline
+        h2= 'Staff History'
+      .history
+        table.list-table.table-bordered
+          thead
+            tr
+              th= '#'
+              th.col-md-2= 'User'
+              th= 'Action'
+              th= 'Changeset'
+              th= 'Time'
+          - @versions.each_with_index do |version, index|
+            tr
+              td= index + 1
+              td.col-md-2
+                = version.creator_name
+              td
+                = version.event
+              td
+                = version_diff(version)
+              td
+                = version.created_at.strftime('%d-%b-%Y %H:%M:%S')
+
     = link_to 'Back', admin_staffs_path, class: 'btn-u btn-u-default'

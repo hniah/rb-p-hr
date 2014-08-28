@@ -45,6 +45,7 @@ class Admin::StaffsController < AdminsController
     @staff = Staff.find(staff_id)
     @leaves = @staff.leaves.limit(5)
     @lates = @staff.lates.limit(5)
+    @versions = @staff.versions
   end
 
   protected
