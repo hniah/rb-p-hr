@@ -6,11 +6,9 @@ describe User do
     it { is_expected.to validate_presence_of :english_name }
     it { is_expected.to validate_presence_of :personal_email }
     it { is_expected.to validate_presence_of :address }
-    it { is_expected.to validate_presence_of :phone_number }
     it { is_expected.to validate_presence_of :started_on }
     it { is_expected.to validate_presence_of :probation_end_on }
     it { is_expected.to validate_presence_of :designation }
-    it { is_expected.to validate_numericality_of(:phone_number) }
   end
 
   context 'validation email'  do
