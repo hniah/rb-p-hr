@@ -1,0 +1,18 @@
+= display_page_title ('List of Late')
+.container.content
+  table.list-table
+    thead
+      tr
+        th= Late.human_attribute_name('date')
+        th= Late.human_attribute_name('staff')
+        th= Late.human_attribute_name('note')
+        th
+    - @lates.each do |late|
+      tr
+        td= late.date
+        td= late.staff_english_name
+        td= late.note
+        th= link_to 'Edit', edit_admin_late_path(late.id), class: 'list-edit-button', data: {test: "edit-late-#{late.id}"}
+  = link_to 'Back', admin_staff_path(@staff.id),  class: 'btn-u btn-u-default'
+  .pagination
+    = bootstrap_paginate(@lates)

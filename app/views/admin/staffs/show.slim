@@ -57,7 +57,7 @@
                 = "#{leave_day.date} - #{leave_day.kind.text}"
                 br
             td= leave.reason
-      = link_to 'View all my leaves', admin_staff_leaves_path(@staff.id), class: 'btn-u btn-u-default'
+      = link_to 'View all my leaves', admin_staff_leaves_path(@staff.id), class: 'btn-u btn-u-sm'
     .col-md-12
       h2 = 'My Lates'
       table.list-table
@@ -70,4 +70,6 @@
             td= index + 1
             td= late.created_at.strftime('%d-%b-%Y')
             td= late.note
+      = link_to 'View all my lates', admin_staff_lates_path(@staff.id), class: 'btn-u btn-u-sm'
+      p
     = link_to 'Back', admin_staffs_path, class: 'btn-u btn-u-default'
