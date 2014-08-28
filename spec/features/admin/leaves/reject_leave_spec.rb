@@ -18,6 +18,6 @@ describe 'Display note to reject Leave' do
 
     expect(page).to have_content 'Leaves List'
     expect(page).to have_content I18n.t('leave.message.reject_leave')
-    expect(page).to have_content 'Not approved by your leader'
+    expect(page.all('tr').count).to eql(1)
   end
 end

@@ -1,0 +1,36 @@
+= display_page_title ('Leaves List')
+.container.content
+  table.list-table
+    thead
+      tr
+        th= Leave.human_attribute_name('category')
+        th= Leave.human_attribute_name('status')
+        th= Leave.human_attribute_name('day')
+        th.col-md-3= Leave.human_attribute_name('reason')
+        th= Leave.human_attribute_name('staff')
+        th.col-md-2= Leave.human_attribute_name('rejection_note')
+        - if current_user.is_admin?
+          th= Leave.human_attribute_name('action')
+    - @leaves.each do |leave|
+      tr
+        td= leave.category.text
+        td= leave.status.text
+        td
+          -leave.leave_days.each do |leave_day|
+            = "#{leave_day.date} - #{leave_day.kind.text}"
+            br
+        td= leave.reason
+        td= leave.staff_english_name
+        td= leave.rejection_note
+        td
+          = link_to 'Edit', edit_admin_leave_path(leave.id), class: 'list-edit-button', data: {test: "edit-leave-#{leave.id}"}
+          = link_to 'Delete', admin_leave_path(leave.id), method: :delete, class: 'list-delete-button', data:{confirm: t('leave.message.delete_confirmation'), test: "delete-leave-#{leave.id}"}
+          br
+          br
+          - if leave.status.pending?
+            = semantic_form_for leave, url: approve_admin_leave_path(leave.id) do |f|
+              = f.submit Leave.human_attribute_name('approve'), class: 'list-approve-button'
+              = link_to Leave.human_attribute_name('reject'), reject_admin_leave_path(leave.id), class: 'list-delete-button', data: {test: "reject-leave-#{leave.id}"}
+  = link_to 'Back', admin_staff_path(@staff.id),  class: 'btn-u btn-u-default'
+  .pagination
+    = bootstrap_paginate(@leaves)

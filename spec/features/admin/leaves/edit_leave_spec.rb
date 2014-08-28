@@ -5,7 +5,7 @@ describe 'Edit Leave' do
   context 'Admin logged in' do
     let(:admin) { create(:admin) }
     let!(:staff) { create(:staff) }
-    let!(:leave) { create(:leave, :with_leave_days, staff: staff) }
+    let!(:leave) { create(:leave, :with_leave_days, staff: staff, status: :pending) }
     before{ create :staff }
 
     it 'Edit Leave' do

@@ -1,7 +1,7 @@
 class Admin::LeavesController < AdminsController
 
   def index
-    @leaves = Leave.paginate(page: page)
+    @leaves = Leave.pending.paginate(page: page)
   end
 
   def new

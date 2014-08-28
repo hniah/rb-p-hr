@@ -1,4 +1,10 @@
 class Admin::LatesController < AdminsController
+
+  def index
+    @lates = Late.all
+    render :index
+  end
+
   def new
     @late = Late.new
     render :new
@@ -7,18 +13,13 @@ class Admin::LatesController < AdminsController
   def create
     @staff = Staff.find(staff_id)
     @late = @staff.lates.new(late_params)
-    
+
     if @staff.save
       redirect_to admin_lates_url, notice: t('.message.success')
     else
       flash[:alert] = @staff.errors.full_messages.join('<br>')
       render :new
     end
-  end
-
-  def index
-    @lates = Late.all
-    render :index
   end
 
   def edit

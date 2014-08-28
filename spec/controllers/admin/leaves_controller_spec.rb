@@ -67,16 +67,12 @@ describe Admin::LeavesController do
   end
 
   describe 'GET #index' do
-    def do_request
-      get :index
-    end
-
     context 'Admin logged in' do
       let!(:admin) { create :admin }
 
       before do
-        create_list(:leave, 2, staff: staff)
-        create_list(:leave, 2, staff: admin.becomes(Staff))
+        create_list(:leave, 2, staff: staff, status: :pending)
+        create_list(:leave, 2, staff: admin.becomes(Staff), status: :pending)
       end
 
       def do_request

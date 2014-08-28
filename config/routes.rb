@@ -39,7 +39,9 @@ Rails.application.routes.draw do
         patch 'reject_action'
       end
     end
-    resources :staffs
+    resources :staffs do
+      resources :leaves, only: [:index], controller: 'staffs/leaves'
+    end
   end
 
   resources :leaves, only: [:index, :new, :create, :show]

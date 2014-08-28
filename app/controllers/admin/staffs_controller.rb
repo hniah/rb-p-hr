@@ -42,7 +42,9 @@ class Admin::StaffsController < AdminsController
   end
 
   def show
-    @user = User.find(staff_id)
+    @staff = Staff.find(staff_id)
+    @leaves = @staff.leaves.limit(5)
+    @lates = @staff.lates.limit(5)
   end
 
   protected

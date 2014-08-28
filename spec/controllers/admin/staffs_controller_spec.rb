@@ -140,10 +140,10 @@ describe Admin::StaffsController do
 
   describe 'get #show' do
     context 'show staff detail' do
-      let(:user) { create :user }
+      let(:staff) { create :staff }
 
       def do_request
-        get :show, id: user.id
+        get :show, id: staff.id
       end
 
       it 'render template show staff detail and finds staff' do
@@ -151,7 +151,9 @@ describe Admin::StaffsController do
         do_request
 
         expect(response).to render_template :show
-        expect(assigns(:user)).to_not be_nil
+        expect(assigns(:staff)).to_not be_nil
+        expect(assigns(:leaves)).to_not be_nil
+        expect(assigns(:lates)).to_not be_nil
       end
     end
   end

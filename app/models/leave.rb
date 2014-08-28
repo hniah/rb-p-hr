@@ -4,6 +4,7 @@ class Leave < ActiveRecord::Base
   default_scope -> { order(id: :desc) }
   scope :approved, -> { where(status: :approved) }
   scope :rejected, -> { where(status: :rejected) }
+  scope :pending, -> { where(status: :pending) }
 
   delegate :id, :english_name, :email, to: :staff, prefix: true, allow_nil: true
   delegate :id, :date, :kind, to: :leave_day, prefix: true, allow_nil: true

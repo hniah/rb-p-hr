@@ -20,4 +20,3 @@ describe 'Admin updates late' do
     expect(page).to have_content 'Just another note'
   end
 end
-
