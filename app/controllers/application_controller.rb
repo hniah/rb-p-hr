@@ -10,4 +10,8 @@ class ApplicationController < ActionController::Base
   end
 
   def home;end
+
+  def help
+    render :help
+  end
 end
