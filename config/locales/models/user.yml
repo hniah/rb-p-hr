@@ -1,5 +1,5 @@
 en:
-  user:
+  staff:
     message:
       create_success: 'Staff is created'
       create_failed: 'Failed to create staff'

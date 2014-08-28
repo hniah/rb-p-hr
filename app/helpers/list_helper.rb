@@ -1,4 +1,12 @@
 module ListHelper
+  def list_edit_admin_button(resource)
+    link_to 'Edit', list_admin_action_path(resource, :edit), list_edit_button_options(resource)
+  end
+
+  def list_delete_admin_button(resource)
+    link_to 'Delete', list_admin_action_path(resource, :delete), list_delete_button_options(resource)
+  end
+
   def list_edit_button(resource)
     link_to 'Edit', list_action_path(resource, :edit), list_edit_button_options(resource)
   end
@@ -16,6 +24,16 @@ module ListHelper
       path = "edit_#{resource_class(resource)}_path".to_sym
     elsif action == :delete
       path = "#{resource_class(resource)}_path".to_sym
+    end
+
+    send(path, resource.id)
+  end
+
+  def list_admin_action_path(resource, action)
+    if action == :edit
+      path = "edit_admin_#{resource_class(resource)}_path".to_sym
+    elsif action == :delete
+      path = "admin_#{resource_class(resource)}_path".to_sym
     end
 
     send(path, resource.id)

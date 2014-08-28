@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe UsersController do
+describe Admin::StaffsController do
   let!(:admin) { create :admin }
 
   describe 'Get #index' do
@@ -17,18 +17,6 @@ describe UsersController do
 
         expect(assigns(:users).size).to eq 4
         expect(response).to render_template :index
-      end
-    end
-
-    context 'User logged in' do
-      let(:user) { create :user }
-
-      it 'redirects to root, sets alert flash' do
-        sign_in user
-        do_request
-
-        expect(response).to redirect_to root_path
-        expect(flash[:alert]).to_not be_nil
       end
     end
   end
@@ -48,10 +36,10 @@ describe UsersController do
 
   describe 'POST #create' do
     context 'success' do
-      let!(:user_param) { attributes_for(:user, email: 'james@futureworkz.com') }
+      let!(:staff_param) { attributes_for(:staff, email: 'james@futureworkz.com') }
 
       def do_request
-        post :create, user: user_param
+        post :create, staff: staff_param
       end
 
       it 'creates a new user, redirects to list and sets notice flash' do
@@ -59,16 +47,16 @@ describe UsersController do
         do_request
 
         expect(User.first.email).to eq 'james@futureworkz.com'
-        expect(response).to redirect_to users_path
+        expect(response).to redirect_to admin_staffs_path
         expect(flash[:notice]).to_not be_nil
       end
     end
 
     context 'Failed' do
-      let!(:user_param) { attributes_for(:user, email: '') }
+      let!(:staff_param) { attributes_for(:staff, email: '') }
 
       def do_request
-        post :create, user: user_param
+        post :create, staff: staff_param
       end
 
       it 'renders template new and sets alert flash' do
@@ -101,14 +89,14 @@ describe UsersController do
       let(:user) { create(:user) }
 
       def do_request
-        patch :update, id: user.id, user: attributes_for(:user, email: 'martin1234@futureworkz.com', password: '123123123', password_confirmation: '123123123')
+        patch :update, id: user.id, staff: attributes_for(:staff, email: 'martin1234@futureworkz.com', password: '123123123', password_confirmation: '123123123')
       end
 
       it 'updates user, redirects to list and sets notice flash' do
         sign_in admin
         do_request
 
-        expect(response).to redirect_to users_path
+        expect(response).to redirect_to admin_staffs_path
         expect(flash[:notice]).to_not be_nil
         expect(user.reload.email).to eq 'martin1234@futureworkz.com'
         expect(user.password).to eq '123123123'
@@ -119,7 +107,7 @@ describe UsersController do
       let(:user) { create(:user) }
 
       def do_request
-        patch :update, id: user.id, user: attributes_for(:user, email: '')
+        patch :update, id: user.id, staff: attributes_for(:staff, email: '')
       end
 
       it 'renders template edit and sets alert flash' do
@@ -144,7 +132,7 @@ describe UsersController do
         sign_in admin
         expect { do_request }.to change(User, :count).by(-1)
 
-        expect(response).to redirect_to users_path
+        expect(response).to redirect_to admin_staffs_path
         expect(flash[:notice]).to_not be_nil
       end
     end

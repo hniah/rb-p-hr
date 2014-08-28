@@ -6,7 +6,7 @@ describe 'View staffs' do
 
   it 'display staffs list' do
     feature_login admin
-    visit users_path
+    visit admin_staffs_path
 
     expect(page).to have_content 'Staff List'
     expect(page).to have_content 'Martin'

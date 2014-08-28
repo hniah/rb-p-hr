@@ -7,7 +7,7 @@ describe 'Create new Staff' do
     it 'Create new staff' do
       feature_login admin
 
-      visit users_path
+      visit admin_staffs_path
 
       click_on 'Add New Staff'
 
@@ -25,7 +25,7 @@ describe 'Create new Staff' do
       click_on 'Create Staff'
 
       expect(page).to have_content 'Staff List'
-      expect(page).to have_content I18n.t('user.message.create_success')
+      expect(page).to have_content I18n.t('staff.message.create_success')
       expect(page).to have_content 'Vu Quang Thang'
 
     end
@@ -35,7 +35,7 @@ describe 'Create new Staff' do
     it 'show the validation errors' do
       feature_login admin
 
-      visit users_path
+      visit admin_staffs_path
 
       click_on 'Add New Staff'
 
@@ -52,7 +52,7 @@ describe 'Create new Staff' do
       fill_in 'Note', with: 'Lorem lorem'
       click_on 'Create Staff'
 
-      expect(page).to have_content 'Failed to create staff'
+      expect(page).to have_content I18n.t('staff.message.create_failed')
     end
   end
 end

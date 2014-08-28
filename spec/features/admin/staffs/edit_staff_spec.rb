@@ -1,17 +1,17 @@
 require 'rails_helper'
 
 describe 'Display Edit form' do
-  let!(:users) { create_list(:user, 2) }
-  let(:user) { User.first }
+  let!(:staffs) { create_list(:staff, 2) }
+  let(:staff) { staffs.first }
   let(:admin) { create :admin }
 
   it 'Display edit form' do
-    visit root_path
     feature_login admin
+    visit root_path
 
-    visit users_path
+    visit admin_staffs_path
 
-    get_element("edit-user-#{user.id}").click
+    get_element("edit-staff-#{staff.id}").click
 
     fill_in 'Name', with: 'Vu Quang Thang'
     fill_in 'English name', with: 'Martin Martin'

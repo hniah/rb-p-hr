@@ -7,11 +7,11 @@ describe 'Delete user' do
 
   it 'Delete user' do
     feature_login admin
-    visit users_path
+    visit admin_staffs_path
 
-    get_element("delete-user-#{user.id}").click
+    get_element("delete-staff-#{user.id}").click
 
     expect(page).to have_content 'Staff List'
-    expect(page).to have_content I18n.t('user.message.delete_success')
+    expect(page).to have_content I18n.t('staff.message.delete_success')
   end
 end

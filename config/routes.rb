@@ -28,15 +28,9 @@ Rails.application.routes.draw do
   #       get 'sold'
   #     end
   #   end
+
   namespace :admin do
     resources :lates, only: [:index, :new, :create, :edit, :update]
-  end
-
-  scope :admin do
-    resources :users
-  end
-
-  namespace :admin do
     resources :feedbacks, only: [:index]
     resources :leaves do
       member do
@@ -45,18 +39,14 @@ Rails.application.routes.draw do
         patch 'reject_action'
       end
     end
+    resources :staffs
   end
 
   resources :leaves, only: [:index, :new, :create, :show]
   resources :staffs, only: [:show]
   resources :feedbacks, only: [:new, :create]
 
-
   get 'my-account' => 'staffs#show'
-  # patch 'admin/leaves/approve/:id' => 'admin/leaves#approve', as: 'approve'
-  # get 'admin/leaves/reject/:id' => 'admin/leaves#reject', as: 'reject'
-  # patch 'admin/leaves/reject/:id' => 'admin/leaves#reject_action', as: 'reject_action'
-  get 'admin/users/:id/leaves' => 'leaves#index', as: 'staff_leaves'
 
   # Example resource route with sub-resources:
   #   resources :products do

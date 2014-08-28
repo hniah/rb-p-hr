@@ -56,19 +56,19 @@ SimpleNavigation::Configuration.run do |navigation|
     #
     # primary.item :key_1, 'name', url, options
 
-    primary.item :leaves, 'Leave', admin_leaves_path, if: -> { user_signed_in? && current_user.is_admin? } do |submenu|
-      submenu.item :index, 'Leaves List', admin_leaves_path
-      submenu.item :new, 'Add New Leave', new_admin_leave_path
-    end
-
     primary.item :leaves, 'Leave', leaves_path, if: -> { user_signed_in? && !current_user.is_admin? } do |submenu|
       submenu.item :index, 'Leaves List', leaves_path
       submenu.item :new, 'Add New Leave', new_leave_path
     end
 
-    primary.item :users, 'Staff', users_path, if: -> { user_signed_in? && current_user.is_admin? } do |submenu|
-      submenu.item :index, 'Staff List', users_path
-      submenu.item :new, 'Add New Staff', new_user_path
+    primary.item :leaves, 'Leave', admin_leaves_path, if: -> { user_signed_in? && current_user.is_admin? } do |submenu|
+      submenu.item :index, 'Leaves List', admin_leaves_path
+      submenu.item :new, 'Add New Leave', new_admin_leave_path
+    end
+
+    primary.item :users, 'Staff', admin_staffs_path, if: -> { user_signed_in? && current_user.is_admin? } do |submenu|
+      submenu.item :index, 'Staff List', admin_staffs_path
+      submenu.item :new, 'Add New Staff', new_admin_staff_path
     end
 
     primary.item :lates, 'Late', admin_lates_path, if: -> { user_signed_in? && current_user.is_admin? } do |submenu|

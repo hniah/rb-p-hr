@@ -1,0 +1,6 @@
+= display_page_title('Add new staff')
+
+.container.content
+  .col-md-6
+    = render partial: 'admin/staffs/form', locals: { staff: @user.becomes(Staff) }
+
