@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe LeavesController do
+describe Staff::LeavesController do
   let!(:staff) { create :staff }
 
   describe 'GET #index' do

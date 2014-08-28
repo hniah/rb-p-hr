@@ -49,7 +49,7 @@ Rails.application.routes.draw do
     member do
       get 'profile', to: 'staffs#show'
     end
-    resources :leaves, only: [:index, :new, :create, :show], controller: 'leaves'
+    resources :leaves, only: [:index, :new, :create, :show], controller: 'staff/leaves'
     resources :lates, only: [:index], controller: 'staff/lates'
   end
 
