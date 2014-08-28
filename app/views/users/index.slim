@@ -8,7 +8,6 @@
         th= User.human_attribute_name('english_name')
         th= User.human_attribute_name('email')
         th= User.human_attribute_name('phone_number')
-        th= User.human_attribute_name('started_on')
         th= User.human_attribute_name('action')
       - @users.each do |user|
         tr
@@ -17,7 +16,6 @@
           td = user.english_name
           td = user.email
           td = user.phone_number
-          td = user.started_on
           td
             = list_edit_button(user)
             = list_delete_button(user)
