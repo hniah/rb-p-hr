@@ -15,7 +15,7 @@ class LeavesController < ApplicationController
     if @leave.save
       # Notify HR when new leave come
       LeaveNotifier.new_leave(@leave).deliver
-      redirect_to leaves_path, notice: t('leave.message.create_success')
+      redirect_to staff_leaves_path, notice: t('leave.message.create_success')
     else
       flash[:alert] = t('leave.message.create_failed')
       render :new

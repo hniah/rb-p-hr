@@ -62,7 +62,7 @@ describe LeavesController do
         sign_in staff
         do_request
 
-        expect(response).to redirect_to leaves_path
+        expect(response).to redirect_to staff_leaves_path
         expect(leave.staff).to eq staff
         expect(leave.reload.leave_days.size).to eq 1
         expect(last_email.to).to eq [ENV['EMAIL_NOTIFIER']]

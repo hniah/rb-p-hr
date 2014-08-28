@@ -8,7 +8,7 @@ describe 'View Leaves List' do
     it 'display leaves list' do
       feature_login(staff)
 
-      visit leaves_path
+      visit staff_leaves_path
       expect(page).to have_content 'Leaves List'
       expect(page.all('tr').count).to eql(6)
     end

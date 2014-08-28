@@ -8,7 +8,7 @@ describe 'Show leave detail' do
     it 'show leave detail' do
       feature_login staff
 
-      visit leaves_path
+      visit staff_leaves_path
 
       get_element("view-leave-#{leave.id}").click
 

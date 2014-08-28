@@ -22,6 +22,6 @@
         td= leave.staff_english_name
         td= leave.rejection_note
         td
-          = link_to 'Detail', leave_path(leave.id), class: 'list-edit-button', data: {test: "view-leave-#{leave.id}"}
+          = link_to 'Detail', staff_leave_path(leave.id), class: 'list-edit-button', data: {test: "view-leave-#{leave.id}"}
   .pagination
     = bootstrap_paginate(@leaves)

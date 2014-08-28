@@ -7,7 +7,7 @@ describe 'Display New Leave form' do
     it 'Create new leave' do
       feature_login(staff)
 
-      visit leaves_path
+      visit staff_leaves_path
 
       click_on 'Add New Leave'
 

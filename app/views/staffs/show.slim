@@ -47,7 +47,7 @@
           th= Leave.human_attribute_name('category')
           th= Leave.human_attribute_name('day')
           th= Leave.human_attribute_name('reason')
-        - @staff.leaves.each_with_index do |leave, index|
+        - @leaves.each_with_index do |leave, index|
           tr
             td= index + 1
             td= leave.status.text
@@ -57,6 +57,7 @@
                 = "#{leave_day.date} - #{leave_day.kind.text}"
                 br
             td= leave.reason
+      = link_to 'View all my leaves', staff_leaves_path, class: 'btn-u btn-u-sm'
     .col-md-12
       h2 = 'My Lates'
       table.list-table
@@ -64,7 +65,7 @@
           th= 'No.'
           th= Late.human_attribute_name('date')
           th= Late.human_attribute_name('note')
-        - @staff.lates.each_with_index do |late, index|
+        - @lates.each_with_index do |late, index|
           tr
             td= index + 1
             td= late.created_at.strftime('%d-%b-%Y')
