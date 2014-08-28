@@ -4,7 +4,7 @@
     - if user_signed_in?
       p= "Hi #{current_user.english_name},"
       p= 'Thank you for logging in!'
-      p If this is the first time you visit the website, please read #{link_to 'this', :help}.
+      p If this is the first time you visit the website, please read #{link_to 'the Help page', :help}.
       p If you have any questions regarding the website, please feel free to send #{link_to 'Jack', 'mailto:jack@futureworkz.com'} or #{link_to 'Martin', 'mailto:martin@futureworkz.com'} a message.
 
     - else
