@@ -1,72 +1,71 @@
 = display_page_title('Staff Detail')
-.container
-  .content
-    .col-md-12
-      h2 = 'Staff detail'
-      table.list-table
-        thead
-          tr
-            th=label_name('user.name')
-            td= @user.name
-          tr
-            th=label_name('user.english_name')
-            td= @user.english_name
-          tr
-            th=label_name('user.email')
-            td= @user.email
-          tr
-            th=label_name('user.personal_email')
-            td= @user.personal_email
-          tr
-            th=label_name('user.birthday')
-            td= @user.birthday
-          tr
-            th=label_name('user.address')
-            td= @user.address
-          tr
-            th=label_name('user.phone_number')
-            td= @user.phone_number
-          tr
-            th=label_name('user.social_insurance')
-            td= @user.social_insurance
-          tr
-            th=label_name('user.started_on')
-            td= @user.started_on
-          tr
-            th=label_name('user.probation_end_on')
-            td= @user.probation_end_on
-          tr
-            th=label_name('user.note')
-            td= @user.note
-    .col-md-12
-      h2 = 'My Leaves'
-      table.list-table
-        thead
-          th= 'No.'
-          th= Leave.human_attribute_name('status')
-          th= Leave.human_attribute_name('category')
-          th= Leave.human_attribute_name('day')
-          th= Leave.human_attribute_name('reason')
-        - @user.becomes(Staff).leaves.each_with_index do |leave, index|
-          tr
-            td= index + 1
-            td= leave.status.text
-            td= leave.category.text
-            td
-              -leave.leave_days.each do |leave_day|
-                = "#{leave_day.date} - #{leave_day.kind.text}"
-                br
-            td= leave.reason
-    .col-md-12
-      h2 = 'My Lates'
-      table.list-table
-        thead
-          th= 'No.'
-          th= Late.human_attribute_name('date')
-          th= Late.human_attribute_name('note')
-        - @user.becomes(Staff).lates.each_with_index do |late, index|
-          tr
-            td= index + 1
-            td= late.created_at.strftime('%d-%b-%Y')
-            td= late.note
-    = link_to 'Back', users_path, class: 'btn-u btn-u-default'
+.container.content
+  .col-md-12
+    h2 = 'Staff detail'
+    table.list-table
+      thead
+        tr
+          th=label_name('user.name')
+          td= @user.name
+        tr
+          th=label_name('user.english_name')
+          td= @user.english_name
+        tr
+          th=label_name('user.email')
+          td= @user.email
+        tr
+          th=label_name('user.personal_email')
+          td= @user.personal_email
+        tr
+          th=label_name('user.birthday')
+          td= @user.birthday
+        tr
+          th=label_name('user.address')
+          td= @user.address
+        tr
+          th=label_name('user.phone_number')
+          td= @user.phone_number
+        tr
+          th=label_name('user.social_insurance')
+          td= @user.social_insurance
+        tr
+          th=label_name('user.started_on')
+          td= @user.started_on
+        tr
+          th=label_name('user.probation_end_on')
+          td= @user.probation_end_on
+        tr
+          th=label_name('user.note')
+          td= @user.note
+  .col-md-12
+    h2 = 'My Leaves'
+    table.list-table
+      thead
+        th= 'No.'
+        th= Leave.human_attribute_name('status')
+        th= Leave.human_attribute_name('category')
+        th= Leave.human_attribute_name('day')
+        th= Leave.human_attribute_name('reason')
+      - @user.becomes(Staff).leaves.each_with_index do |leave, index|
+        tr
+          td= index + 1
+          td= leave.status.text
+          td= leave.category.text
+          td
+            -leave.leave_days.each do |leave_day|
+              = "#{leave_day.date} - #{leave_day.kind.text}"
+              br
+          td= leave.reason
+  .col-md-12
+    h2 = 'My Lates'
+    table.list-table
+      thead
+        th= 'No.'
+        th= Late.human_attribute_name('date')
+        th= Late.human_attribute_name('note')
+      - @user.becomes(Staff).lates.each_with_index do |late, index|
+        tr
+          td= index + 1
+          td= late.created_at.strftime('%d-%b-%Y')
+          td= late.note
+  = link_to 'Back', users_path, class: 'btn-u btn-u-default'
