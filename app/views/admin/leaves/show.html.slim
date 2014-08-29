@@ -1,0 +1,49 @@
+= display_page_title('Leave Detail')
+.container
+  .content
+    .col-md-12
+      table.list-table
+        thead
+          tr
+            td
+              strong= Leave.human_attribute_name('category')
+            td= @leave.category.text
+          tr
+            td
+              strong= Leave.human_attribute_name('staff')
+            td= @leave.staff_english_name
+          tr
+            td
+              strong= 'Leave Days'
+            td
+              -@leave.leave_days.each do |leave_day|
+                = "#{leave_day.date} - #{leave_day.kind.text}"
+                br
+          tr
+            td
+              strong= 'Reason Leave'
+            td= @leave.reason
+    .col-md-12
+      .headline
+        h2= 'Staff History'
+      .history
+        table.list-table.table-bordered
+          thead
+            tr
+              th= '#'
+              th.col-md-2= 'User'
+              th= 'Action'
+              th= 'Changeset'
+              th= 'Time'
+          - @versions.each_with_index do |version, index|
+            = version.reify
+            tr
+              td= index + 1
+              td.col-md-2
+                = version.creator_name
+              td
+                = version.event
+              td
+                = version_diff(version, @leave)
+              td
+                = version.created_at.strftime('%d-%b-%Y %H:%M:%S')

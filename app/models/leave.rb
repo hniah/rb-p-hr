@@ -19,4 +19,6 @@ class Leave < ActiveRecord::Base
   enumerize :status, in: [:pending, :approved, :rejected], default: :pending
   enumerize :category, in: [:unpaid, :sick, :annual, :compassionate, :maternity, :urgent], default: :annual
 
+  has_paper_trail class_name: 'Version', ignore: [:updated_at, :created_at]
+
 end

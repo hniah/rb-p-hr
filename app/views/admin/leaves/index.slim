@@ -25,6 +25,7 @@
         td
           = link_to 'Edit', edit_admin_leave_path(leave.id), class: 'list-edit-button', data: {test: "edit-leave-#{leave.id}"}
           = link_to 'Delete', admin_leave_path(leave.id), method: :delete, class: 'list-delete-button', data:{confirm: t('leave.message.delete_confirmation'), test: "delete-leave-#{leave.id}"}
+          = link_to 'Detail', admin_leave_path(leave.id), class: 'list-edit-button', data: {test: "view-leave-#{leave.id}"}
           br
           br
           - if leave.status.pending?

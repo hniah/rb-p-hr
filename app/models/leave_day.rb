@@ -14,6 +14,8 @@ class LeaveDay < ActiveRecord::Base
 
   enumerize :kind, in: [:whole_day, :morning, :afternoon], default: :whole_day
 
+  has_paper_trail class_name: 'Version', ignore: [:updated_at, :created_at]
+
   after_initialize :assigns_default_values
 
   def assigns_default_values

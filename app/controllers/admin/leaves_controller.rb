@@ -73,6 +73,11 @@ class Admin::LeavesController < AdminsController
     end
   end
 
+  def show
+    @leave = Leave.find(leave_id)
+    @versions = @leave.versions
+  end
+
   protected
   def page
     params[:page]
