@@ -172,7 +172,7 @@ describe Admin::LeavesController do
         patch :update, id: leave.id, leave: leave_param
       end
 
-      it 'updates work log, redirects to list and sets notice flash' do
+      it 'updates leave, redirects to list and sets notice flash' do
         sign_in admin
 
         do_request
@@ -210,7 +210,7 @@ describe Admin::LeavesController do
       delete :destroy, id: leave.id
     end
 
-    it 'deletes work log, redirects to list and sets notice flash' do
+    it 'deletes leave, redirects to list and sets notice flash' do
       sign_in admin
 
       do_request
@@ -227,7 +227,7 @@ describe Admin::LeavesController do
         get :show, id: leave.id
       end
 
-      it 'render template show project detail and finds project' do
+      it 'render template show leave detail and finds leave' do
         sign_in admin
 
         do_request

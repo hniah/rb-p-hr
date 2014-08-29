@@ -49,6 +49,11 @@ class Admin::LatesController < AdminsController
     redirect_to admin_lates_url
   end
 
+  def show
+    @late = Late.find late_id
+    @versions = @late.versions
+  end
+
   protected
   def late_params
     params.require(:late).permit(:note, :staff_id, :date)

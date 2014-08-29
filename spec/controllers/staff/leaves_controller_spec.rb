@@ -97,7 +97,7 @@ describe Staff::LeavesController do
         get :show, id: leave.id
       end
 
-      it 'render template show project detail and finds project' do
+      it 'render template show leave detail and finds leave' do
         sign_in staff
 
         do_request

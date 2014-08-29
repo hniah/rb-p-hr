@@ -2,4 +2,7 @@ en:
   late:
     new:
       title: 'Hello World'
+    events:
+      create: "%{field} value: %{new_value}"
+      update: "%{field} changed from %{old_value} to %{new_value}"
 

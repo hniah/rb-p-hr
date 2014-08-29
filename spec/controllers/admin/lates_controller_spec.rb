@@ -115,5 +115,23 @@ describe Admin::LatesController do
       end
     end
   end
+
+  describe 'GET #show' do
+    context 'show late detail' do
+      let(:late) { create :late }
+      def do_request
+        get :show, id: late.id
+      end
+
+      it 'render template show late detail and finds late' do
+        sign_in admin
+
+        do_request
+
+        expect(response).to render_template :show
+        expect(assigns(:late)).to_not be_nil
+      end
+    end
+  end
 end
 

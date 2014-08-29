@@ -4,7 +4,7 @@ describe 'Show leave detail' do
   context 'Show leave detail' do
     let(:admin) { create :admin }
     let(:staff) { create :staff }
-    let!(:leave) { create(:leave, :with_leave_days, staff: staff) }
+    let!(:leave) { create(:leave, :with_leave_days, status: :pending, staff: staff) }
 
     it 'show leave detail' do
       feature_login admin

@@ -1,0 +1,44 @@
+= display_page_title('Late Detail')
+.container
+  .content
+    .col-md-12
+      .headline
+        h2= 'Late Detail'
+      table.list-table
+        thead
+          tr
+            td
+              strong= Late.human_attribute_name('date')
+            td= @late.date
+          tr
+            td
+              strong= Late.human_attribute_name('staff')
+            td= @late.staff_english_name
+          tr
+            td
+              strong=  Late.human_attribute_name('note')
+            td= @late.note
+    .col-md-12
+      .headline
+        h2= 'Late History'
+      .history
+        table.list-table.table-bordered
+          thead
+            tr
+              th= '#'
+              th.col-md-2= 'User'
+              th= 'Action'
+              th= 'Changeset'
+              th= 'Time'
+          - @versions.each_with_index do |version, index|
+            = version.reify
+            tr
+              td= index + 1
+              td.col-md-2
+                = version.creator_name
+              td
+                = version.event
+              td
+                = version_diff(version, @late)
+              td
+                = version.created_at.strftime('%d-%b-%Y %H:%M:%S')
