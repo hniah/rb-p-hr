@@ -5,12 +5,11 @@
       tr
         th= Leave.human_attribute_name('category')
         th= Leave.human_attribute_name('status')
-        th= Leave.human_attribute_name('day')
+        th= Leave.human_attribute_name('date')
         th.col-md-3= Leave.human_attribute_name('reason')
         th= Leave.human_attribute_name('staff')
         th.col-md-2= Leave.human_attribute_name('rejection_note')
-        - if current_user.is_admin?
-          th= Leave.human_attribute_name('action')
+        th= Leave.human_attribute_name('action')
     - @leaves.each do |leave|
       tr
         td= leave.category.text

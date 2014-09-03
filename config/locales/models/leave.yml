@@ -1,26 +1,4 @@
 en:
-  leave:
-    message:
-      select_staff: 'Please select staff'
-      select_kind: 'Please select kind'
-      select_type: 'Please select type'
-      select_status: 'Please select status'
-      delete_confirmation: 'Confirm delete this leave?'
-      no_access: 'You are not allowed to visit this page'
-    events:
-      create: "%{field} value: %{new_value}"
-      update: "%{field} changed from %{old_value} to %{new_value}"
-  helpers:
-    label:
-      leave:
-        status: 'Status'
-        date: 'Date'
-        kind: 'Kind'
-    help:
-      leave:
-        date: 'Your leave day'
-        kind: 'Your leave kind'
-        reason_leave: 'Your leave reason'
   activerecord:
     attributes:
       leave:

@@ -1,11 +1,4 @@
 en:
-  staff:
-    message:
-      select_staff: 'Please select staff'
-      delete_confirmation: 'Confirm delete this staff?'
-    events:
-        create: "%{field} value: %{new_value}"
-        update: "%{field} changed from %{old_value} to %{new_value}"
   activerecord:
     errors:
       models:
