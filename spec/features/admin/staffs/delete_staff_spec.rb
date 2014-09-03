@@ -12,6 +12,6 @@ describe 'Delete user' do
     get_element("delete-staff-#{user.id}").click
 
     expect(page).to have_content 'Staff List'
-    expect(page).to have_content I18n.t('staff.message.delete_success')
+    expect(page).to have_content 'Staff is successfully deleted.'
   end
 end

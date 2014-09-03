@@ -1,12 +1,6 @@
 en:
   staff:
     message:
-      create_success: 'Staff is created'
-      create_failed: 'Failed to create staff'
-      update_success: 'Staff is updated'
-      update_failed: 'Failed to update staff'
-      delete_success: 'Staff is deleted'
-      delete_failed: 'Failed to delete staff'
       select_staff: 'Please select staff'
       delete_confirmation: 'Confirm delete this staff?'
     events:

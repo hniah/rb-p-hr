@@ -1,0 +1,15 @@
+en:
+  admin:
+    staffs:
+      create:
+        message:
+          success: Staff is successfully created.
+          failure: Failed to create staff.
+      update:
+        message:
+          success: Staff is successfully updated.
+          failure: Failed to update staff.
+      destroy:
+        message:
+          success: Staff is successfully deleted.
+          failure: Failed to delete staff.

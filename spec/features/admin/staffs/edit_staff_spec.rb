@@ -27,8 +27,8 @@ describe 'Display Edit form' do
 
 
     expect(page).to have_content 'Staff List'
-    expect(page).to have_content 'Staff is updated'
     expect(page).to have_content 'martin123@futureworkz.com'
     expect(page).to have_content 'Martin Martin'
+    expect(page).to have_content 'Staff is successfully updated.'
   end
 end

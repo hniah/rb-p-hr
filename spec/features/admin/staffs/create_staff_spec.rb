@@ -25,7 +25,7 @@ describe 'Create new Staff' do
       click_on 'Create Staff'
 
       expect(page).to have_content 'Staff List'
-      expect(page).to have_content I18n.t('staff.message.create_success')
+      expect(page).to have_content 'Staff is successfully created.'
       expect(page).to have_content 'Vu Quang Thang'
 
     end
@@ -52,7 +52,7 @@ describe 'Create new Staff' do
       fill_in 'Note', with: 'Lorem lorem'
       click_on 'Create Staff'
 
-      expect(page).to have_content I18n.t('staff.message.create_failed')
+      expect(page).to have_content 'Failed to create staff.'
     end
   end
 end

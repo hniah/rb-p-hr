@@ -10,9 +10,9 @@ class Admin::StaffsController < Admin::BaseController
   def create
     @staff = Staff.new(staff_param)
     if @staff.save
-      redirect_to admin_staffs_path, notice: t('staff.message.create_success')
+      redirect_to admin_staffs_path, notice: t('.message.success')
     else
-      flash[:alert] = t('staff.message.create_failed')
+      flash[:alert] = t('.message.failure')
       render :new
     end
   end
@@ -24,9 +24,9 @@ class Admin::StaffsController < Admin::BaseController
   def update
     @staff = Staff.find(staff_id)
     if @staff.update(staff_param)
-      redirect_to admin_staffs_path, notice: t('staff.message.update_success')
+      redirect_to admin_staffs_path, notice: t('.message.success')
     else
-      flash[:alert] = t('staff.message.update_failed')
+      flash[:alert] = t('.message.failure')
       render :edit
     end
   end
@@ -34,9 +34,9 @@ class Admin::StaffsController < Admin::BaseController
   def destroy
     @staff = Staff.find(staff_id)
     if @staff.destroy
-      redirect_to admin_staffs_path, notice: t('staff.message.delete_success')
+      redirect_to admin_staffs_path, notice: t('.message.success')
     else
-      flash[:alert] = t('staff.message.delete_failed')
+      flash[:alert] = t('.message.failure')
       render :index
     end
   end
