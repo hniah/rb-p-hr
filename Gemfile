@@ -38,7 +38,7 @@ gem 'omniauth-google-oauth2'
 gem 'simple-navigation'
 gem 'simple-navigation-bootstrap'
 gem 'nested_form'
-gem 'paper_trail', '~> 3.0.3'
+gem 'paper_trail', '~> 3.0.5'
 
 group :development do
   gem 'spring'
