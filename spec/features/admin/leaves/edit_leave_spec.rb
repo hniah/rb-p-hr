@@ -22,7 +22,7 @@ describe 'Edit Leave' do
       click_on 'Update Leave'
 
       expect(page).to have_content 'Leaves List'
-      expect(page).to have_content I18n.t('leave.message.update_success')
+      expect(page).to have_content 'Leave is successfully updated.'
       expect(page).to have_content 'Lorem lorem'
     end
   end

@@ -14,9 +14,9 @@ class Admin::LeavesController < Admin::BaseController
     if @leave.save
       # Notify HR when new leave come
       LeaveNotifier.new_leave(@leave).deliver
-      redirect_to admin_leaves_path, notice: t('leave.message.create_success')
+      redirect_to admin_leaves_path, notice: t('.message.success')
     else
-      flash[:alert] = t('leave.message.create_failed')
+      flash[:alert] = t('.message.failure')
       render :new
     end
   end
@@ -28,9 +28,9 @@ class Admin::LeavesController < Admin::BaseController
   def update
     @leave = Leave.find(leave_id)
     if @leave.update(leave_param)
-      redirect_to admin_leaves_path, notice: t('leave.message.update_success')
+      redirect_to admin_leaves_path, notice: t('.message.success')
     else
-      flash[:alert] = t('leave.message.update_failed')
+      flash[:alert] = t('.message.failure')
       render :edit
     end
   end
@@ -38,9 +38,9 @@ class Admin::LeavesController < Admin::BaseController
   def destroy
     @leave = Leave.find(leave_id)
     if @leave.destroy
-      redirect_to admin_leaves_path, notice: t('leave.message.delete_success')
+      redirect_to admin_leaves_path, notice: t('.message.success')
     else
-      flash[:alert] = t('leave.message.create_failed')
+      flash[:alert] = t('.message.failure')
       render :index
     end
   end
@@ -50,9 +50,9 @@ class Admin::LeavesController < Admin::BaseController
     if @leave.update(status: :approved)
       # Notify Staff when leave is approved
       LeaveNotifier.approved(@leave).deliver
-      redirect_to admin_leaves_path, notice: t('leave.message.approve_leave')
+      redirect_to admin_leaves_path, notice: t('.message.success')
     else
-      flash[:alert] = t('leave.message.update_failed')
+      flash[:alert] = t('.message.failure')
       redirect_to admin_leaves_path
     end
   end
@@ -66,9 +66,9 @@ class Admin::LeavesController < Admin::BaseController
     if @leave.update(leave_reject_param.merge(status: :rejected))
       # Notify Staff when leave is rejected
       LeaveNotifier.rejected(@leave).deliver
-      redirect_to admin_leaves_path, notice: t('leave.message.reject_leave')
+      redirect_to admin_leaves_path, notice: t('.message.success')
     else
-      flash[:alert] = t('leave.message.update_failed')
+      flash[:alert] = t('.message.failure')
       redirect_to admin_leaves_path
     end
   end

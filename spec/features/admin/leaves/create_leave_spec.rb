@@ -22,7 +22,7 @@ describe 'Display New Leave form' do
       click_on 'Create Leave'
 
       expect(page).to have_content 'Leaves List'
-      expect(page).to have_content I18n.t('leave.message.create_success')
+      expect(page).to have_content 'Leave is successfully created.'
       expect(page).to have_content 'Lorem lorem'
     end
   end

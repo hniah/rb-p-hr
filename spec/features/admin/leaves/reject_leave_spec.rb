@@ -17,7 +17,7 @@ describe 'Display note to reject Leave' do
     click_on 'Reject Leave'
 
     expect(page).to have_content 'Leaves List'
-    expect(page).to have_content I18n.t('leave.message.reject_leave')
+    expect(page).to have_content 'Leave is rejected.'
     expect(page.all('tr').count).to eql(1)
   end
 end

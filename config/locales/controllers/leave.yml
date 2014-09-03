@@ -1,0 +1,23 @@
+en:
+  admin:
+    leaves:
+      create:
+        message:
+          success: Leave is successfully created.
+          failure: Failed to create leave.
+      update:
+        message:
+          success: Leave is successfully updated.
+          failure: Failed to update leave.
+      destroy:
+        message:
+          success: Leave is successfully deleted.
+          failure: Failed to delete leave.
+      approve:
+        message:
+          success: Leave is approved.
+          failure: Failed to update leave.
+      reject_action:
+        message:
+          success: Leave is rejected.
+          failure: Failed to update leave.

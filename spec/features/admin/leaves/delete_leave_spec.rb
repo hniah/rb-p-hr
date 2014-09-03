@@ -12,6 +12,6 @@ describe 'Delete Leave' do
     get_element("delete-leave-#{leave.id}").click
 
     expect(page).to have_content 'Leaves List'
-    expect(page).to have_content I18n.t('leave.message.delete_success')
+    expect(page).to have_content 'Leave is successfully deleted.'
   end
 end
