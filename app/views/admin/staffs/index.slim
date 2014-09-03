@@ -19,8 +19,8 @@
           td = staff.phone_number
           td = staff.started_on
           td
-            = list_edit_admin_button(staff)
-            = list_delete_admin_button(staff)
-            = link_to 'Detail', admin_staff_path(staff.id), class: 'list-edit-button', data: {test: "view-staff-#{staff.id}"}
+            = list_edit_button(staff, 'admin')
+            = list_delete_button(staff, 'admin')
+            = list_detail_button(staff, 'admin')
   .pagination
     = bootstrap_paginate(@staffs)

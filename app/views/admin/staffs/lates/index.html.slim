@@ -13,8 +13,8 @@
         td= late.staff_english_name
         td= late.note
         th
-          = link_to 'Edit', edit_admin_late_path(late.id), class: 'list-edit-button', data: {test: "edit-late-#{late.id}"}
-          = link_to 'Delete', admin_late_path(late), method: :delete, class: 'list-delete-button', data: {test: "delete-late-#{late.id}"}
+          = list_edit_button(late, 'admin')
+          = list_delete_button(late, 'admin')
           = link_to 'Detail', admin_late_path(late), class: 'list-edit-button', data: {test: "view-late-#{late.id}"}
   = link_to 'Back', admin_staff_path(@staff.id),  class: 'btn-u btn-u-default'
   .pagination

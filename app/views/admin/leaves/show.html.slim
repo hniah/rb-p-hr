@@ -1,6 +1,8 @@
 = display_page_title('Leave Detail')
 .container.content
   .col-md-12
+    .headline
+      h2= 'Leave Detail'
     table.list-table
       thead
         tr
@@ -35,7 +37,6 @@
             th= 'Changeset'
             th= 'Time'
         - @versions.each_with_index do |version, index|
-          = version.reify
           tr
             td= index + 1
             td.col-md-2

@@ -37,6 +37,9 @@
         tr
           th=User.human_attribute_name('note')
           td= @staff.note
+        tr
+          td{ colspan="2" }
+            = "Your leave days left in this year #{pluralize(@staff.remaining_leave_days_in(Time.now.year), 'day')}"
   .col-md-12
     h2 = 'My Leaves'
     table.list-table

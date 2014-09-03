@@ -38,6 +38,9 @@
         tr
           th=label_name('user.note')
           td= @staff.note
+        tr
+          td{ colspan="2" }
+            = "Your leave days left in this year #{pluralize(@staff.remaining_leave_days_in(Time.now.year), 'day')}"
   .col-md-12
     .headline
       h2 = 'My Leaves'

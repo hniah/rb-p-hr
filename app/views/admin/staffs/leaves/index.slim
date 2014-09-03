@@ -23,8 +23,8 @@
         td= leave.staff_english_name
         td= leave.rejection_note
         td
-          = link_to 'Edit', edit_admin_leave_path(leave.id), class: 'list-edit-button', data: {test: "edit-leave-#{leave.id}"}
-          = link_to 'Delete', admin_leave_path(leave.id), method: :delete, class: 'list-delete-button', data:{confirm: t('leave.message.delete_confirmation'), test: "delete-leave-#{leave.id}"}
+          = list_edit_button(leave, 'admin')
+          = list_delete_button(leave, 'admin')
           br
           br
           - if leave.status.pending?
