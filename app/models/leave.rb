@@ -14,6 +14,7 @@ class Leave < ActiveRecord::Base
   belongs_to :staff
 
   validates :status, :reason, :staff, :category, presence: true
+  validates :staff_id, presence: true
   validates :rejection_note, presence: {if: -> {status.present? && status.rejected?}}
 
   enumerize :status, in: [:pending, :approved, :rejected], default: :pending

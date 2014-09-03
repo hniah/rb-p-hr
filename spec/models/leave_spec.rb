@@ -5,6 +5,7 @@ describe Leave do
     it { is_expected.to validate_presence_of :status }
     it { is_expected.to validate_presence_of :reason }
     it { is_expected.to validate_presence_of :staff }
+    it { is_expected.to validate_presence_of :staff_id }
     it { is_expected.to validate_presence_of :category }
     it { is_expected.to enumerize(:status).in(:pending, :approved, :rejected) }
     it { is_expected.to enumerize(:category).in(:unpaid, :sick, :annual, :compassionate, :maternity, :urgent) }
