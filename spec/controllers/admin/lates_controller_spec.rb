@@ -7,7 +7,7 @@ describe Admin::LatesController do
 
   context 'authentication' do
     it 'extends from AdminsController' do
-      is_expected.to be_kind_of AdminsController
+      is_expected.to be_kind_of Admin::BaseController
     end 
   end
   

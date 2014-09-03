@@ -1,4 +1,4 @@
-class Admin::Staffs::LatesController < AdminsController
+class Admin::Staffs::LatesController < Admin::BaseController
 
   def index
     @staff = Staff.find(staff_id)

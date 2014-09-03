@@ -1,4 +1,4 @@
-class Admin::FeedbacksController < AdminsController
+class Admin::FeedbacksController < Admin::BaseController
   def index
     @feedbacks = Feedback.paginate(page: page)
   end

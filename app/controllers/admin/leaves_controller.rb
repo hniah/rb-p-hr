@@ -1,4 +1,4 @@
-class Admin::LeavesController < AdminsController
+class Admin::LeavesController < Admin::BaseController
 
   def index
     @leaves = Leave.pending.paginate(page: page)

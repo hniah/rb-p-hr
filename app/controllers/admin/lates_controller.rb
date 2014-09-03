@@ -1,4 +1,4 @@
-class Admin::LatesController < AdminsController
+class Admin::LatesController < Admin::BaseController
 
   def index
     @lates = Late.all

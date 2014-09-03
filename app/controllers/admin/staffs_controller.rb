@@ -1,4 +1,4 @@
-class Admin::StaffsController < AdminsController
+class Admin::StaffsController < Admin::BaseController
   def index
     @staffs = Staff.paginate(page: page)
   end

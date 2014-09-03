@@ -1,4 +1,4 @@
-class Admin::Staffs::LeavesController < AdminsController
+class Admin::Staffs::LeavesController < Admin::BaseController 
 
   def index
     @staff = Staff.find(staff_id)
