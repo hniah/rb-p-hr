@@ -14,6 +14,6 @@
         td= late.staff_english_name
         td= late.note
         th
-          = list_edit_button(late, 'admin')
-          = list_delete_button(late, 'admin')
-          = list_detail_button(late, 'admin')
+          = list_button(name: 'Edit', action: :edit, admin: :admin, resource: late)
+          = list_button(name: 'Delete', action: :delete, admin: :admin, resource: late)
+          = list_button(name: 'Detail', action: :detail, admin: :admin, resource: late)

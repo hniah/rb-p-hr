@@ -23,8 +23,8 @@
         td= leave.staff_english_name
         td= leave.rejection_note
         td
-          = list_edit_button(leave, 'admin')
-          = list_delete_button(leave, 'admin')
+          = list_button(name: 'Edit', action: :edit, admin: :admin, resource: leave)
+          = list_button(name: 'Delete', action: :delete, admin: :admin, resource: leave)
           br
           br
           - if leave.status.pending?

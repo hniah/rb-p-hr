@@ -19,8 +19,8 @@
           td = staff.phone_number
           td = staff.started_on
           td
-            = list_edit_button(staff, 'admin')
-            = list_delete_button(staff, 'admin')
-            = list_detail_button(staff, 'admin')
+            = list_button(name: 'Edit', action: :edit, admin: :admin, resource: staff)
+            = list_button(name: 'Delete', action: :delete, admin: :admin, resource: staff)
+            = list_button(name: 'Detail', action: :detail, admin: :admin, resource: staff)
   .pagination
     = bootstrap_paginate(@staffs)
