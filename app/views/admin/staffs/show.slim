@@ -3,79 +3,80 @@
   .col-md-12
     .headline
       h2 = 'Staff detail'
-    table.list-table
-      thead
-        tr
-          th=label_name('user.name')
-          td= @staff.name
-        tr
-          th=label_name('user.english_name')
-          td= @staff.english_name
-        tr
-          th=label_name('user.email')
-          td= @staff.email
-        tr
-          th=label_name('user.personal_email')
-          td= @staff.personal_email
-        tr
-          th=label_name('user.birthday')
-          td= @staff.birthday
-        tr
-          th=label_name('user.address')
-          td= @staff.address
-        tr
-          th=label_name('user.phone_number')
-          td= @staff.phone_number
-        tr
-          th=label_name('user.social_insurance')
-          td= @staff.social_insurance
-        tr
-          th=label_name('user.started_on')
-          td= @staff.started_on
-        tr
-          th=label_name('user.probation_end_on')
-          td= @staff.probation_end_on
-        tr
-          th=label_name('user.note')
-          td= @staff.note
-        tr
-          td{ colspan="2" }
-            = "Your leave days left in this year #{pluralize(@staff.remaining_leave_days_in(Time.now.year), 'day')}"
+    table.list-table.table-bordered
+      tr
+        th=label_name('user.name')
+        td= @staff.name
+      tr
+        th=label_name('user.english_name')
+        td= @staff.english_name
+      tr
+        th=label_name('user.email')
+        td= @staff.email
+      tr
+        th=label_name('user.personal_email')
+        td= @staff.personal_email
+      tr
+        th=label_name('user.birthday')
+        td= @staff.birthday
+      tr
+        th=label_name('user.address')
+        td= @staff.address
+      tr
+        th=label_name('user.phone_number')
+        td= @staff.phone_number
+      tr
+        th=label_name('user.social_insurance')
+        td= @staff.social_insurance
+      tr
+        th=label_name('user.started_on')
+        td= @staff.started_on
+      tr
+        th=label_name('user.probation_end_on')
+        td= @staff.probation_end_on
+      tr
+        th=label_name('user.note')
+        td= @staff.note
+      tr
+        td{ colspan="2" }
+          = "Your leave days left in this year #{pluralize(@staff.remaining_leave_days_in(Time.now.year), 'day')}"
   .col-md-12
     .headline
       h2 = 'My Leaves'
-    table.list-table
+    table.list-table.table-bordered
       thead
         th= 'No.'
         th= Leave.human_attribute_name('status')
         th= Leave.human_attribute_name('category')
         th= Leave.human_attribute_name('day')
         th= Leave.human_attribute_name('reason')
-      - @leaves.each_with_index do |leave, index|
-        tr
-          td= index + 1
-          td= leave.status.text
-          td= leave.category.text
-          td
-            -leave.leave_days.each do |leave_day|
-              = "#{leave_day.date} - #{leave_day.kind.text}"
-              br
-          td= leave.reason
+      tbody
+        - @leaves.each_with_index do |leave, index|
+          tr
+            td= index + 1
+            td= leave.status.text
+            td= leave.category.text
+            td
+              -leave.leave_days.each do |leave_day|
+                = "#{leave_day.date} - #{leave_day.kind.text}"
+                br
+            td= leave.reason
     = link_to 'View all my leaves', admin_staff_leaves_path(@staff.id), class: 'btn-u btn-u-sm'
     p
   .col-md-12
     .headline
       h2 = 'My Lates'
-    table.list-table
+    table.list-table.table-bordered
       thead
         th= 'No.'
         th= Late.human_attribute_name('date')
         th= Late.human_attribute_name('note')
-      - @lates.each_with_index do |late, index|
-        tr
-          td= index + 1
-          td= late.date
-          td= late.note
+      tbody
+        - @lates.each_with_index do |late, index|
+          tr
+            td= index + 1
+            td= late.date
+            td= late.note
     = link_to 'View all my lates', admin_staff_lates_path(@staff.id), class: 'btn-u btn-u-sm'
     p
   .col-md-12
@@ -90,17 +91,18 @@
             th= 'Action'
             th= 'Changeset'
             th= 'Time'
-        - @versions.each_with_index do |version, index|
-          tr
-            td= index + 1
-            td.col-md-2
-              = version.creator_name
-            td
-              = version.event
-            td
-              = version_diff(version, @staff)
-            td
-              = version.created_at.strftime('%d-%b-%Y %H:%M:%S')
+        tbody
+          - @versions.each_with_index do |version, index|
+            tr
+              td= index + 1
+              td.col-md-2
+                = version.creator_name
+              td
+                = version.event
+              td
+                = version_diff(version, @staff)
+              td
+                = version.created_at.strftime('%d-%b-%Y %H:%M:%S')
     = link_to 'View all history', admin_staff_versions_path(@staff.id), class: 'btn-u btn-u-sm'
     p
   = link_to 'Back', admin_staffs_path, class: 'btn-u btn-u-default'

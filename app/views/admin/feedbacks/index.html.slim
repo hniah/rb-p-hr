@@ -1,15 +1,16 @@
 = display_page_title ('Feedbacks List')
 .container.content
-  table.list-table
+  table.list-table.table-bordered
     thead
       tr
         th= Feedback.human_attribute_name('kind')
         th= Feedback.human_attribute_name('content')
         th= Feedback.human_attribute_name('staff_id')
-    - @feedbacks.each do |feedback|
-      tr
-        td= feedback.kind.text
-        td= feedback.content
-        td= feedback.staff_english_name
+    tbody
+      - @feedbacks.each do |feedback|
+        tr
+          td= feedback.kind.text
+          td= feedback.content
+          td= feedback.staff_english_name
   .pagination
     = bootstrap_paginate(@feedback)

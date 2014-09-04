@@ -8,6 +8,7 @@
         th= 'Action'
         th= 'Changeset'
         th= 'Time'
+    tbody
       - @versions.each_with_index do |version, index|
         tr
           td= index + 1
