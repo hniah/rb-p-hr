@@ -42,6 +42,7 @@ Rails.application.routes.draw do
     resources :staffs do
       resources :leaves, only: [:index], controller: 'staffs/leaves'
       resources :lates, only: [:index], controller: 'staffs/lates'
+      resources :versions, only: [:index], controller: 'staffs/versions'
     end
   end
 

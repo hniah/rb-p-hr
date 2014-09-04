@@ -1,0 +1,24 @@
+=display_page_title('Staff History')
+.container.content
+  table.list-table.table-bordered
+    thead
+      tr
+        th= '#'
+        th.col-md-2= 'User'
+        th= 'Action'
+        th= 'Changeset'
+        th= 'Time'
+      - @versions.each_with_index do |version, index|
+        tr
+          td= index + 1
+          td.col-md-2
+            = version.creator_name
+          td
+            = version.event
+          td
+            = version_diff(version, @staff)
+          td
+            = version.created_at.strftime('%d-%m-%Y %H:%M:%S')
+  .pagination
+    = bootstrap_paginate(@versions)
+  = link_to 'Back', admin_staff_path(@staff.id),  class: 'btn-u btn-u-default'

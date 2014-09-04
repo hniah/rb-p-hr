@@ -101,4 +101,6 @@
               = version_diff(version, @staff)
             td
               = version.created_at.strftime('%d-%b-%Y %H:%M:%S')
+    = link_to 'View all history', admin_staff_versions_path(@staff.id), class: 'btn-u btn-u-sm'
+    p
   = link_to 'Back', admin_staffs_path, class: 'btn-u btn-u-default'
