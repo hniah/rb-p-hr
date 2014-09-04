@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   default_scope -> { order(name: :asc, id: :desc) }
 
   validates :name, :english_name, :personal_email, :address, :started_on, :probation_end_on, :designation, presence: true
+  validates :cumulative_leaves, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 7 }
   validates :email, format: { :with => /\A([^@\s]+)@(futureworkz.com)\Z/i }
   validates :personal_email, format:  { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i }
 

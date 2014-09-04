@@ -9,6 +9,8 @@ describe User do
     it { is_expected.to validate_presence_of :started_on }
     it { is_expected.to validate_presence_of :probation_end_on }
     it { is_expected.to validate_presence_of :designation }
+    it { is_expected.to validate_numericality_of(:cumulative_leaves).is_greater_than_or_equal_to(0) }
+    it { is_expected.to validate_numericality_of(:cumulative_leaves).is_less_than_or_equal_to(7) }
   end
 
   context 'validation email'  do
