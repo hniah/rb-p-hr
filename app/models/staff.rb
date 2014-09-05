@@ -1,6 +1,6 @@
 class Staff < User
 
-  scope :to_options, -> { all.collect { |staff| [ staff.name, staff.id ] } }
+  scope :to_options, -> { all.collect { |staff| [ staff.english_name, staff.id ] } }
 
   LEAVE_DAYS = 14.0
   MAX_CUMULATIVE_LEAVE_DAYS = 7.0

@@ -14,7 +14,7 @@ describe 'Admin can create late feature' do
 
     fill_in 'Date', with: '20/08/2014'
     fill_in 'Note', with: 'This is a note'
-    select late_staff[:name], from: 'Staff'
+    select admin.english_name, from: 'Staff'
     click_on 'Create Late'
 
     expect(page).to have_content 'Late is successfully created.'
