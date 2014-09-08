@@ -47,15 +47,12 @@ Rails.application.routes.draw do
     end
   end
 
-  resource :staff, only: [:show] do
-    member do
-      get 'profile', to: 'staffs#show'
-    end
-    resources :leaves, only: [:index, :new, :create, :show], controller: 'staff/leaves'
-    resources :lates, only: [:index], controller: 'staff/lates'
+  namespace :staff do
+    get 'profile', to: 'staffs#show'
+    resources :leaves, only: [:index, :new, :create, :show]
+    resources :lates, only: [:index]
   end
 
-  resources :staffs, only: [:show]
   resources :feedbacks, only: [:new, :create]
 
   # Example resource route with sub-resources:

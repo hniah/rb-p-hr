@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe StaffsController do
+describe Staff::StaffsController do
   describe 'GET #show' do
     context 'show staff detail when current user is owner profile' do
       let(:staff) { create :staff }
