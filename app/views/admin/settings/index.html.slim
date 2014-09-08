@@ -1,4 +1,4 @@
-= display_page_title ('Settings')
+= display_page_title ('Settings List')
 .container.content
   table.list-table.table-bordered
     thead
@@ -12,7 +12,7 @@
           td= setting.key
           td= setting.value
           td
-            = list_button(name: 'Edit', action: :edit, admin: :admin, resource: setting)
+            /= list_button(name: 'Edit', action: :edit, admin: :admin, resource: setting)
             = list_button(name: 'Delete', action: :delete, admin: :admin, resource: setting)
   .pagination
     = bootstrap_paginate(@settings)

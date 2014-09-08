@@ -1,6 +1,8 @@
 FactoryGirl.define do
   factory :setting do
-    key 'admin_password'
+    sequence :key do |n|
+      "admin_password_#{n}"
+    end
     value '123456'
   end
 end

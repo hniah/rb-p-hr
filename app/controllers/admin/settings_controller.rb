@@ -8,12 +8,27 @@ class Admin::SettingsController < Admin::BaseController
   end
 
   def create
-    @setting = Setting.new(setting_param)
-    if @setting.save
+    unless Setting.exists?(key: setting_param[:key])
+      @setting = Setting.new(setting_param)
+      if @setting.save
+        redirect_to admin_settings_path, notice: t('.message.success')
+      else
+        flash[:alert] = t('.message.failure')
+        render :new
+      end
+    else
+      flash[:alert] = t('.message.exists')
+      render :index
+    end
+  end
+
+  def destroy
+    @setting = Setting.find(setting_id)
+    if @setting.destroy
       redirect_to admin_settings_path, notice: t('.message.success')
     else
       flash[:alert] = t('.message.failure')
-      render :new
+      render :index
     end
   end
 
