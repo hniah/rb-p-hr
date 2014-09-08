@@ -23,7 +23,8 @@ SimpleNavigation::Configuration.run do |navigation|
       submenu.item :new, 'Add New Late', new_admin_late_path
     end
 
-    primary.item :feedbacks, 'Feedback/Bug Report', new_feedback_path, if: -> { user_signed_in? } 
+    primary.item :feedbacks, 'Feedback/Bug Report', new_feedback_path, if: -> { user_signed_in? }
     primary.item :feedbacks, 'Feedbacks List', admin_feedbacks_path, if: -> { user_signed_in? && current_user.is_admin? }
+    primary.item :settings, 'Settings', admin_settings_path, if: -> { user_signed_in? && current_user.is_admin? }
   end
 end

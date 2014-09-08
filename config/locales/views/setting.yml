@@ -1,0 +1,8 @@
+en:
+  setting:
+    message:
+      delete_confirmation: 'Confirm delete this setting?'
+      no_access: 'You are not allowed to visit this page'
+    events:
+      create: "%{field} value: %{new_value}"
+      update: "%{field} changed from %{old_value} to %{new_value}"
