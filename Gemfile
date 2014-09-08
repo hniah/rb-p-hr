@@ -40,7 +40,7 @@ gem 'simple-navigation-bootstrap'
 gem 'nested_form'
 gem 'paper_trail', '~> 3.0.5'
 gem 'nunify'
-gem 'capybara-webkit'
+
 
 group :development do
   gem 'spring'
@@ -60,6 +60,7 @@ group :test do
   gem 'shoulda-matchers'
   gem 'factory_girl_rails'
   gem 'capybara'
+  gem 'capybara-webkit'
 end
 
 gem 'dotenv-rails', groups: [:development, :test] # load ENV param
