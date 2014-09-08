@@ -13,7 +13,7 @@ describe 'View Settings List' do
 
       click_on 'Settings'
 
-      expect(page).to have_content 'Settings'
+      expect(page).to have_content 'Settings List'
       expect(page.all('tr').count).to eql(6)
     end
   end

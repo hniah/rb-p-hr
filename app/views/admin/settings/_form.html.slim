@@ -1,5 +1,5 @@
 = semantic_bootstrap_nested_form_for [:admin, setting]  do |f|
   = f.input :key
-  = f.input :value
+  = f.input :value, input_html: { rows: 1, class: 'form-control' }
   = f.submit class: 'btn-u'
   = link_to 'Back', admin_settings_path, class: 'btn-u btn-u-default'

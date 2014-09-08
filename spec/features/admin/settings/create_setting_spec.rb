@@ -13,7 +13,7 @@ describe 'Display add setting form' do
     fill_in 'Value', with: 'martin@futureworkz.com'
     click_on 'Create Setting'
 
-    expect(page).to have_content 'Settings'
+    expect(page).to have_content 'Settings List'
     expect(page).to have_content 'Setting is successfully created.'
     expect(page).to have_content 'email_notifier'
   end
