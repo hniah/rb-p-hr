@@ -46,3 +46,4 @@ describe Admin::BaseController do
     end
   end
 end
+
