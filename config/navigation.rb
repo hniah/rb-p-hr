@@ -25,6 +25,9 @@ SimpleNavigation::Configuration.run do |navigation|
 
     primary.item :feedbacks, 'Feedback/Bug Report', new_feedback_path, if: -> { user_signed_in? }
     primary.item :feedbacks, 'Feedbacks List', admin_feedbacks_path, if: -> { user_signed_in? && current_user.is_admin? }
-    primary.item :settings, 'Settings', admin_settings_path, if: -> { user_signed_in? && current_user.is_admin? }
+    primary.item :settings, 'Settings', admin_settings_path, if: -> { user_signed_in? && current_user.is_admin? } do |submenu|
+      submenu.item :index, 'Settings', admin_settings_path
+      submenu.item :new, 'Add Setting', new_admin_setting_path
+    end
   end
 end
