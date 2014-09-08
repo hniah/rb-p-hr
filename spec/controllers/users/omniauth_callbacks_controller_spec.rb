@@ -29,6 +29,7 @@ describe Users::OmniauthCallbacksController do
 
         expect { do_request }.to change(User, :count).by(0)
         expect(controller.user_signed_in?).to be_falsey
+        expect(response).to redirect_to root_path
       end
     end
   end
