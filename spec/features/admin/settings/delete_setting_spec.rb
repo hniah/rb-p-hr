@@ -9,7 +9,7 @@ describe 'Admin delete setting' do
 
   it 'displays list of lates' do
     visit root_path
-    click_on 'Settings List'
+    click_on 'Setting'
     get_element("delete-setting-#{setting.id}").click
 
     expect(page).to have_content 'Setting is successfully deleted'

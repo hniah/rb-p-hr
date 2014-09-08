@@ -1,6 +1,7 @@
 class Admin::SettingsController < Admin::BaseController
   def index
     @settings = Setting.paginate(page: page)
+    @setting = Setting.new
   end
 
   def new
@@ -8,15 +9,16 @@ class Admin::SettingsController < Admin::BaseController
   end
 
   def create
+    @setting = Setting.new(setting_param)
     unless Setting.exists?(key: setting_param[:key])
-      @setting = Setting.new(setting_param)
       if @setting.save
         redirect_to admin_settings_path, notice: t('.message.success')
       else
         flash[:alert] = t('.message.failure')
-        render :new
+        render :index
       end
     else
+      @settings = Setting.paginate(page: page)
       flash[:alert] = t('.message.exists')
       render :index
     end

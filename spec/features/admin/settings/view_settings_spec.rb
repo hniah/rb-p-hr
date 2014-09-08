@@ -11,7 +11,7 @@ describe 'View Settings List' do
 
       visit root_path
 
-      click_on 'Settings'
+      click_on 'Setting'
 
       expect(page).to have_content 'Settings List'
       expect(page.all('tr').count).to eql(6)
