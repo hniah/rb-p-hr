@@ -1,8 +1,6 @@
 class Setting < ActiveRecord::Base
   validates :key, presence: true
 
-  attr_accessor :settings
-
   @@settings  = {}
 
   def self.[](key_name)
