@@ -10,16 +10,11 @@ class Admin::SettingsController < Admin::BaseController
 
   def create
     @setting = Setting.new(setting_param)
-    unless Setting.exists?(key: setting_param[:key])
-      if @setting.save
-        redirect_to admin_settings_path, notice: t('.message.success')
-      else
-        flash[:alert] = t('.message.failure')
-        render :index
-      end
+    if @setting.save
+      redirect_to admin_settings_path, notice: t('.message.success')
     else
       @settings = Setting.paginate(page: page)
-      flash[:alert] = t('.message.exists')
+      flash[:alert] = t('.message.failure')
       render :index
     end
   end
