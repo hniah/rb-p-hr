@@ -7,9 +7,7 @@ describe 'Display add setting form' do
   before { login_as admin }
 
   it 'saves the setting', js: true do
-    pending 'WIP - user failed to log in with Capybara webkit'
     visit root_path
-    login_as admin
 
     click_on 'Setting'
     click_on 'Add new'

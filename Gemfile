@@ -61,6 +61,7 @@ group :test do
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'capybara-webkit'
+  gem 'database_cleaner'
 end
 
 gem 'dotenv-rails', groups: [:development, :test] # load ENV param
