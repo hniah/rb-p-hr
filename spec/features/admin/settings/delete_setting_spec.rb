@@ -7,7 +7,7 @@ describe 'Admin delete setting' do
 
   before { login_as admin }
 
-  it 'displays list of lates' do
+  it 'displays list of settings' do
     visit root_path
     click_on 'Setting'
     get_element("delete-setting-#{setting.id}").click

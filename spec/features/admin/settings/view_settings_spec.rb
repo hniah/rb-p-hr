@@ -6,7 +6,7 @@ describe 'View Settings List' do
   context 'When admin logged in' do
     let(:admin) { create(:admin) }
 
-    it 'shows all leaves' do
+    it 'shows all settings' do
       feature_login(admin)
 
       visit root_path

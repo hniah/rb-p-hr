@@ -8,7 +8,7 @@ describe 'Admin view staff lates list' do
 
   before { login_as admin }
 
-  it 'displays list of lates' do
+  it 'displays staff lates list' do
     feature_login admin
     visit admin_staffs_path
 

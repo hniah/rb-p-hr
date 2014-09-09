@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-describe 'Delete user' do
+describe 'Delete Staff' do
   let!(:users) { create_list(:user, 5) }
   let(:user) { users.first }
   let(:admin) { create :admin }
 
-  it 'Delete user' do
+  it 'Delete Staff' do
     feature_login admin
     visit admin_staffs_path
 

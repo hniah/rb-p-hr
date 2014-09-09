@@ -67,6 +67,59 @@ describe Admin::SettingsController do
     end
   end
 
+  describe 'GET #edit' do
+    let(:setting) { create(:setting) }
+
+    def do_request
+      get :edit, id: setting.id
+    end
+
+    it 'renders edit form' do
+      sign_in admin
+      do_request
+
+      expect(response).to render_template :edit
+    end
+  end
+
+  describe 'PATCH #update' do
+    context 'success' do
+      let(:setting) { create(:setting) }
+
+      def do_request
+        patch :update, id: setting.id, setting: attributes_for(:setting, value: 'hr@futureworkz.com', key: 'email_notifier_hr')
+      end
+
+      it 'updates setting, redirects to list and sets notice flash' do
+        sign_in admin
+        do_request
+
+        expect(response).to redirect_to admin_settings_path
+        expect(flash[:notice]).to_not be_nil
+        expect(setting.reload.key).to eq 'email_notifier_hr'
+        expect(setting.reload.value).to eq 'hr@futureworkz.com'
+      end
+    end
+
+    context 'failed' do
+      let(:setting) { create(:setting) }
+
+      before { create :setting, value: 'hr@futureworkz.com', key: 'email_notifier_hr'}
+
+      def do_request
+        patch :update, id: setting.id, setting: attributes_for(:setting, value: 'hr@futureworkz.com', key: 'email_notifier_hr')
+      end
+
+      it 'renders template edit and sets alert flash' do
+        sign_in admin
+        do_request
+
+        expect(response).to render_template :edit
+        expect(flash[:alert]).to_not be_nil
+      end
+    end
+  end
+
   describe 'DELETE #destroy' do
     context 'success' do
       let!(:setting) { create(:setting) }

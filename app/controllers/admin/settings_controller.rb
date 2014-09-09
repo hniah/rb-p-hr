@@ -19,6 +19,20 @@ class Admin::SettingsController < Admin::BaseController
     end
   end
 
+  def edit
+    @setting = Setting.find(setting_id)
+  end
+
+  def update
+    @setting = Setting.find(setting_id)
+    if @setting.update(setting_param)
+      redirect_to admin_settings_path, notice: t('.message.success')
+    else
+      flash[:alert] = t('.message.failure')
+      render :edit
+    end
+  end
+
   def destroy
     @setting = Setting.find(setting_id)
     if @setting.destroy
