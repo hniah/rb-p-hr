@@ -54,7 +54,7 @@ group :production do
   gem 'unicorn'
 end
 
-group :test do
+group :development, :test do
   gem 'awesome_print'
   gem 'rspec-rails'
   gem 'shoulda-matchers'
@@ -62,9 +62,8 @@ group :test do
   gem 'capybara'
   gem 'capybara-webkit'
   gem 'database_cleaner'
+  gem 'dotenv-rails'
 end
-
-gem 'dotenv-rails', groups: [:development, :test] # load ENV param
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
