@@ -41,7 +41,6 @@ gem 'nested_form'
 gem 'paper_trail', '~> 3.0.5'
 gem 'nunify'
 
-
 group :development do
   gem 'spring'
   gem 'better_errors'

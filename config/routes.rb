@@ -54,6 +54,7 @@ Rails.application.routes.draw do
   end
 
   resources :feedbacks, only: [:new, :create]
+  get :pcc, to: 'application#pcc'
 
   # Example resource route with sub-resources:
   #   resources :products do
