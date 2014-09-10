@@ -26,5 +26,6 @@ SimpleNavigation::Configuration.run do |navigation|
     primary.item :feedbacks, 'Feedback/Bug Report', new_feedback_path, if: -> { user_signed_in? }
     primary.item :feedbacks, 'Feedbacks List', admin_feedbacks_path, if: -> { user_signed_in? && current_user.is_admin? }
     primary.item :settings, 'Setting', admin_settings_path, if: -> { user_signed_in? && current_user.is_admin? }
+    primary.item :pcc, 'PCC', pcc_path
   end
 end
