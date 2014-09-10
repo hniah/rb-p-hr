@@ -49,8 +49,7 @@ describe Staff::LeavesController do
 
   describe 'POST #create' do
     context 'Success' do
-      let(:leave_days) { [attributes_for(:leave_day)] }
-      let(:leave_param) { attributes_for(:leave, leave_days_attributes: leave_days) }
+      let(:leave_param) { attributes_for(:leave) }
       let(:leave) { Leave.first }
       let(:last_email) { ActionMailer::Base.deliveries.last }
 
@@ -64,7 +63,6 @@ describe Staff::LeavesController do
 
         expect(response).to redirect_to staff_leaves_path
         expect(leave.staff).to eq staff
-        expect(leave.reload.leave_days.size).to eq 1
         expect(last_email.to).to eq [ENV['EMAIL_NOTIFIER']]
         expect(last_email.body).to have_content 'New leave application'
         expect(last_email.body).to have_content leave.reason

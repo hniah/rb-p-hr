@@ -6,7 +6,6 @@ class Admin::LeavesController < Admin::BaseController
 
   def new
     @leave = Leave.new
-    1.times { @leave.leave_days.build }
   end
 
   def create
@@ -91,6 +90,6 @@ class Admin::LeavesController < Admin::BaseController
     params.require(:leave).permit(:rejection_note)
   end
   def leave_param
-    params.require(:leave).permit(:reason, :staff_id, :category, leave_days_attributes: [ :date, :kind, :id, :_destroy ])
+    params.require(:leave).permit(:reason, :staff_id, :category)
   end
 end

@@ -16,9 +16,6 @@
         td= leave.category.text
         td= leave.status.text
         td
-          -leave.leave_days.each do |leave_day|
-            = "#{leave_day.date} - #{leave_day.kind.text}"
-            br
         td= leave.reason
         td= leave.staff_english_name
         td= leave.rejection_note

@@ -13,7 +13,6 @@ describe Leave do
 
   context 'associations' do
     it { should belong_to :staff }
-    it { should have_many :leave_days }
   end
 
   context 'validations note when status is reject' do

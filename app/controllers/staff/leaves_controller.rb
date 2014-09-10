@@ -5,7 +5,6 @@ class Staff::LeavesController < Staff::BaseController
 
   def new
     @leave = Leave.new
-    1.times { @leave.leave_days.build }
   end
 
   def create

@@ -2,11 +2,11 @@ require 'rails_helper'
 
 describe 'View Leaves List' do
   let!(:staff) { create(:staff) }
-  let!(:leaves) { create_list(:leave, 5, :with_leave_days, staff: staff, status: :pending) }
+  let!(:leaves) { create_list(:leave, 5, staff: staff, status: :pending) }
 
   context 'When admin logged in' do
     let(:admin) { create(:admin) }
-    let!(:leave) { create(:leave, :with_leave_days) }
+    let!(:leave) { create(:leave) }
 
     it 'shows all leaves' do
       feature_login(admin)

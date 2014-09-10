@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Display note to reject Leave' do
   let(:admin) { create(:admin) }
   let!(:staff) { create(:staff) }
-  let!(:leave) { create(:leave, :with_leave_days, status: :pending, staff: staff) }
+  let!(:leave) { create(:leave, status: :pending, staff: staff) }
   before{ create :staff }
 
   it 'Display note to admin inputs and reject leave' do

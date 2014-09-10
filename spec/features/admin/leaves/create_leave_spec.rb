@@ -15,8 +15,6 @@ describe 'Display New Leave form' do
       click_on 'Add New Leave'
 
       select 'Annual', from: 'Category'
-      get_element('fill-in-date-0').set('10/07/2014')
-      get_element('select-kind-0').select('Whole day')
       fill_in 'Reason', with: 'Lorem lorem'
       select staff.english_name, from: 'Staff'
       click_on 'Create Leave'

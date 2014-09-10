@@ -38,7 +38,7 @@
         td= @staff.note
       tr
         td{ colspan="2" }
-          p= "Your leave days left in this year #{pluralize(@staff.remaining_leave_days_in(Time.now.year), 'day')}"
+          p= "Your leave days left in this year "
   .col-md-12
     h2 = 'My Leaves'
     table.list-table.table-bordered
@@ -55,9 +55,6 @@
             td= leave.status.text
             td= leave.category.text
             td
-              -leave.leave_days.each do |leave_day|
-                = "#{leave_day.date} - #{leave_day.kind.text}"
-                br
             td= leave.reason
     = link_to 'View all my leaves', staff_leaves_path, class: 'btn-u btn-u-sm'
   .col-md-12

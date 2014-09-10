@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'View all staff leaves' do
   let(:admin) { create :admin }
   let!(:staff) { create :staff }
-  let!(:leaves) { create_list :leave, 3, :with_leave_days, staff: staff }
+  let!(:leaves) { create_list :leave, 3, staff: staff }
 
   it 'View all staff leaves' do
     feature_login admin

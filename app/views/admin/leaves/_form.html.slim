@@ -4,14 +4,6 @@
     br
     = f.select :category, Leave.category.options, {include_blank: t('leave.message.select_types')}, { class: 'form-control' }
   = f.label 'Leave Date'
-  #container
-    = f.inputs class: 'form-inline' do
-      = f.semantic_fields_for :leave_days do |ld, index|
-        = ld.input :date, label: false,  as: :date_picker, input_html: { min: Date.today, data: {test: "fill-in-date-#{ld.options[:child_index]}"} }
-        .form-group
-          = ld.select :kind, LeaveDay.kind.options, {include_blank: t('leave.message.select_kind')}, { class: 'form-control', data: {test: "select-kind-#{ld.options[:child_index]}"} }
-        = ld.link_to_remove 'Remove'
-      = f.link_to_add 'Add new', :leave_days
   = f.input :reason, input_html: { rows: 5, class: 'form-control' }
   .form-group
     = f.label :staff_id, class: 'control-label'

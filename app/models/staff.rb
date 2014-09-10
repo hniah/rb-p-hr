@@ -12,13 +12,4 @@ class Staff < User
 
   validates :lates, length: {maximum: 10, message: 'Staff cannot have more than 10 leaves. Send him a warning letter.'}
 
-  def remaining_leave_days_in(current_year)
-    LEAVE_DAYS + self.cumulative_leaves - total_leave_days_in(current_year)
-  end
-
-  def total_leave_days_in(year)
-    self.leave_days.in_year(year).with_leave.collect do |leave_day|
-      leave_day.calculated_as
-    end.sum
-  end
 end

@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Show leave detail' do
   context 'Show leave detail' do
     let(:staff) { create :staff }
-    let!(:leave) { create(:leave, :with_leave_days, staff: staff) }
+    let!(:leave) { create(:leave, staff: staff) }
 
     it 'show leave detail' do
       feature_login staff
@@ -14,7 +14,6 @@ describe 'Show leave detail' do
 
       expect(page).to have_content leave.category.text
       expect(page).to have_content leave.staff_english_name
-      expect(page).to have_content leave.leave_days.first.date
       expect(page).to have_content leave.reason
     end
   end
