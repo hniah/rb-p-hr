@@ -16,6 +16,10 @@ describe 'Display New Leave form' do
 
       select 'Annual', from: 'Category'
       fill_in 'Reason', with: 'Lorem lorem'
+      get_element('fill-in-start-day-leave').set('10/09/2014')
+      get_element('select-start-time').set('8:30')
+      get_element('fill-in-end-day-leave').set('10/09/2014')
+      get_element('select-end-time').set('17:30')
       select staff.english_name, from: 'Staff'
       click_on 'Create Leave'
 

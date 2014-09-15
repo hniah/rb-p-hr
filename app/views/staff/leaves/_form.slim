@@ -3,7 +3,13 @@
     = f.label :category, class: 'control-label'
     br
     = f.select :category, Leave.category.options, {include_blank: t('leave.message.select_types')}, { class: 'form-control' }
-  = f.label 'Leave Date'
+  .form-inline
+    = f.input :start, label: 'From', as: :string, input_html: { min: Date.today, value: f.object.start.strftime('%d/%m/%Y'), data: {test: 'fill-in-start-day-leave'} }
+    .form-group
+      = f.select :start_time, Leave.kind_options_start, {}, { class: 'form-control', data: {test: 'select-start-time'} }
+    = f.input :end, label: 'To', as: :string, input_html: { min: Date.today, value: f.object.end.strftime('%d/%m/%Y'), data: {test: 'fill-in-end-day-leave'} }
+    .form-group
+      = f.select :end_time, Leave.kind_options_end, {}, { class: 'form-control', data: {test: 'select-end-time'} }
   = f.input :reason, input_html: { rows: 5, class: 'form-control' }
   = f.submit class: 'btn-u'
   = link_to 'Back', staff_leaves_path, class: 'btn-u btn-u-default'

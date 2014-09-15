@@ -33,6 +33,9 @@ class Staff::LeavesController < Staff::BaseController
   end
 
   def leave_param
-    params.require(:leave).permit(:reason, :staff_id, :category, leave_days_attributes: [ :date, :kind, :id, :_destroy ])
+    data = params.require(:leave).permit(:reason, :staff_id, :category, :start, :end, :start_time, :end_time)
+    data[:start] += ' ' + params[:leave].fetch(:start_time)
+    data[:end] += ' ' + params[:leave].fetch(:end_time)
+    data
   end
 end

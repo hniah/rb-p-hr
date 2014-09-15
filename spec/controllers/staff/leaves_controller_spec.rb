@@ -49,7 +49,7 @@ describe Staff::LeavesController do
 
   describe 'POST #create' do
     context 'Success' do
-      let(:leave_param) { attributes_for(:leave) }
+      let(:leave_param) { attributes_for(:leave, start_time: '8:30', end_time: '12:00', start: '2014-09-11', end: '2014-09-12') }
       let(:leave) { Leave.first }
       let(:last_email) { ActionMailer::Base.deliveries.last }
 
@@ -71,7 +71,7 @@ describe Staff::LeavesController do
     end
 
     context 'Failed' do
-      let(:leave_param) { attributes_for(:leave, date: '', reason: '') }
+      let(:leave_param) { attributes_for(:leave, date: '', reason: '', start_time: '8:30', end_time: '12:00', start: '2014-09-11', end: '2014-09-12') }
       let(:leave) { Leave.first }
       def do_request
         post :create, leave: leave_param

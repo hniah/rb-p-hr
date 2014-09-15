@@ -10,4 +10,20 @@ $(document).on('ready page:load', function() {
     $('tr.add-new-setting').hide()
     $('a.add_new_form').show()
   });
+
+  $( "#leave_start" ).datepicker({
+    changeMonth: true,
+    numberOfMonths: 1,
+    dateFormat: 'dd/mm/yy',
+    minDate: 0,
+    onClose: function( selectedDate ) {
+      $( "#leave_end" ).datepicker( "option", "minDate", selectedDate );
+    }
+  });
+  $( "#leave_end" ).datepicker({
+    changeMonth: true,
+    numberOfMonths: 1,
+    dateFormat: 'dd/mm/yy'
+  });
+
 })

@@ -4,7 +4,8 @@ en:
       leave:
         category: 'Category'
         status: 'Status'
-        date: 'Date'
+        start: 'Start'
+        end: 'End'
         kind: 'Kind'
         reason: 'Reason'
         staff: 'Staff Name'

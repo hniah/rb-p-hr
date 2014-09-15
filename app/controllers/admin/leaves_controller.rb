@@ -89,7 +89,11 @@ class Admin::LeavesController < Admin::BaseController
   def leave_reject_param
     params.require(:leave).permit(:rejection_note)
   end
+
   def leave_param
-    params.require(:leave).permit(:reason, :staff_id, :category)
+    data = params.require(:leave).permit(:reason, :staff_id, :category, :start, :end, :start_time, :end_time)
+    data[:start] += ' ' + params[:leave].fetch(:start_time)
+    data[:end] += ' ' + params[:leave].fetch(:end_time)
+    data
   end
 end

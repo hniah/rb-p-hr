@@ -4,18 +4,24 @@
     thead
       tr
         th= Leave.human_attribute_name('category')
-        th= Leave.human_attribute_name('status')
-        th= Leave.human_attribute_name('date')
+        th= Leave.human_attribute_name('start')
+        th= Leave.human_attribute_name('end')
         th.col-md-3= Leave.human_attribute_name('reason')
         th= Leave.human_attribute_name('staff')
         th.col-md-2= Leave.human_attribute_name('rejection_note')
-        th= Leave.human_attribute_name('action')
+        th.col-md-2= Leave.human_attribute_name('action')
     tbody
       - @leaves.each do |leave|
         tr
           td= leave.category.text
-          td= leave.status.text
           td
+            = leave.start.strftime('%d/%m/%Y')
+            br
+            = leave.start_time
+          td
+            = leave.end.strftime('%d/%m/%Y')
+            br
+            = leave.end_time
           td= leave.reason
           td= leave.staff_english_name
           td= leave.rejection_note
@@ -25,9 +31,8 @@
             = list_button(name: 'Detail', action: :detail, admin: :admin, resource: leave)
             br
             br
-            - if leave.status.pending?
-              = semantic_form_for leave, url: approve_admin_leave_path(leave.id) do |f|
-                = f.submit Leave.human_attribute_name('approve'), class: 'list-approve-button'
-                = link_to Leave.human_attribute_name('reject'), reject_admin_leave_path(leave.id), class: 'list-delete-button', data: {test: "reject-leave-#{leave.id}"}
+            = semantic_form_for leave, url: approve_admin_leave_path(leave.id) do |f|
+              = f.submit Leave.human_attribute_name('approve'), class: 'list-approve-button'
+              = link_to Leave.human_attribute_name('reject'), reject_admin_leave_path(leave.id), class: 'list-delete-button', data: {test: "reject-leave-#{leave.id}"}
   .pagination
     = bootstrap_paginate(@leaves)
