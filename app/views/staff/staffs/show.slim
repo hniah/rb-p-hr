@@ -55,6 +55,11 @@
             td= leave.status.text
             td= leave.category.text
             td
+              strong= 'Start'
+              = ": #{leave.start.strftime('%d/%m/%Y')} #{leave.start_time}"
+              br
+              strong= 'End'
+              = "  : #{leave.end.strftime('%d/%m/%Y')} #{leave.end_time}"
             td= leave.reason
     = link_to 'View all my leaves', staff_leaves_path, class: 'btn-u btn-u-sm'
   .col-md-12

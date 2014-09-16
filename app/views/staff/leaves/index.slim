@@ -8,7 +8,6 @@
         th= Leave.human_attribute_name('start')
         th= Leave.human_attribute_name('end')
         th.col-md-3= Leave.human_attribute_name('reason')
-        th= Leave.human_attribute_name('staff')
         th.col-md-2= Leave.human_attribute_name('rejection_note')
         th= Leave.human_attribute_name('action')
     tbody
@@ -25,7 +24,6 @@
             br
             = leave.end_time
           td= leave.reason
-          td= leave.staff_english_name
           td= leave.rejection_note
           td
             = link_to 'Detail', staff_leave_path(leave.id), class: 'list-edit-button', data: {test: "view-leave-#{leave.id}"}
