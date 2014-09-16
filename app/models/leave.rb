@@ -46,7 +46,7 @@ class Leave < ActiveRecord::Base
     [['12:00', '12:00'], ['17:30', '17:30']]
   end
 
-  def total
+  def calculate_total
     total_days = total_days()
 
     @start = Time.parse(self.start.strftime('%B %d, %Y %H:%M'))

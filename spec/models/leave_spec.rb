@@ -25,19 +25,19 @@ describe Leave do
 
 
   context '#total_leave_days' do
-    let(:leave) { create :leave, start: '19/09/2014 8:30', end: '19/09/2014 17:30' }
+    let(:leave) { create :leave, start: '16/09/2014 8:30', end: '16/09/2014 17:30' }
 
     it 'returns total leave days of leave if start day equal end day' do
-      expect(leave.total).to eq 1
+      expect(leave.calculate_total).to eq 1
     end
   end
 
   describe 'returns total leave days of leave if start day difference end day' do
     context '#total_leave_days' do
-      let(:leave) { create :leave, start: '19/09/2014 8:30', end: '22/09/2014 8:30' }
+      let(:leave) { create :leave, start: '19/09/2014 8:30', end: '22/09/2014 12:00' }
 
       it 'returns total leave days of leave if start day difference end day' do
-        expect(leave.total).to eq 1
+        expect(leave.calculate_total).to eq 1.5
       end
     end
   end
@@ -47,7 +47,7 @@ describe Leave do
       let(:leave) { create :leave, start: '19/09/2014 8:30', end: '22/09/2014 12:00' }
 
       it 'returns total leave days of leave if start day difference end day' do
-        expect(leave.total).to eq 1.5
+        expect(leave.calculate_total).to eq 1.5
       end
     end
   end
@@ -57,7 +57,7 @@ describe Leave do
       let(:leave) { create :leave, start: '19/09/2014 8:30', end: '23/09/2014 17:30' }
 
       it 'returns total leave days of leave if start day difference end day' do
-        expect(leave.total).to eq 3
+        expect(leave.calculate_total).to eq 3
       end
     end
   end

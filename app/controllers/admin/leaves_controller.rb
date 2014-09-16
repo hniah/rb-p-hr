@@ -10,6 +10,7 @@ class Admin::LeavesController < Admin::BaseController
 
   def create
     @leave = Leave.new(leave_param)
+    @leave.total = -1*@leave.calculate_total
     if @leave.save
       # Notify HR when new leave come
       LeaveNotifier.new_leave(@leave).deliver
@@ -26,6 +27,9 @@ class Admin::LeavesController < Admin::BaseController
 
   def update
     @leave = Leave.find(leave_id)
+    @leave.start = leave_param[:start]
+    @leave.end = leave_param[:end]
+    @leave.total = -1*@leave.calculate_total
     if @leave.update(leave_param)
       redirect_to admin_leaves_path, notice: t('.message.success')
     else
@@ -91,7 +95,7 @@ class Admin::LeavesController < Admin::BaseController
   end
 
   def leave_param
-    data = params.require(:leave).permit(:reason, :staff_id, :category, :start, :end, :start_time, :end_time)
+    data = params.require(:leave).permit(:reason, :staff_id, :category, :start, :end, :start_time, :end_time, :total)
     data[:start] += ' ' + params[:leave].fetch(:start_time)
     data[:end] += ' ' + params[:leave].fetch(:end_time)
     data

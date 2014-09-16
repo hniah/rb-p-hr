@@ -102,7 +102,7 @@ describe Admin::LeavesController do
 
   describe 'POST #create' do
     context 'Success' do
-      let(:leave_param) { attributes_for(:leave, staff_id: staff.id, start_time: '8:30', end_time: '12:00', start: '2014-09-11', end: '2014-09-12') }
+      let(:leave_param) { attributes_for(:leave, staff_id: staff.id, start_time: '8:30', end_time: '12:00', start: '2014-09-19', end: '2014-09-22') }
       let(:leave) { Leave.first }
       let(:last_email) { ActionMailer::Base.deliveries.last }
       let!(:EMAIL_NOTIFIER) { create :setting, key: 'EMAIL_NOTIFIER', value: 'jack@futureworkz.com' }
@@ -119,7 +119,7 @@ describe Admin::LeavesController do
         expect(last_email.to).to eq [Setting['EMAIL_NOTIFIER']]
         expect(last_email.body).to have_content 'New leave application'
         expect(last_email.body).to have_content leave.reason
-        expect(leave.reload.total). to eq 1.5
+        expect(leave.reload.total). to eq -1.5
         expect(flash[:notice]).to_not be_nil
       end
     end
@@ -161,7 +161,7 @@ describe Admin::LeavesController do
 
   describe 'PATCH #update' do
     context 'success' do
-      let(:leave_param) { attributes_for(:leave, start_time: '13:00', end_time: '17:30', start: '2014-09-11', end: '2014-09-12')}
+      let(:leave_param) { attributes_for(:leave, start: '2014-09-16', start_time: '8:30', end: '2014-09-16', end_time: '17:30')}
       let(:leave) { create(:leave) }
 
       def do_request
@@ -170,13 +170,13 @@ describe Admin::LeavesController do
 
       it 'updates leave, redirects to list and sets notice flash' do
         sign_in admin
-
         do_request
 
         expect(response).to redirect_to admin_leaves_path
         expect(flash[:notice]).to_not be_nil
-        expect(leave.reload.start).to eq '2014-09-11 13:00'
-        expect(leave.reload.end).to eq '2014-09-12 17:30'
+        expect(leave.reload.start.strftime('%d/%m/%Y')). to eq '16/09/2014'
+        expect(leave.reload.end.strftime('%d/%m/%Y')). to eq '16/09/2014'
+        expect(leave.reload.total). to eq -1.0
       end
     end
 
