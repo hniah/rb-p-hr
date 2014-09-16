@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe FeedbacksController do
   let(:staff) { create(:staff) }
+  let!(:FEEDBACK_RECEIVERS) { create :setting, key: 'FEEDBACK_RECEIVERS', value: 'jack@futureworkz.com,martin@futureworkz.com' }
 
   before { sign_in staff }
 

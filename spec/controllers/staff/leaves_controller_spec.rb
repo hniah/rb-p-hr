@@ -52,6 +52,7 @@ describe Staff::LeavesController do
       let(:leave_param) { attributes_for(:leave, start_time: '8:30', end_time: '12:00', start: '2014-09-11', end: '2014-09-12') }
       let(:leave) { Leave.first }
       let(:last_email) { ActionMailer::Base.deliveries.last }
+      let!(:EMAIL_NOTIFIER) { create :setting, key: 'EMAIL_NOTIFIER', value: 'jack@futureworkz.com' }
 
       def do_request
         post :create, leave: leave_param
@@ -63,7 +64,7 @@ describe Staff::LeavesController do
 
         expect(response).to redirect_to staff_leaves_path
         expect(leave.staff).to eq staff
-        expect(last_email.to).to eq [ENV['EMAIL_NOTIFIER']]
+        expect(last_email.to).to eq [Setting['EMAIL_NOTIFIER']]
         expect(last_email.body).to have_content 'New leave application'
         expect(last_email.body).to have_content leave.reason
         expect(flash[:notice]).to_not be_nil

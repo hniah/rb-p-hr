@@ -2,7 +2,7 @@ class LeaveNotifier < SystemNotifier
 
   def new_leave(leave)
     @leave = leave
-    mail(to: ENV['EMAIL_NOTIFIER'], subject: t('mail.hr.subject')) do |format|
+    mail(to: Setting['EMAIL_NOTIFIER'], subject: t('mail.hr.subject')) do |format|
       format.html { render 'notifier/new_leave' }
     end
   end

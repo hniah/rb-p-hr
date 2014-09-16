@@ -5,6 +5,7 @@ describe Admin::LeavesController do
   let(:staff) { create :staff }
   let(:leave) { create :leave, status: :pending, staff: staff, start: '19/09/2014 8:30', end: '18/09/2014 17:30' }
   let(:last_email) { ActionMailer::Base.deliveries.last }
+  let!(:EMAIL_NOTIFIER) { create :setting, key: 'EMAIL_NOTIFIER', value: 'jack@futureworkz.com' }
 
   describe '#approve' do
     def do_request
@@ -104,6 +105,7 @@ describe Admin::LeavesController do
       let(:leave_param) { attributes_for(:leave, staff_id: staff.id, start_time: '8:30', end_time: '12:00', start: '2014-09-11', end: '2014-09-12') }
       let(:leave) { Leave.first }
       let(:last_email) { ActionMailer::Base.deliveries.last }
+      let!(:EMAIL_NOTIFIER) { create :setting, key: 'EMAIL_NOTIFIER', value: 'jack@futureworkz.com' }
       def do_request
         post :create, leave: leave_param
       end
@@ -114,7 +116,7 @@ describe Admin::LeavesController do
 
         expect(response).to redirect_to admin_leaves_path
         expect(leave.staff).to eq staff
-        expect(last_email.to).to eq [ENV['EMAIL_NOTIFIER']]
+        expect(last_email.to).to eq [Setting['EMAIL_NOTIFIER']]
         expect(last_email.body).to have_content 'New leave application'
         expect(last_email.body).to have_content leave.reason
         expect(leave.reload.total). to eq 1.5

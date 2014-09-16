@@ -5,4 +5,9 @@ FactoryGirl.define do
     end
     value '123456'
   end
+
+  factory :EMAIL_DEFAULT_FROM do
+    key 'EMAIL_DEFAULT_FROM'
+    value 'mailer@futureworkz.com'
+  end
 end
