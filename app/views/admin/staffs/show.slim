@@ -39,7 +39,7 @@
         td= @staff.note
       tr
         td{ colspan="2" }
-          = "Your leave days left in this year"
+          = "Your leave days left #{pluralize(@staff.remaining_leave_days, 'day')} in this year"
   .col-md-12
     .headline
       h2 = 'My Leaves'
