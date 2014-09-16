@@ -16,6 +16,11 @@ html
           td
             strong= 'Date'
           td
+            strong= 'Start'
+            = ": #{@leave.start.strftime('%d/%m/%Y')} #{@leave.start_time}"
+            br
+            strong= 'End'
+            = "  : #{@leave.end.strftime('%d/%m/%Y')} #{@leave.end_time}"
         tr
           td
             strong= 'Reason Leave'

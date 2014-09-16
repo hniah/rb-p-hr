@@ -3,6 +3,6 @@ html
     body
       p= "Dear #{@leave.staff_english_name},"
       p
-      p= 'We have recorded your sick leave on.'
+      p= "We have recorded your sick leave from #{@leave.start.strftime('%d/%m/%Y')} #{@leave.start_time} to #{@leave.end.strftime('%d/%m/%Y')} #{@leave.end_time}."
       p= 'Please submit a softcopy medical certificate or letter (if any) to me upon return to work.'
       p= 'Take good care and we wish you full recovery soon.'
