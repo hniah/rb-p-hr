@@ -44,6 +44,7 @@ describe Admin::LeavesController do
 
   describe '#reject_action' do
     let(:leave_param) { attributes_for(:leave, rejection_note: 'Reject by your teamleader')}
+
     def do_request
       patch :reject_action, id: leave.id, leave: leave_param
     end
@@ -102,7 +103,7 @@ describe Admin::LeavesController do
 
   describe 'POST #create' do
     context 'Success' do
-      let(:leave_param) { attributes_for(:leave, staff_id: staff.id, start_time: '8:30', end_time: '12:00', start: '2014-09-19', end: '2014-09-22') }
+      let(:leave_param) { attributes_for(:leave, staff_id: staff.id, start_time: '8:30', end_time: '12:00', start: '2014-09-19', end: '2014-09-22', total: 1.5) }
       let(:leave) { Leave.first }
       let(:last_email) { ActionMailer::Base.deliveries.last }
       let!(:EMAIL_NOTIFIER) { create :setting, key: 'EMAIL_NOTIFIER', value: 'jack@futureworkz.com' }
@@ -125,8 +126,9 @@ describe Admin::LeavesController do
     end
 
     context 'Failed' do
-      let(:leave_param) { attributes_for(:leave, date: '', reason: '', start_time: '8:30', end_time: '17:30', start: '2014-09-11', end: '2014-09-11') }
+      let(:leave_param) { attributes_for(:leave, date: '', reason: '', start_time: '8:30', end_time: '17:30', start: '2014-09-11', end: '2014-09-11', total: 1.0) }
       let(:leave) { Leave.first }
+
       def do_request
         post :create, leave: leave_param
       end
@@ -161,7 +163,7 @@ describe Admin::LeavesController do
 
   describe 'PATCH #update' do
     context 'success' do
-      let(:leave_param) { attributes_for(:leave, start: '2014-09-16', start_time: '8:30', end: '2014-09-16', end_time: '17:30')}
+      let(:leave_param) { attributes_for(:leave, start: '2014-09-16', start_time: '8:30', end: '2014-09-16', end_time: '17:30', total: 1.0)}
       let(:leave) { create(:leave) }
 
       def do_request
@@ -181,7 +183,7 @@ describe Admin::LeavesController do
     end
 
     context 'failed' do
-      let(:leave_param) { attributes_for(:leave, reason: '', start_time: '8:30', end_time: '17:30', start: '2014-09-11', end: '2014-09-11') }
+      let(:leave_param) { attributes_for(:leave, reason: '', start_time: '8:30', end_time: '17:30', start: '2014-09-11', end: '2014-09-11', total: 1.0) }
       let(:leave) { create(:leave) }
 
       def do_request
@@ -219,6 +221,7 @@ describe Admin::LeavesController do
   describe 'GET #show' do
     context 'show leave detail' do
       let(:leave) { create :leave }
+
       def do_request
         get :show, id: leave.id
       end

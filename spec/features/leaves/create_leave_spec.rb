@@ -3,6 +3,7 @@ require 'rails_helper'
 describe 'Display New Leave form' do
   context 'Staff logged in' do
     let(:staff) { create(:staff) }
+    let!(:EMAIL_NOTIFIER) { create :setting, key: 'EMAIL_NOTIFIER', value: 'jack@futureworkz.com' }
 
     it 'Create new leave' do
       feature_login(staff)
@@ -16,6 +17,7 @@ describe 'Display New Leave form' do
       get_element('select-start-time').set('8:30')
       get_element('fill-in-end-day-leave').set('10/09/2014')
       get_element('select-end-time').set('17:30')
+      fill_in 'Total', with: 1.0
       fill_in 'Reason', with: 'Lorem lorem'
       click_on 'Create Leave'
 
