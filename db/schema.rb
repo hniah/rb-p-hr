@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140916032016) do
+ActiveRecord::Schema.define(version: 20140916092525) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,8 +38,8 @@ ActiveRecord::Schema.define(version: 20140916032016) do
     t.integer  "staff_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.datetime "start"
-    t.datetime "end"
+    t.datetime "start_day"
+    t.datetime "end_day"
     t.string   "sub_cate"
     t.float    "total"
   end

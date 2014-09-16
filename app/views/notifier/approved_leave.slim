@@ -3,5 +3,5 @@ html
   body
     p= "Dear #{@leave.staff_english_name},"
     p
-    p= "Your request for #{@leave.category.text} leave submitted from #{@leave.start.strftime('%d/%m/%Y')} #{@leave.start_time} to #{@leave.end.strftime('%d/%m/%Y')} #{@leave.end_time} is approved."
+    p= "Your request for #{@leave.category.text} leave submitted from #{@leave.start_day.strftime('%d/%m/%Y')} #{@leave.start_time} to #{@leave.end_day.strftime('%d/%m/%Y')} #{@leave.end_time} is approved."
     p= "Your leave days left in this year"

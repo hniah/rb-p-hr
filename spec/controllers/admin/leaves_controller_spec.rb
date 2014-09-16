@@ -3,7 +3,7 @@ require 'rails_helper'
 describe Admin::LeavesController do
   let(:admin) { create :admin }
   let(:staff) { create :staff }
-  let(:leave) { create :leave, status: :pending, staff: staff, start: '19/09/2014 8:30', end: '18/09/2014 17:30' }
+  let(:leave) { create :leave, status: :pending, staff: staff, start_day: '19/09/2014 8:30', end_day: '18/09/2014 17:30' }
   let(:last_email) { ActionMailer::Base.deliveries.last }
   let!(:EMAIL_NOTIFIER) { create :setting, key: 'EMAIL_NOTIFIER', value: 'jack@futureworkz.com' }
 
@@ -103,7 +103,7 @@ describe Admin::LeavesController do
 
   describe 'POST #create' do
     context 'Success' do
-      let(:leave_param) { attributes_for(:leave, staff_id: staff.id, start_time: '8:30', end_time: '12:00', start: '2014-09-19', end: '2014-09-22', total: 1.5) }
+      let(:leave_param) { attributes_for(:leave, staff_id: staff.id, start_time: '8:30', end_time: '12:00', start_day: '2014-09-19', end_day: '2014-09-22', total: 1.5) }
       let(:leave) { Leave.first }
       let(:last_email) { ActionMailer::Base.deliveries.last }
       let!(:EMAIL_NOTIFIER) { create :setting, key: 'EMAIL_NOTIFIER', value: 'jack@futureworkz.com' }
@@ -126,7 +126,7 @@ describe Admin::LeavesController do
     end
 
     context 'Failed' do
-      let(:leave_param) { attributes_for(:leave, date: '', reason: '', start_time: '8:30', end_time: '17:30', start: '2014-09-11', end: '2014-09-11', total: 1.0) }
+      let(:leave_param) { attributes_for(:leave, date: '', reason: '', start_time: '8:30', end_time: '17:30', start_day: '2014-09-11', end_day: '2014-09-11', total: 1.0) }
       let(:leave) { Leave.first }
 
       def do_request
@@ -163,7 +163,7 @@ describe Admin::LeavesController do
 
   describe 'PATCH #update' do
     context 'success' do
-      let(:leave_param) { attributes_for(:leave, start: '2014-09-16', start_time: '8:30', end: '2014-09-16', end_time: '17:30', total: 1.0)}
+      let(:leave_param) { attributes_for(:leave, start_day: '2014-09-16', start_time: '8:30', end_day: '2014-09-16', end_time: '17:30', total: 1.0)}
       let(:leave) { create(:leave) }
 
       def do_request
@@ -176,14 +176,14 @@ describe Admin::LeavesController do
 
         expect(response).to redirect_to admin_leaves_path
         expect(flash[:notice]).to_not be_nil
-        expect(leave.reload.start.strftime('%d/%m/%Y')). to eq '16/09/2014'
-        expect(leave.reload.end.strftime('%d/%m/%Y')). to eq '16/09/2014'
+        expect(leave.reload.start_day.strftime('%d/%m/%Y')). to eq '16/09/2014'
+        expect(leave.reload.end_day.strftime('%d/%m/%Y')). to eq '16/09/2014'
         expect(leave.reload.total). to eq -1.0
       end
     end
 
     context 'failed' do
-      let(:leave_param) { attributes_for(:leave, reason: '', start_time: '8:30', end_time: '17:30', start: '2014-09-11', end: '2014-09-11', total: 1.0) }
+      let(:leave_param) { attributes_for(:leave, reason: '', start_time: '8:30', end_time: '17:30', start_day: '2014-09-11', end_day: '2014-09-11', total: 1.0) }
       let(:leave) { create(:leave) }
 
       def do_request

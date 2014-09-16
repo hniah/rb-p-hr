@@ -58,11 +58,11 @@
             td= leave.status.text
             td= leave.category.text
             td
-              = leave.start.strftime('%d/%m/%Y')
+              = leave.start_day.strftime('%d/%m/%Y')
               br
               = leave.start_time
             td
-              = leave.end.strftime('%d/%m/%Y')
+              = leave.end_day.strftime('%d/%m/%Y')
               br
               = leave.end_time
             td= leave.reason

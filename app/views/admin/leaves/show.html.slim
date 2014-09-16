@@ -18,10 +18,10 @@
             strong= 'Day'
           td
             strong= 'Start'
-            = ": #{@leave.start.strftime('%d/%m/%Y')} #{@leave.start_time}"
+            = ": #{@leave.start_day.strftime('%d/%m/%Y')} #{@leave.start_time}"
             br
             strong= 'End'
-            = "  : #{@leave.end.strftime('%d/%m/%Y')} #{@leave.end_time}"
+            = "  : #{@leave.end_day.strftime('%d/%m/%Y')} #{@leave.end_time}"
         tr
           td
             strong= 'Reason Leave'
