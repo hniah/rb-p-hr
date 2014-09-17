@@ -21,3 +21,9 @@ en:
         message:
           success: Leave is rejected.
           failure: Failed to update leave.
+  staff:
+    leaves:
+      create:
+        message:
+          success: Leave is successfully created.
+          failure: Failed to create leave.
