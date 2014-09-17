@@ -10,7 +10,7 @@
     = f.input :end_day, label: 'To', as: :string, input_html: { min: Date.today, value: f.object.end_day.strftime('%d/%m/%Y'), data: {test: 'fill-in-end-day-leave'} }
     .form-group
       = f.select :end_time, Leave.kind_options_end, {}, { class: 'form-control', data: {test: 'select-end-time'} }
-  = f.input :total, input_html: { step: 0.5, value: f.object.total.to_f.abs }
+  = f.input :total_value, label: 'Total', as: :number, input_html: { step: 0.5, min: 0.0 }
   = f.input :reason, input_html: { rows: 5, class: 'form-control' }
   = f.submit class: 'btn-u'
   = link_to 'Back', staff_leaves_path, class: 'btn-u btn-u-default'

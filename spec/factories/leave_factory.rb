@@ -4,7 +4,7 @@ FactoryGirl.define do
 
     reason 'Sickly'
     status :approved
-    total 1.0
+    total -1.0
     staff
   end
 end

@@ -49,7 +49,7 @@ describe Staff::LeavesController do
 
   describe 'POST #create' do
     context 'Success' do
-      let(:leave_param) { attributes_for(:leave, start_time: '8:30', end_time: '12:00', start_day: '2014-09-11', end_day: '2014-09-12') }
+      let(:leave_param) { attributes_for(:leave, start_time: '8:30', end_time: '12:00', start_day: '2014-09-11', end_day: '2014-09-12', total_value: 1.0) }
       let(:leave) { Leave.first }
       let(:last_email) { ActionMailer::Base.deliveries.last }
       let!(:EMAIL_NOTIFIER) { create :setting, key: 'EMAIL_NOTIFIER', value: 'jack@futureworkz.com' }

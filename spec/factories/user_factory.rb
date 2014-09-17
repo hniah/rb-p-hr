@@ -11,6 +11,7 @@ FactoryGirl.define do
     end
     personal_email 'vuquangthang87@gmail.com'
     address 'Viet name'
+    birthday '20/06/1987'
     phone_number '091234564'
     basic_salary '456'
     started_on '20/06/2012'

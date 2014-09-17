@@ -12,9 +12,9 @@ class Staff::LeavesController < Staff::BaseController
     if @leave.save
       # Notify HR when new leave come
       LeaveNotifier.new_leave(@leave).deliver
-      redirect_to staff_leaves_path, notice: t('leave.message.create_success')
+      redirect_to staff_leaves_path, notice: t('.message.success')
     else
-      flash[:alert] = t('leave.message.create_failed')
+      flash[:alert] = t('.message.failure')
       render :new
     end
   end
@@ -33,14 +33,9 @@ class Staff::LeavesController < Staff::BaseController
   end
 
   def leave_param
-    data = params.require(:leave).permit(:reason, :staff_id, :category, :start_day, :end_day, :start_time, :end_time, :total)
+    data = params.require(:leave).permit(:reason, :staff_id, :category, :start_day, :end_day, :start_time, :end_time, :total_value)
     data[:start_day] += ' ' + params[:leave].fetch(:start_time)
     data[:end_day] += ' ' + params[:leave].fetch(:end_time)
-    @total = 0.5
-    if params[:leave].fetch(:total).to_i > 0
-      @total = -1 * params[:leave].fetch(:total).to_f
-    end
-    data[:total] = @total
     data
   end
 end

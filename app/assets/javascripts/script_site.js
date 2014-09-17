@@ -11,16 +11,16 @@ $(document).on('ready page:load', function() {
     $('a.add_new_form').show()
   });
 
-  $( "#leave_start" ).datepicker({
+  $( "#leave_start_day" ).datepicker({
     changeMonth: true,
     numberOfMonths: 1,
     dateFormat: 'dd/mm/yy',
     minDate: 0,
     onClose: function( selectedDate ) {
-      $( "#leave_end" ).datepicker( "option", "minDate", selectedDate );
+      $( "#leave_end_day" ).datepicker( "option", "minDate", selectedDate );
     }
   });
-  $( "#leave_end" ).datepicker({
+  $( "#leave_end_day" ).datepicker({
     changeMonth: true,
     numberOfMonths: 1,
     dateFormat: 'dd/mm/yy'
