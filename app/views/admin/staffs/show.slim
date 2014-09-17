@@ -18,7 +18,7 @@
         td= @staff.personal_email
       tr
         th=label_name('user.birthday')
-        td= @staff.birthday.strftime('%d/%m/%Y')
+        td= ldate(@staff.birthday)
       tr
         th=label_name('user.address')
         td= @staff.address
@@ -30,10 +30,10 @@
         td= @staff.social_insurance
       tr
         th=label_name('user.started_on')
-        td= @staff.started_on.strftime('%d/%m/%Y')
+        td= ldate(@staff.started_on)
       tr
         th=label_name('user.probation_end_on')
-        td= @staff.probation_end_on.strftime('%d/%m/%Y')
+        td= ldate(@staff.probation_end_on)
       tr
         th=label_name('user.note')
         td= @staff.note
@@ -58,11 +58,11 @@
             td= leave.status.text
             td= leave.category.text
             td
-              = leave.start_day.strftime('%d/%m/%Y')
+              = ldate(leave.start_day.to_date)
               br
               = leave.start_time
             td
-              = leave.end_day.strftime('%d/%m/%Y')
+              = ldate(leave.end_day.to_date)
               br
               = leave.end_time
             td= leave.reason
@@ -80,7 +80,7 @@
         - @lates.each_with_index do |late, index|
           tr
             td= index + 1
-            td= late.date.strftime('%d/%m/%Y')
+            td= ldate(late.date)
             td= late.note
     = link_to 'View all my lates', admin_staff_lates_path(@staff.id), class: 'btn-u btn-u-sm'
     p

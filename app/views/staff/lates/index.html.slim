@@ -6,9 +6,8 @@
       tr
         th= Late.human_attribute_name('date')
         th= Late.human_attribute_name('note')
-        th
     tbody
       - @lates.each do |late|
         tr
-          td= late.date
+          td= ldate(late.date)
           td= late.note

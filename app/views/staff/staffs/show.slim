@@ -17,7 +17,7 @@
         td= @staff.personal_email
       tr
         th=User.human_attribute_name('birthday')
-        td= @staff.birthday.strftime('%d/%m/%Y')
+        td= ldate(@staff.birthday)
       tr
         th=User.human_attribute_name('address')
         td= @staff.address
@@ -29,10 +29,10 @@
         td= @staff.social_insurance
       tr
         th=User.human_attribute_name('started_on')
-        td= @staff.started_on.strftime('%d/%m/%Y')
+        td= ldate(@staff.started_on)
       tr
         th=User.human_attribute_name('probation_end_on')
-        td= @staff.probation_end_on.strftime('%d/%m/%Y')
+        td= ldate(@staff.probation_end_on)
       tr
         th=User.human_attribute_name('note')
         td= @staff.note
@@ -56,10 +56,10 @@
             td= leave.category.text
             td
               strong= 'Start'
-              = ": #{leave.start_day.strftime('%d/%m/%Y')} #{leave.start_time}"
+              = ": #{ldate(leave.start_day.to_date)} #{leave.start_time}"
               br
               strong= 'End'
-              = "  : #{leave.end_day.strftime('%d/%m/%Y')} #{leave.end_time}"
+              = "  : #{ldate(leave.end_day.to_date)} #{leave.end_time}"
             td= leave.reason
     = link_to 'View all my leaves', staff_leaves_path, class: 'btn-u btn-u-sm'
   .col-md-12
@@ -73,6 +73,6 @@
         - @lates.each_with_index do |late, index|
           tr
             td= index + 1
-            td= late.date.strftime('%d/%m/%Y')
+            td= ldate(late.date)
             td= late.note
     = link_to 'View all my lates', staff_lates_path, class: 'btn-u btn-u-sm'

@@ -30,3 +30,6 @@ en:
       subject: 'Your Leave is Rejected'
     sickly:
       subject: 'Your Sick Leave is Approved'
+  date:
+    formats:
+      default: "%d/%m/%Y"

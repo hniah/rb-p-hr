@@ -29,4 +29,8 @@ module ListHelper
   def bootstrap_paginate(resources)
     will_paginate(resources, {renderer: BootstrapPagination::Rails, next_label: '&raquo;', previous_label: '&laquo;'})
   end
+
+  def ldate(data, hash = {})
+    data ? l(data, hash) : nil
+  end
 end

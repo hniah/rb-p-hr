@@ -9,7 +9,7 @@
         th
     - @lates.each do |late|
       tr
-        td= late.date
+        td= ldate(late.date)
         td= late.staff_english_name
         td= late.note
         th
