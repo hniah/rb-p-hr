@@ -13,7 +13,7 @@ describe 'Show late detail' do
 
       get_element("view-late-#{late.id}").click
 
-      expect(page).to have_content late.date
+      expect(page).to have_content late.date.strftime('%d/%m/%Y')
       expect(page).to have_content late.staff_english_name
       expect(page).to have_content late.note
     end

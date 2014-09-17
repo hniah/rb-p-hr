@@ -11,7 +11,7 @@
     tbody
       - @lates.each do |late|
         tr
-          td= late.date
+          td= late.date.strftime('%d/%m/%Y')
           td= late.staff_english_name
           td= late.note
           th

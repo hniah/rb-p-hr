@@ -18,7 +18,7 @@
         td= @staff.personal_email
       tr
         th=label_name('user.birthday')
-        td= @staff.birthday
+        td= @staff.birthday.strftime('%d/%m/%Y')
       tr
         th=label_name('user.address')
         td= @staff.address
@@ -30,10 +30,10 @@
         td= @staff.social_insurance
       tr
         th=label_name('user.started_on')
-        td= @staff.started_on
+        td= @staff.started_on.strftime('%d/%m/%Y')
       tr
         th=label_name('user.probation_end_on')
-        td= @staff.probation_end_on
+        td= @staff.probation_end_on.strftime('%d/%m/%Y')
       tr
         th=label_name('user.note')
         td= @staff.note
@@ -80,7 +80,7 @@
         - @lates.each_with_index do |late, index|
           tr
             td= index + 1
-            td= late.date
+            td= late.date.strftime('%d/%m/%Y')
             td= late.note
     = link_to 'View all my lates', admin_staff_lates_path(@staff.id), class: 'btn-u btn-u-sm'
     p

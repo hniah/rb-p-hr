@@ -18,7 +18,7 @@
           td = staff.english_name
           td = staff.email
           td = staff.phone_number
-          td = staff.started_on
+          td = staff.started_on.strftime('%d/%m/%Y')
           td
             = list_button(name: 'Edit', action: :edit, admin: :admin, resource: staff)
             = list_button(name: 'Delete', action: :delete, admin: :admin, resource: staff)
