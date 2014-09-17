@@ -13,3 +13,9 @@ en:
         message:
           success: Late is successfully deleted.
           failure: Failed to delete late.
+  staff:
+    lates:
+      create:
+        message:
+          success: Late is successfully created.
+          failure: Failed to create late.
