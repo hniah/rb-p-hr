@@ -33,6 +33,7 @@ describe Admin::BaseController do
       before { do_request }
 
       it 'disallows normal staff to access' do
+        expect(flash[:alert]).to eq 'You are not allowed to visit this page'
         expect(response).to redirect_to root_path
       end
     end

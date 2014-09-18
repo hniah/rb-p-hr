@@ -3,11 +3,12 @@ require 'rails_helper'
 describe Admin::FeedbacksController do
   describe '#index' do
     let(:admin) { create :admin }
-    let!(:feedbacks) { create_list :feedback, 5 }
 
     def do_request
       get :index
     end
+
+    before { create_list :feedback, 3 }
 
     context 'Admin logged in' do
       it 'fetches all leaves date' do
@@ -16,12 +17,13 @@ describe Admin::FeedbacksController do
         do_request
 
         expect(response).to render_template :index
-        expect(assigns(:feedbacks).size).to eq 5
+        expect(assigns(:feedbacks).size).to eq 3
       end
     end
 
     context 'Staff logged in' do
       let(:staff) { create :staff }
+
       it 'redirects to root, sets alert flash' do
         sign_in staff
         do_request
