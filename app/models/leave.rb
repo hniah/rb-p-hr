@@ -35,13 +35,11 @@ class Leave < ActiveRecord::Base
   end
 
   def start_time
-    @start = self.start_day.strftime('%y %m %d %H:%M')
-    @start.split(' ')[3]
+    @start = self.start_day.strftime('%H:%M')
   end
 
   def end_time
-    @end = self.end_day.strftime('%y %m %d %H:%M')
-    @end.split(' ')[3]
+    @end = self.end_day.strftime('%H:%M')
   end
 
   def assigns_default_values
