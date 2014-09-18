@@ -18,22 +18,22 @@ describe User do
 
     it 'validates email address' do
       user.email = 'martin@futureworkz.com'
-      expect(user.valid?).to be_truthy
+      expect(user).to be_valid
       user.email = 'martin124@gmail.com'
-      expect(user.valid?).to be_falsey
+      expect(user).not_to be_valid
       user.email = 'martin.com'
-      expect(user.valid?).to be_falsey
+      expect(user).not_to be_valid
     end
   end
 
   context 'validation personal email' do
     let(:user){ build(:user) }
 
-    it 'validates email address' do
+    it 'validates personal email' do
       user.personal_email = 'vuquangthang87@gmail.com'
-      expect(user.valid?).to be_truthy
+      expect(user).to be_valid
       user.personal_email = 'martin.com'
-      expect(user.valid?).to be_falsey
+      expect(user).not_to be_valid
     end
   end
 end
