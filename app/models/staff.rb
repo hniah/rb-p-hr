@@ -7,10 +7,7 @@ class Staff < User
   has_many :feedbacks
   has_many :leave_days, through: :leaves
 
-  validates :lates, length: {maximum: 10, message: 'Staff cannot have more than 10 leaves. Send him a warning letter.'}
-
   def remaining_leave_days
     self.leaves.current_year.approved.sum(:total)
   end
-
 end

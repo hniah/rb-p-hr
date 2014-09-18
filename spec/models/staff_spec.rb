@@ -7,17 +7,6 @@ describe Staff do
     it { is_expected.to have_many :lates }
   end
 
-  context 'validations' do
-    let(:jack) { create :staff }
-    let!(:exceeding_late) { jack.lates.new }
-
-    before { jack.lates << create_list(:late, 10) }
-
-    it 'makes sure that staff cannot have more than one lates' do
-      expect(jack).to_not be_valid
-    end
-  end
-
   describe '#remaining_leave_days' do
     let!(:martin) { create :staff }
     let!(:total_leave_in_year) { create :leave, start_day: '2014-01-01 8:30', end_day: '2014-12-31 17:30', total: 14, staff: martin}

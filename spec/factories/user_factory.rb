@@ -25,6 +25,16 @@ FactoryGirl.define do
 
     factory :staff, class: Staff do
       is_admin false
+
+      trait :with_lates do
+        ignore do
+          number_of_lates 2
+        end
+
+        after(:create) do |staff, evaluator|
+          create_list :late, evaluator.number_of_lates, staff: staff
+        end
+      end
     end
   end
 end

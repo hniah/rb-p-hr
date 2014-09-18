@@ -39,18 +39,6 @@ describe Admin::LatesController do
         expect(flash[:notice]).to_not be_nil
       end
     end
-
-    context 'Admin fills in invalid data' do
-      let(:late_params) { {lorem: 'ipsum', staff_id: staff.id} }
-
-      before { staff.lates << build_list(:late, 10) }
-
-      it 'creates lates and set notice message' do
-        expect { do_request }.to_not change(Late, :count)
-        expect(response).to render_template(:new)
-        expect(flash[:alert]).to_not be_nil
-      end
-    end
   end
 
   describe '#index' do
