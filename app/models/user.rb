@@ -14,11 +14,6 @@ class User < ActiveRecord::Base
 
   has_paper_trail class_name: 'Version', ignore: [:updated_at, :created_at]
 
-  def self.find_for_google_oauth2(access_token)
-    data = access_token.info
-    User.where(email: (data['email']).downcase).first
-  end
-
   def eql?(obj)
     obj.id == self.id && obj.is_a?(User)
   end

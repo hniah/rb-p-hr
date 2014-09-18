@@ -27,7 +27,7 @@ describe Users::OmniauthCallbacksController do
       it 'authenticates user' do
         request.env['omniauth.auth'] = OmniAuth.config.mock_auth[:google_oauth2].merge(info: {email: 'test@example.com'})
 
-        expect { do_request }.to change(User, :count).by(0)
+        expect { do_request }.not_to change(User, :count)
         expect(controller.user_signed_in?).to be_falsey
         expect(response).to redirect_to root_path
       end

@@ -1,9 +1,9 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def google_oauth2
-    @user = User.find_for_google_oauth2(google_authenticated_data)
+    @user = User.find_by_email(google_authenticated_email)
 
-    if @user
+    if @user.present?
       flash[:notice] = I18n.t 'devise.omniauth_callbacks.success', kind: 'Google'
       sign_in_and_redirect @user, event: :authentication
     else
@@ -15,5 +15,9 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   protected
   def google_authenticated_data
     request.env['omniauth.auth']
+  end
+
+  def google_authenticated_email
+    google_authenticated_data.fetch(:info).fetch(:email)
   end
 end
