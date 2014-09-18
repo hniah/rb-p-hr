@@ -20,6 +20,8 @@
             = version_diff(version, @staff)
           td
             = version.created_at.strftime('%d-%m-%Y %H:%M:%S')
-  .pagination
-    = bootstrap_paginate(@versions)
   = link_to 'Back', admin_staff_path(@staff.id),  class: 'btn-u btn-u-default'
+  .content
+    .pagination
+      = bootstrap_paginate(@versions)
+

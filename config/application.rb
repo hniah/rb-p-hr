@@ -21,5 +21,7 @@ module FutureworkzHr
     config.assets.precompile += %w{*.png *.jpg *.gif}
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{yml}')]
     # config.i18n.default_locale = :de
+
+    WillPaginate.per_page = 20
   end
 end
