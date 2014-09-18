@@ -10,6 +10,7 @@ class Admin::SettingsController < Admin::BaseController
 
   def create
     @setting = Setting.new(setting_param)
+
     if @setting.save
       redirect_to admin_settings_path, notice: t('.message.success')
     else
@@ -25,6 +26,7 @@ class Admin::SettingsController < Admin::BaseController
 
   def update
     @setting = Setting.find(setting_id)
+
     if @setting.update(setting_param)
       redirect_to admin_settings_path, notice: t('.message.success')
     else
@@ -35,6 +37,7 @@ class Admin::SettingsController < Admin::BaseController
 
   def destroy
     @setting = Setting.find(setting_id)
+
     if @setting.destroy
       redirect_to admin_settings_path, notice: t('.message.success')
     else

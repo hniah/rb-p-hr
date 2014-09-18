@@ -10,8 +10,8 @@ class Admin::LeavesController < Admin::BaseController
 
   def create
     @leave = Leave.new(leave_param)
+
     if @leave.save
-      # Notify HR when new leave come
       LeaveNotifier.new_leave(@leave).deliver
       redirect_to admin_leaves_path, notice: t('.message.success')
     else
@@ -26,6 +26,7 @@ class Admin::LeavesController < Admin::BaseController
 
   def update
     @leave = Leave.find(leave_id)
+
     if @leave.update(leave_param)
       redirect_to admin_leaves_path, notice: t('.message.success')
     else
@@ -36,6 +37,7 @@ class Admin::LeavesController < Admin::BaseController
 
   def destroy
     @leave = Leave.find(leave_id)
+
     if @leave.destroy
       redirect_to admin_leaves_path, notice: t('.message.success')
     else
@@ -44,10 +46,15 @@ class Admin::LeavesController < Admin::BaseController
     end
   end
 
+  def show
+    @leave = Leave.find(leave_id)
+    @versions = @leave.versions
+  end
+
   def approve
     @leave = Leave.find(leave_id)
+
     if @leave.update(status: :approved)
-      # Notify Staff when leave is approved
       LeaveNotifier.approved(@leave).deliver
       redirect_to admin_leaves_path, notice: t('.message.success')
     else
@@ -62,19 +69,14 @@ class Admin::LeavesController < Admin::BaseController
 
   def reject_action
     @leave = Leave.find(leave_id)
+
     if @leave.update(leave_reject_param.merge(status: :rejected))
-      # Notify Staff when leave is rejected
       LeaveNotifier.rejected(@leave).deliver
       redirect_to admin_leaves_path, notice: t('.message.success')
     else
       flash[:alert] = t('.message.failure')
       redirect_to admin_leaves_path
     end
-  end
-
-  def show
-    @leave = Leave.find(leave_id)
-    @versions = @leave.versions
   end
 
   protected
@@ -92,8 +94,8 @@ class Admin::LeavesController < Admin::BaseController
 
   def leave_param
     data = params.require(:leave).permit(:reason, :staff_id, :category, :start_day, :end_day, :start_time, :end_time, :total_value)
-    data[:start_day] += ' ' + params[:leave].fetch(:start_time)
-    data[:end_day] += ' ' + params[:leave].fetch(:end_time)
+    data[:start_day] = "#{params[:leave].fetch(:start_day)} #{params[:leave].fetch(:start_time)}"
+    data[:end_day] = "#{params[:leave].fetch(:end_day)} #{params[:leave].fetch(:end_time)}"
     data
   end
 end

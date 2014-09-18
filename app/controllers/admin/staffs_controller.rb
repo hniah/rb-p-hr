@@ -9,6 +9,7 @@ class Admin::StaffsController < Admin::BaseController
 
   def create
     @staff = Staff.new(staff_param)
+
     if @staff.save
       redirect_to admin_staffs_path, notice: t('.message.success')
     else
@@ -23,6 +24,7 @@ class Admin::StaffsController < Admin::BaseController
 
   def update
     @staff = Staff.find(staff_id)
+
     if @staff.update(staff_param)
       redirect_to admin_staffs_path, notice: t('.message.success')
     else
@@ -33,6 +35,7 @@ class Admin::StaffsController < Admin::BaseController
 
   def destroy
     @staff = Staff.find(staff_id)
+
     if @staff.destroy
       redirect_to admin_staffs_path, notice: t('.message.success')
     else
