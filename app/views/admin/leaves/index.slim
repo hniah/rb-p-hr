@@ -6,6 +6,7 @@
         th= Leave.human_attribute_name('category')
         th= Leave.human_attribute_name('start')
         th= Leave.human_attribute_name('end')
+        th= Leave.human_attribute_name('total')
         th.col-md-3= Leave.human_attribute_name('reason')
         th= Leave.human_attribute_name('staff')
         th.col-md-2= Leave.human_attribute_name('rejection_note')
@@ -22,6 +23,7 @@
             = ldate(leave.end_day.to_date)
             br
             = leave.end_time
+          td= pluralize(leave.total.abs, 'day')
           td= leave.reason
           td= leave.staff_english_name
           td= leave.rejection_note

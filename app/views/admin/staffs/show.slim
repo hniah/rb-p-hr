@@ -50,6 +50,7 @@
         th= Leave.human_attribute_name('category')
         th= Leave.human_attribute_name('start')
         th= Leave.human_attribute_name('end')
+        th= Leave.human_attribute_name('total')
         th= Leave.human_attribute_name('reason')
       tbody
         - @leaves.each_with_index do |leave, index|
@@ -65,6 +66,7 @@
               = ldate(leave.end_day.to_date)
               br
               = leave.end_time
+            td= pluralize(leave.total.abs, 'day')
             td= leave.reason
     = link_to 'View all my leaves', admin_staff_leaves_path(@staff.id), class: 'btn-u btn-u-sm'
     p
