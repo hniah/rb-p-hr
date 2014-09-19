@@ -33,9 +33,6 @@ class Staff::LeavesController < Staff::BaseController
   end
 
   def leave_param
-    data = params.require(:leave).permit(:reason, :category, :start_day, :end_day, :start_time, :end_time, :total_value)
-    data[:start_day] = "#{params[:leave].fetch(:start_day)} #{params[:leave].fetch(:start_time)}"
-    data[:end_day] = "#{params[:leave].fetch(:end_day)} #{params[:leave].fetch(:end_time)}"
-    data
+    params.require(:leave).permit(:reason, :category, :start_date, :end_date, :start_time, :end_time, :total_value)
   end
 end

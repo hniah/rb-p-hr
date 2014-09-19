@@ -4,10 +4,10 @@
     br
     = f.select :category, Leave.category.options, {include_blank: t('leave.message.select_types')}, { class: 'form-control' }
   .form-inline
-    = f.input :start_day, label: 'From', as: :string, input_html: { min: Date.today, value: f.object.start_day.strftime('%d/%m/%Y'), data: {test: 'fill-in-start-day-leave'} }
+    = f.input :start_date, label: 'From', as: :string, input_html: { min: Date.today, value: f.object.start_day.strftime('%d/%m/%Y'), data: {test: 'fill-in-start-day-leave'} }
     .form-group
       = f.select :start_time, Leave.kind_options_start, {}, { class: 'form-control', data: {test: 'select-start-time'} }
-    = f.input :end_day, label: 'To', as: :string, input_html: { min: Date.today, value: f.object.end_day.strftime('%d/%m/%Y'), data: {test: 'fill-in-end-day-leave'} }
+    = f.input :end_date, label: 'To', as: :string, input_html: { min: Date.today, value: f.object.end_day.strftime('%d/%m/%Y'), data: {test: 'fill-in-end-day-leave'} }
     .form-group
       = f.select :end_time, Leave.kind_options_end, {}, { class: 'form-control', data: {test: 'select-end-time'} }
   = f.input :total_value, label: 'Total', as: :number, input_html: { step: 0.5, min: 0.0 }

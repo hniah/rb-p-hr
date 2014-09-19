@@ -26,8 +26,9 @@ class Admin::LeavesController < Admin::BaseController
 
   def update
     @leave = Leave.find(leave_id)
+    @leave.attributes = leave_param
 
-    if @leave.update(leave_param)
+    if @leave.save
       redirect_to admin_leaves_path, notice: t('.message.success')
     else
       flash[:alert] = t('.message.failure')
@@ -93,9 +94,6 @@ class Admin::LeavesController < Admin::BaseController
   end
 
   def leave_param
-    data = params.require(:leave).permit(:reason, :staff_id, :category, :start_day, :end_day, :start_time, :end_time, :total_value)
-    data[:start_day] = "#{params[:leave].fetch(:start_day)} #{params[:leave].fetch(:start_time)}"
-    data[:end_day] = "#{params[:leave].fetch(:end_day)} #{params[:leave].fetch(:end_time)}"
-    data
+    params.require(:leave).permit(:reason, :staff_id, :category, :start_date, :end_date, :start_time, :end_time, :total_value)
   end
 end
