@@ -42,7 +42,6 @@ gem 'paper_trail', '~> 3.0.5'
 gem 'nunify'
 gem 'redcarpet'
 gem 'jquery-ui-rails'
-gem 'business_time'
 
 group :development do
   gem 'spring'
