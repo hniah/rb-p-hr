@@ -23,7 +23,6 @@ describe 'Display Edit form' do
     fill_in 'Started on', with: '20/09/02014'
     fill_in 'Probation end on', with: '20/09/02014'
     fill_in 'Note', with: 'Lorem lorem'
-    fill_in 'Cumulative leaves last year', with: 4
     click_on 'Update Staff'
 
 
