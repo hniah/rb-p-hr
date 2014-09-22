@@ -5,7 +5,6 @@ class Late < ActiveRecord::Base
   scope :current_year, -> { in_year(Time.now.year) }
 
   validates :staff, :date, presence: true
-  validates :staff_id, presence: true
 
   belongs_to :staff
 

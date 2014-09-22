@@ -11,14 +11,13 @@ class Admin::LatesController < Admin::BaseController
   end
 
   def create
-    @staff = Staff.find(staff_id)
-    @late = @staff.lates.new(late_params)
+    @late = Late.new(late_params)
 
-    if @staff.save
-      LateNotifier.more_late(@late).deliver if @staff.lates.in_year(@late.date.year).size >= 10
+    if @late.save
+      LateNotifier.more_late(@late).deliver if @late.staff.lates.in_year(@late.date.year).size >= 10
       redirect_to admin_lates_url, notice: t('.message.success')
     else
-      flash[:alert] = @staff.errors.full_messages.join('<br>')
+      flash[:alert] = @late.errors.full_messages.join('<br>')
       render :new
     end
   end
@@ -60,9 +59,6 @@ class Admin::LatesController < Admin::BaseController
     params.require(:late).permit(:note, :staff_id, :date)
   end
 
-  def staff_id
-    params.require(:late).fetch(:staff_id, 0)
-  end
 
   def late_id
     params.require(:id)

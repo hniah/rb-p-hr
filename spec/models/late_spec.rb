@@ -3,7 +3,6 @@ require 'rails_helper'
 describe Late do
   context 'validations' do
     it { is_expected.to validate_presence_of :staff }
-    it { is_expected.to validate_presence_of :staff_id }
     it { is_expected.to validate_presence_of :date }
   end
 
