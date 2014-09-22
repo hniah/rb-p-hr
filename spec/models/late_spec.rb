@@ -10,5 +10,29 @@ describe Late do
   context 'associations' do
     it { is_expected.to belong_to :staff }
   end
+
+  describe 'get all late in current year' do
+    context 'get all late in current year' do
+      let!(:lates_current_year) { create_list :late, 2, date: Date.today }
+      let!(:lates_last_year) { create_list :late, 2, date: '2013/03/03'}
+
+      it 'get all late in current year' do
+        expect(Late.current_year.size).to eq 2
+      end
+    end
+  end
+
+  describe 'get all late in year' do
+    context 'get all late in year' do
+      let!(:lates_current_year) { create_list :late, 2, date: Date.today }
+      let!(:lates_last_year) { create_list :late, 2, date: '2013/03/03'}
+
+      it 'get all late in year' do
+        expect(Late.in_year(2013).size).to eq 2
+      end
+    end
+  end
+
+
 end
 

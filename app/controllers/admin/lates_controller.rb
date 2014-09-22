@@ -15,7 +15,7 @@ class Admin::LatesController < Admin::BaseController
     @late = @staff.lates.new(late_params)
 
     if @staff.save
-      LateNotifier.more_late(@late).deliver if @staff.lates.size >= 10
+      LateNotifier.more_late(@late).deliver if @staff.lates.in_year(@late.date.year).size >= 10
       redirect_to admin_lates_url, notice: t('.message.success')
     else
       flash[:alert] = @staff.errors.full_messages.join('<br>')

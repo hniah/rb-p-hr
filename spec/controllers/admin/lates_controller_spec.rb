@@ -39,6 +39,21 @@ describe Admin::LatesController do
         expect(flash[:notice]).to_not be_nil
       end
     end
+
+    context 'Notify Admin when total late in current year >= 10' do
+      let!(:lates_current_year) { create_list :late, 10, date: Date.today, staff: staff}
+      let(:late_params) { attributes_for(:late).merge(staff_id: staff.id, date: Date.today) }
+      let(:last_email) { ActionMailer::Base.deliveries.last }
+      let!(:EMAIL_NOTIFIER) { create :setting, key: 'EMAIL_NOTIFIER', value: 'jack@futureworkz.com' }
+
+      it 'creates lates and set notice message' do
+        expect { do_request }.to change(Late, :count).by(1)
+        expect(response).to redirect_to admin_lates_url
+        expect(last_email.to).to eq [Setting['EMAIL_NOTIFIER']]
+        expect(last_email.subject).to have_content I18n.t('mail.late.subject')
+        expect(flash[:notice]).to_not be_nil
+      end
+    end
   end
 
   describe '#index' do

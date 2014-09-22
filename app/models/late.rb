@@ -1,6 +1,8 @@
 class Late < ActiveRecord::Base
 
   default_scope -> { order(date: :desc) }
+  scope :in_year,  -> (year) { where("DATE_PART('year', date) = ?", year)}
+  scope :current_year, -> { in_year(Time.now.year) }
 
   validates :staff, :date, presence: true
   validates :staff_id, presence: true
