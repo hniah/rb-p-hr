@@ -6,11 +6,6 @@ class LeaveDays
     end
   end
 
-  protected
-  def self.is_new_year?
-    Date.today.beginning_of_year == Date.today
-  end
-
   private
   def self.leave_param(staff_id, total, sub_cate)
     { reason: 'Add Leave days for new year', status: :approved, staff_id: staff_id, category: :annual, start_day: Date.today.beginning_of_year, end_day: Date.today.end_of_year, total: total, sub_cate: sub_cate}
@@ -34,6 +29,10 @@ class LeaveDays
       @leave = Leave.find_or_initialize_by(self.leave_param(staff.id, cumulative_days, 'cumulative leaves'))
       @leave.save
     end
+  end
+
+  def self.is_new_year?
+    Date.today.beginning_of_year == Date.today
   end
 
 end
