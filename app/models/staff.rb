@@ -7,7 +7,7 @@ class Staff < User
   has_many :feedbacks
   has_many :leave_days, through: :leaves
 
-  def remaining_leave_days
-    self.leaves.current_year.approved.sum(:total)
+  def remaining_leave_days(year)
+    self.leaves.in_year(year).annual.approved.sum(:total)
   end
 end
