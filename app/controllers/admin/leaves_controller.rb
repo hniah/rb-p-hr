@@ -1,7 +1,10 @@
 class Admin::LeavesController < Admin::BaseController
 
   def index
-    @leaves = Leave.pending.paginate(page: page)
+    @leaves = Leave.paginate(page: page)
+    if params['status'] == 'pending'
+      @leaves = Leave.pending.paginate(page: page)
+    end
   end
 
   def new

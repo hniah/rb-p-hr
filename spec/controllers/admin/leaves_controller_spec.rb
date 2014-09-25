@@ -65,19 +65,41 @@ describe Admin::LeavesController do
   end
 
   describe 'GET #index' do
-    context 'Admin logged in' do
+    context 'fetches all leaves pending when filter is pending' do
       let!(:admin) { create :admin }
 
       before do
         create_list(:leave, 2, staff: staff, status: :pending)
-        create_list(:leave, 2, staff: admin.becomes(Staff), status: :pending)
+        create_list(:leave, 2, staff: admin.becomes(Staff), status: :approved)
       end
 
       def do_request
-        get :index
+        get :index, status: 'pending'
       end
 
-      it 'fetches all leaves date' do
+      it 'fetches all leaves pending' do
+        sign_in admin
+
+        do_request
+
+        expect(response).to render_template :index
+        expect(assigns(:leaves).size).to eq 2
+      end
+    end
+
+    context 'fetches all leaves when filter is all' do
+      let!(:admin) { create :admin }
+
+      before do
+        create_list(:leave, 2, staff: staff, status: :approved)
+        create_list(:leave, 2, staff: admin.becomes(Staff), status: :approved)
+      end
+
+      def do_request
+        get :index, status: 'all'
+      end
+
+      it 'fetches all leaves when filter is all' do
         sign_in admin
 
         do_request
