@@ -4,7 +4,7 @@
   .col-md-3
     = form_tag(admin_leaves_path, method: :get, class: 'formtastic')
       .form-group
-          = select_tag :status, options_for_select(Leave.status_options), class: 'form-control', onchange: 'this.form.submit()'
+          = select_tag :status, options_for_select(Leave.status_options, status_value), class: 'form-control', onchange: 'this.form.submit()'
   table.list-table.table-bordered
     thead
       tr

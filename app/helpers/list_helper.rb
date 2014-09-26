@@ -33,4 +33,8 @@ module ListHelper
   def ldate(data, hash = {})
     data ? l(data, hash) : nil
   end
+
+  def status_value
+    params[:status] ? params[:status] : ''
+  end
 end
