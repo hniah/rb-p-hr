@@ -1,0 +1,13 @@
+= display_page_title ('Your list of lates')
+
+.container.content
+  table.list-table.table-bordered
+    thead
+      tr
+        th= Late.human_attribute_name('date')
+        th= Late.human_attribute_name('note')
+    tbody
+      - @lates.each do |late|
+        tr
+          td= ldate(late.date)
+          td= late.note

@@ -22,7 +22,7 @@ describe 'Log in with Google account' do
 
       click_on 'Sign in with Google'
 
-      expect(page).to have_content 'You are not allowed to log in'
+      expect(page).to have_content 'Could not authenticate you from Google.'
     end
   end
 end

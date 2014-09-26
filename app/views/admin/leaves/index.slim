@@ -1,0 +1,46 @@
+= display_page_title ('Leaves List')
+.container.content
+  .col-md-9
+  .col-md-3
+    = form_tag(admin_leaves_path, method: :get, class: 'formtastic')
+      .form-group
+          = select_tag :status, options_for_select(Leave.status_options, status_value), class: 'form-control', onchange: 'this.form.submit()'
+  table.list-table.table-bordered
+    thead
+      tr
+        th= Leave.human_attribute_name('category')
+        th= Leave.human_attribute_name('start')
+        th= Leave.human_attribute_name('end')
+        th= Leave.human_attribute_name('total')
+        th.col-md-3= Leave.human_attribute_name('reason')
+        th= Leave.human_attribute_name('staff')
+        th.col-md-2= Leave.human_attribute_name('rejection_note')
+        th.col-md-2= Leave.human_attribute_name('action')
+    tbody
+      - @leaves.each do |leave|
+        tr
+          td= leave.category.text
+          td
+            = ldate(leave.start_day.to_date)
+            br
+            = leave.start_time
+          td
+            = ldate(leave.end_day.to_date)
+            br
+            = leave.end_time
+          td= pluralize(leave.total.abs, 'day')
+          td= leave.reason
+          td= leave.staff_english_name
+          td= leave.rejection_note
+          td
+            = list_button(name: 'Edit', action: :edit, admin: :admin, resource: leave)
+            = list_button(name: 'Delete', action: :delete, admin: :admin, resource: leave)
+            = list_button(name: 'Detail', action: :detail, admin: :admin, resource: leave)
+            br
+            br
+            - if leave.status.pending?
+              = semantic_form_for leave, url: approve_admin_leave_path(leave.id) do |f|
+                = f.submit Leave.human_attribute_name('approve'), class: 'list-approve-button'
+                = link_to Leave.human_attribute_name('reject'), reject_admin_leave_path(leave.id), class: 'list-delete-button', data: {test: "reject-leave-#{leave.id}"}
+  .pagination
+    = bootstrap_paginate(@leaves)

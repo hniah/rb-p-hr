@@ -1,24 +1,13 @@
 module ListHelper
-  def list_edit_button(resource)
-    link_to 'Edit', list_action_path(resource, :edit), list_edit_button_options(resource)
-  end
 
-  def list_delete_button(resource)
-    link_to 'Delete', list_action_path(resource, :delete), list_delete_button_options(resource)
-  end
-
-  def bootstrap_paginate(resources)
-    will_paginate(resources, {renderer: BootstrapPagination::Rails, next_label: '&raquo;', previous_label: '&laquo;'})
-  end
-
-  def list_action_path(resource, action)
+  def list_button(name:, action:, admin:, resource:)
     if action == :edit
-      path = "edit_#{resource_class(resource)}_path".to_sym
+      link_to name, [:edit, admin, resource], list_edit_button_options(resource)
     elsif action == :delete
-      path = "#{resource_class(resource)}_path".to_sym
+      link_to name, [admin, resource], list_delete_button_options(resource)
+    elsif action == :detail
+      link_to name, [admin, resource], list_detail_button_options(resource)
     end
-
-    send(path, resource.id)
   end
 
   def resource_class(resource)
@@ -31,5 +20,21 @@ module ListHelper
 
   def list_delete_button_options(resource)
     {method: :delete, class: 'list-delete-button', data:{confirm: t("#{resource_class(resource)}.message.delete_confirmation"), test: "delete-#{resource_class(resource)}-#{resource.id}"}}
+  end
+
+  def list_detail_button_options(resource)
+    {method: :get, class: 'list-edit-button', data: {test: "view-#{resource_class(resource)}-#{resource.id}"}}
+  end
+
+  def bootstrap_paginate(resources)
+    will_paginate(resources, {renderer: BootstrapPagination::Rails, next_label: '&raquo;', previous_label: '&laquo;'})
+  end
+
+  def ldate(data, hash = {})
+    data ? l(data, hash) : nil
+  end
+
+  def status_value
+    params[:status] ? params[:status] : ''
   end
 end

@@ -1,0 +1,33 @@
+= display_page_title ('Leaves List')
+.container.content
+  table.list-table.table-bordered
+    thead
+      tr
+        th= Leave.human_attribute_name('category')
+        th= Leave.human_attribute_name('status')
+        th= Leave.human_attribute_name('start')
+        th= Leave.human_attribute_name('end')
+        th= Leave.human_attribute_name('total')
+        th.col-md-3= Leave.human_attribute_name('reason')
+        th.col-md-2= Leave.human_attribute_name('rejection_note')
+        th= Leave.human_attribute_name('action')
+    tbody
+      - @leaves.each do |leave|
+        tr
+          td= leave.category.text
+          td= leave.status.text
+          td
+            = ldate(leave.start_day.to_date)
+            br
+            = leave.start_time
+          td
+            = ldate(leave.end_day.to_date)
+            br
+            = leave.end_time
+          td= pluralize(leave.total.abs, 'day')
+          td= leave.reason
+          td= leave.rejection_note
+          td
+            = link_to 'Detail', staff_leave_path(leave.id), class: 'list-edit-button', data: {test: "view-leave-#{leave.id}"}
+  .pagination
+    = bootstrap_paginate(@leaves)

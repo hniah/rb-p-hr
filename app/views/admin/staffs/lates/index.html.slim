@@ -1,0 +1,22 @@
+= display_page_title ('List of Late')
+.container.content
+  table.list-table.table-bordered
+    thead
+      tr
+        th= Late.human_attribute_name('date')
+        th= Late.human_attribute_name('staff')
+        th= Late.human_attribute_name('note')
+        th
+    - @lates.each do |late|
+      tr
+        td= ldate(late.date)
+        td= late.staff_english_name
+        td= late.note
+        th
+          = list_button(name: 'Edit', action: :edit, admin: :admin, resource: late)
+          = list_button(name: 'Delete', action: :delete, admin: :admin, resource: late)
+          = list_button(name: 'Detail', action: :detail, admin: :admin, resource: late)
+  = link_to 'Back', admin_staff_path(@staff.id),  class: 'btn-u btn-u-default'
+  .content
+    .pagination
+      = bootstrap_paginate(@lates)

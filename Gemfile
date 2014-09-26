@@ -37,6 +37,11 @@ gem 'decent_exposure'
 gem 'omniauth-google-oauth2'
 gem 'simple-navigation'
 gem 'simple-navigation-bootstrap'
+gem 'nested_form'
+gem 'paper_trail', '~> 3.0.5'
+gem 'nunify'
+gem 'redcarpet'
+gem 'jquery-ui-rails'
 
 group :development do
   gem 'spring'
@@ -47,17 +52,19 @@ end
 
 group :production do
   gem 'rails_12factor'
+  gem 'unicorn'
 end
 
-group :test do
+group :development, :test do
   gem 'awesome_print'
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'factory_girl_rails'
   gem 'capybara'
+  gem 'capybara-webkit'
+  gem 'database_cleaner'
+  gem 'dotenv-rails'
 end
-
-gem 'dotenv-rails', groups: [:development, :test] # load ENV param
 
 gem 'seedbank'
 

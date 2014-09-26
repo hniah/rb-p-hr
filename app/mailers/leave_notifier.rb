@@ -2,8 +2,8 @@ class LeaveNotifier < SystemNotifier
 
   def new_leave(leave)
     @leave = leave
-    mail(to: ENV['EMAIL_NOTIFIER'], subject: t('mail.hr.subject')) do |format|
-      format.html { render 'notifier/new_leave' }
+    mail(to: Setting['EMAIL_NOTIFIER'], subject: t('mail.hr.subject')) do |format|
+      format.html { render 'notifier/leave/new_leave' }
     end
   end
 
@@ -11,12 +11,12 @@ class LeaveNotifier < SystemNotifier
     @leave = leave
     if !leave.category.sick?
       mail(to: @leave.staff_email, subject: t('mail.approve.subject')) do |format|
-        format.html {render 'notifier/approved_leave'
+        format.html {render 'notifier/leave/approved_leave'
         }
       end
     else
       mail(to: @leave.staff_email, subject: t('mail.sickly.subject')) do |format|
-        format.html {render 'notifier/sick_leave'
+        format.html {render 'notifier/leave/sick_leave'
         }
       end
     end
@@ -26,7 +26,7 @@ class LeaveNotifier < SystemNotifier
   def rejected(leave)
     @leave = leave
     mail(to: leave.staff_email, subject: t('mail.reject.subject')) do |format|
-      format.html {render 'notifier/rejected_leave'
+      format.html {render 'notifier/leave/rejected_leave'
       }
     end
   end

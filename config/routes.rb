@@ -30,18 +30,32 @@ Rails.application.routes.draw do
   #     end
   #   end
 
-  scope :admin do
-    resources :users
+  namespace :admin do
+    resources :lates
+    resources :feedbacks, only: [:index]
+    resources :leaves do
+      member do
+        patch 'approve'
+        get 'reject'
+        patch 'reject_action'
+      end
+    end
+    resources :settings
+    resources :staffs do
+      resources :leaves, only: [:index], controller: 'staffs/leaves'
+      resources :lates, only: [:index], controller: 'staffs/lates'
+      resources :versions, only: [:index], controller: 'staffs/versions'
+    end
   end
 
-  resources :leaves
-  resources :staffs, only: [:show]
-  resources :feedbacks, only: [:new, :create]
+  namespace :staff do
+    get 'profile', to: 'staffs#show'
+    resources :leaves, only: [:index, :new, :create, :show]
+    resources :lates, only: [:index]
+  end
 
-  get 'my-account' => 'staffs#show'
-  get 'admin/approve/:id' => 'admin/leaves#approve', as: 'approve'
-  get 'admin/reject/:id' => 'admin/leaves#reject', as: 'reject'
-  patch 'admin/reject/:id' => 'admin/leaves#reject_action', as: 'reject_action'
+  resources :feedbacks, only: [:new, :create]
+  get :pcc, to: 'application#pcc'
 
   # Example resource route with sub-resources:
   #   resources :products do

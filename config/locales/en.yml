@@ -30,3 +30,13 @@ en:
       subject: 'Your Leave is Rejected'
     sickly:
       subject: 'Your Sick Leave is Approved'
+    late:
+      subject: 'Staff has more than 10 lates this year'
+  date:
+    formats:
+      default: "%d/%m/%Y"
+      time: "%H:%M"
+  time:
+    formats:
+      default: "%d/%m/%Y"
+      time: "%H:%M"

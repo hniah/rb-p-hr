@@ -1,7 +1,0 @@
-= display_page_title('Reject Leave')
-.container.content
-  .col-md-6
-    = semantic_form_for @leave, url: reject_action_path(@leave.id) do |f|
-      = f.input :rejection_note, input_html: { rows: 2 }
-      = f.submit 'Reject Leave', class: 'btn-u'
-      = link_to 'Back', leaves_path, class: 'btn-u btn-u-default'

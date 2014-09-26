@@ -1,0 +1,16 @@
+en:
+  admin:
+    settings:
+      create:
+        message:
+          success: Setting is successfully created.
+          failure: Failed to create setting.
+          exists: The key has existed.
+      update:
+        message:
+          success: Setting is successfully updated.
+          failure: Failed to update setting.
+      destroy:
+        message:
+          success: Setting is successfully deleted.
+          failure: Failed to delete setting.

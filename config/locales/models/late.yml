@@ -1,0 +1,6 @@
+en:
+  activerecord:
+    errors:
+      models:
+        late:
+          blank: "Please fill in %{attribute}"

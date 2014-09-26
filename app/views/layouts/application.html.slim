@@ -5,7 +5,7 @@ html
     == javascript_include_tag 'application', data: { turbolinks_track: true }
     == csrf_meta_tags
   body
-    div.wrapper.container-fluid
+    .wrapper.container-fluid
       .header.row
         .container
           .topbar
@@ -15,7 +15,7 @@ html
                   li= "#{current_user.email}"
                   - if !current_user.is_admin?
                     li.topbar-devider
-                      li= link_to 'My Account', my_account_path
+                      li= link_to 'My Account', staff_profile_path
                   li.topbar-devider
                   li= link_to 'Help', :help
                   li.topbar-devider
@@ -26,8 +26,7 @@ html
               .navbar-header
                 = link_to(image_tag('futureworkz-logo.png', height: 30), root_path)
               = render_navigation expand_all: true, renderer: :bootstrap
-      div.main-body
-        div.container
-          - if flash_messages.present?
-            div.flash-messages = flash_messages
+      .main-body
+        .container
+          .flash-messages= flash_messages
         == yield

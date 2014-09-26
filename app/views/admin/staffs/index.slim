@@ -1,0 +1,27 @@
+=display_page_title('Staff List')
+.container.content
+  table.list-table.table-bordered
+    thead
+      tr
+        th= User.human_attribute_name('designation')
+        th= User.human_attribute_name('name')
+        th= User.human_attribute_name('english_name')
+        th= User.human_attribute_name('email')
+        th= User.human_attribute_name('phone_number')
+        th= User.human_attribute_name('started_on')
+        th= User.human_attribute_name('action')
+    tbody
+      - @staffs.each do |staff|
+        tr
+          td = staff.designation
+          td = staff.name
+          td = staff.english_name
+          td = staff.email
+          td = staff.phone_number
+          td = ldate(staff.started_on)
+          td
+            = list_button(name: 'Edit', action: :edit, admin: :admin, resource: staff)
+            = list_button(name: 'Delete', action: :delete, admin: :admin, resource: staff)
+            = list_button(name: 'Detail', action: :detail, admin: :admin, resource: staff)
+  .pagination
+    = bootstrap_paginate(@staffs)

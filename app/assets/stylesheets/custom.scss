@@ -32,3 +32,16 @@
 input[type="radio"], input[type="checkbox"]{
   margin-right: 7px;
 }
+
+.form-inline .form-group {
+  margin: 3px;
+}
+
+#leave_start_date_input label, #leave_end_date_input label {
+  width: 100px;
+}
+
+select#leave_start_time, select#leave_end_time {
+  width: 100px;
+  height: 35px;
+}

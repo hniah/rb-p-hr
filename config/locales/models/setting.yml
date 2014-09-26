@@ -1,0 +1,11 @@
+en:
+  activerecord:
+    attributes:
+      setting:
+        key: 'Key'
+        value: 'Value'
+        action: 'Action'
+    errors:
+      models:
+        setting:
+          blank: "Please fill in %{attribute}"
