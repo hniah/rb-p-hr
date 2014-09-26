@@ -16,7 +16,7 @@ describe 'View Leaves List' do
       click_on 'Leaves List'
 
       expect(page).to have_content 'Leaves List'
-      expect(page.all('tr').count).to eql(6)
+      expect(page.all('tr').count).to eql(7)
     end
   end
 end

@@ -18,6 +18,6 @@ describe 'Display note to reject Leave' do
 
     expect(page).to have_content 'Leaves List'
     expect(page).to have_content 'Leave is rejected.'
-    expect(page.all('tr').count).to eql(1)
+    expect(page.all('tr').count).to eql(2)
   end
 end
