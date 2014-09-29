@@ -25,7 +25,7 @@ class Leave < ActiveRecord::Base
 
   enumerize :status, in: [:pending, :approved, :rejected], default: :pending
   enumerize :category, in: [:unpaid, :sick, :annual, :compassionate, :maternity], default: :annual
-  enumerize :sub_cate, in: [:normal, :urgent, :carry_over], default: :normal
+  enumerize :sub_cate, in: [:normal, :urgent, :carry_over]
 
   has_paper_trail class_name: 'Version', ignore: [:updated_at, :created_at]
 
