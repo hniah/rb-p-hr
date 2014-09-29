@@ -21,6 +21,7 @@ describe 'Edit Leave' do
       get_element('fill-in-end-day-leave').set('10/09/2014')
       get_element('select-end-time').set('17:30')
       fill_in 'Reason', with: 'Lorem lorem'
+      fill_in 'Note', with: 'Lorem lorem'
       click_on 'Update Leave'
 
       expect(page).to have_content 'Leaves List'

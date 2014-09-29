@@ -12,5 +12,6 @@
       = f.select :end_time, Leave.kind_options_end, {}, { class: 'form-control', data: {test: 'select-end-time'} }
   = f.input :total_value, label: 'Total', as: :number, input_html: { step: 0.5, min: 0.0 }
   = f.input :reason, input_html: { rows: 5, class: 'form-control' }
+  = f.input :reason_note, label: 'Note', input_html: { rows: 5, class: 'form-control' }
   = f.submit class: 'btn-u'
   = link_to 'Back', staff_leaves_path, class: 'btn-u btn-u-default'
