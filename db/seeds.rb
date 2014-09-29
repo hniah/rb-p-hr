@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 puts 'Start seeding admin'
-leave_data = { reason: 'Add Leave days for new year', status: :approved, category: :annual, start_day: "01-01-#{Time.now.year} 08:30".to_date, end_day: "31-12-#{Time.now.year} 17:30".to_date, total: 14, sub_cate: 'carry-over leaves'}
+leave_data = { reason: 'Add Leave days for new year', status: :approved, category: :annual, start_day: "01-01-#{Time.now.year} 08:30".to_date, end_day: "31-12-#{Time.now.year} 17:30".to_date, total: 14, sub_cate: 'normal'}
 
 admins_data = [
   { name: 'Vu Quang Thang', english_name: 'Martin', email: 'martin@futureworkz.com', personal_email: 'vuquangthang87@gmail.com', address: 'Viet Nam', phone_number: '0123213123', started_on: '2012/06/16', probation_end_on: '2012/08/16', designation: 'Coder' },

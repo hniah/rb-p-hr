@@ -9,7 +9,8 @@ describe Leave do
     it { is_expected.to validate_presence_of :category }
     it { is_expected.to validate_presence_of :total }
     it { is_expected.to enumerize(:status).in(:pending, :approved, :rejected) }
-    it { is_expected.to enumerize(:category).in(:unpaid, :sick, :annual, :compassionate, :maternity, :urgent) }
+    it { is_expected.to enumerize(:category).in(:unpaid, :sick, :annual, :compassionate, :maternity) }
+    it { is_expected.to enumerize(:sub_cate).in(:normal, :urgent, :carry_over) }
   end
 
   context 'associations' do

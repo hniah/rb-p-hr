@@ -14,7 +14,7 @@ describe LeaveDays do
         expect(Leave.count).to eq 4
         expect(I18n.l(Leave.last.start_day)).to eq "01/01/#{Time.now.year}"
         expect(I18n.l(Leave.last.end_day)).to eq "31/12/#{Time.now.year}"
-        expect(Leave.last.sub_cate).to eq 'carry-over leaves'
+        expect(Leave.last.sub_cate).to eq 'normal'
       end
     end
   end
@@ -36,7 +36,7 @@ describe LeaveDays do
       it 'Add cumulative leave days for staff when new year comes' do
         expect(martin.leaves.count).to eq 6
         expect(martin.leaves.first.total).to eq 7
-        expect(martin.leaves.first.sub_cate).to eq 'cumulative leaves'
+        expect(martin.leaves.first.sub_cate).to eq 'carry_over'
       end
     end
   end

@@ -11,7 +11,10 @@ en:
         annual: 'Annual'
         compassionate: 'Compassionate'
         maternity: 'Maternity'
+      sub_cate:
+        normal: 'Normal'
         urgent: 'Urgent'
+        carry_over: 'Carry over'
       kind:
         whole_day: 'Whole day'
         morning: 'Morning'

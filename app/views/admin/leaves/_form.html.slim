@@ -3,6 +3,10 @@
     = f.label :category, class: 'control-label'
     br
     = f.select :category, Leave.category.options, {include_blank: t('leave.message.select_types')}, { class: 'form-control' }
+  .form-group
+    = f.label :sub_cate, class: 'control-label'
+    br
+    = f.select :sub_cate, Leave.sub_cate.options, {include_blank: t('leave.message.select_types')}, { class: 'form-control' }
   .form-inline
     = f.input :start_date, label: 'From', as: :string, input_html: { min: Date.today, value: f.object.start_day.strftime('%d/%m/%Y'), data: {test: 'fill-in-start-day-leave'} }
     .form-group

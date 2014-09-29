@@ -24,7 +24,8 @@ class Leave < ActiveRecord::Base
   validate :end_day_greater_than_start_day
 
   enumerize :status, in: [:pending, :approved, :rejected], default: :pending
-  enumerize :category, in: [:unpaid, :sick, :annual, :compassionate, :maternity, :urgent], default: :annual
+  enumerize :category, in: [:unpaid, :sick, :annual, :compassionate, :maternity], default: :annual
+  enumerize :sub_cate, in: [:normal, :urgent, :carry_over], default: :normal
 
   has_paper_trail class_name: 'Version', ignore: [:updated_at, :created_at]
 
