@@ -15,7 +15,6 @@ $(document).on('ready page:load', function() {
     changeMonth: true,
     numberOfMonths: 1,
     dateFormat: 'dd/mm/yy',
-    minDate: 0,
     onClose: function( selectedDate ) {
       $( "#leave_end_date" ).datepicker( "option", "minDate", selectedDate );
     }
