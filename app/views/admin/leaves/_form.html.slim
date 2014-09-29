@@ -18,6 +18,10 @@
   = f.input :reason, input_html: { rows: 5, class: 'form-control' }
   = f.input :reason_note, label: 'Note', input_html: { rows: 5, class: 'form-control' }
   .form-group
+    = f.label :status, class: 'control-label'
+    br
+    = f.select :status, Leave.status.options, {include_blank: t('leave.message.select_status')}, { class: 'form-control' }
+  .form-group
     = f.label :staff_id, class: 'control-label'
     br
     = f.select :staff_id, Staff.to_options, {include_blank: t('leave.message.select_staff')}, { class: 'form-control' }
