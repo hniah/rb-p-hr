@@ -97,6 +97,6 @@ class Admin::LeavesController < Admin::BaseController
   end
 
   def leave_param
-    params.require(:leave).permit(:reason, :staff_id, :category, :start_date, :end_date, :start_time, :end_time, :total_value, :reason_note, :status)
+    params.require(:leave).permit(:reason, :staff_id, :category, :start_date, :end_date, :start_time, :end_time, :total_value, :reason_note, :status, :sub_cate)
   end
 end
