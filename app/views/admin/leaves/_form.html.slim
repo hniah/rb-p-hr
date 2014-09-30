@@ -4,7 +4,7 @@
     br
     = f.select :category, Leave.category.options, {include_blank: t('leave.message.select_types')}, { class: 'form-control' }
   .form-group
-    = f.label :sub_cate, class: 'control-label'
+    = f.label 'Sub-category', class: 'control-label'
     br
     = f.select :sub_cate, Leave.sub_cate.options, {include_blank: t('leave.message.select_types')}, { class: 'form-control' }
   .form-inline
