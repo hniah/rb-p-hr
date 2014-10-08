@@ -18,6 +18,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def google_authenticated_email
-    google_authenticated_data.fetch(:info).fetch(:email)
+    google_authenticated_data.fetch(:info).fetch(:email).downcase
   end
 end
