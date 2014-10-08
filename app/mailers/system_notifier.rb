@@ -1,3 +1,3 @@
 class SystemNotifier < ActionMailer::Base
-  default from: ENV['EMAIL_DEFAULT_FROM']
+  default from: "Futureworkz Human Resources #{ENV['EMAIL_DEFAULT_FROM']}"
 end
