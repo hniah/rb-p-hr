@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141124082210) do
+ActiveRecord::Schema.define(version: 20141124091456) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,7 +43,6 @@ ActiveRecord::Schema.define(version: 20141124082210) do
     t.string   "sub_cate"
     t.float    "total"
     t.text     "reason_note"
-    t.string   "leader"
   end
 
   create_table "settings", force: true do |t|
@@ -85,6 +84,7 @@ ActiveRecord::Schema.define(version: 20141124082210) do
     t.boolean  "is_admin",               default: false, null: false
     t.string   "designation"
     t.boolean  "is_leader",              default: false
+    t.string   "leader"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
