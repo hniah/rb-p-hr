@@ -6,8 +6,6 @@ class User < ActiveRecord::Base
   devise :omniauthable, omniauth_providers: [:google_oauth2]
 
   default_scope -> { order(name: :asc, id: :desc) }
-  scope :leaders, -> { where(is_leader: :true) }
-  scope :to_options, -> { all.collect { |user| [ user.english_name, user.id ] } }
 
   validates :name, :english_name, :personal_email, :address, :started_on, :probation_end_on, :designation, presence: true
   validates :email, format: { :with => /\A([^@\s]+)@(futureworkz.com)\Z/i }

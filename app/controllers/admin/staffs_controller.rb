@@ -24,11 +24,10 @@ class Admin::StaffsController < Admin::BaseController
 
   def update
     @staff = Staff.find(staff_id)
-
     if @staff.update(staff_param)
       redirect_to admin_staffs_path, notice: t('.message.success')
     else
-      flash[:alert] = t('.message.failure')
+      flash[:alert] = @staff.errors.full_messages.join('<br>').html_safe
       render :edit
     end
   end
@@ -61,6 +60,6 @@ class Admin::StaffsController < Admin::BaseController
   end
 
   def staff_param
-    params.require(:staff).permit(:email, :name, :english_name, :personal_email, :address, :birthday, :note, :social_insurance, :phone_number, :started_on, :probation_end_on, :password, :password_confirmation, :designation, :is_admin, :is_leader)
+    params.require(:staff).permit(:email, :name, :english_name, :personal_email, :address, :birthday, :note, :social_insurance, :phone_number, :started_on, :probation_end_on, :password, :password_confirmation, :designation, :is_admin, :is_leader, :leader)
   end
 end

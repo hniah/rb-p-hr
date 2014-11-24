@@ -87,9 +87,10 @@ describe Admin::StaffsController do
   describe 'PATCH #update' do
     context 'success' do
       let(:user) { create(:user) }
+      let(:leader) { create(:user, english_name: 'Martin') }
 
       def do_request
-        patch :update, id: user.id, staff: attributes_for(:staff, email: 'martin1234@futureworkz.com', password: '123123123', password_confirmation: '123123123')
+        patch :update, id: user.id, staff: attributes_for(:staff, email: 'martin1234@futureworkz.com', password: '123123123', password_confirmation: '123123123', leader: leader)
       end
 
       it 'updates user, redirects to list and sets notice flash' do
