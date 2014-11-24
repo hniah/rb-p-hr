@@ -24,10 +24,9 @@ FactoryGirl.define do
 
     factory :staff, class: Staff do
       is_admin false
-      is_leader false
 
       trait :with_lates do
-        ignore do
+        transient do
           number_of_lates 2
         end
 
