@@ -13,6 +13,11 @@
   = f.input :note, input_html: { rows: 2 }
   = f.input :is_admin, as: :boolean
   = f.input :is_leader, as: :boolean
+  - unless staff.is_leader
+    .form-group
+      = f.label :leader, class: 'control-label'
+      br
+      = f.select :leader, Staff.leaders.to_options, {include_blank: t('staff.message.select_leader')}, { class: 'form-control' }
   = f.submit class: 'btn-u'
   -if staff.id.nil?
     = f.hidden_field :password, class: 'form-control', value: '123123123'

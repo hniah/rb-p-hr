@@ -20,4 +20,20 @@ describe Staff do
       end
     end
   end
+
+  describe '#leader_or_not' do
+    let!(:jack) { create :staff, is_leader: true, english_name: 'Jack' }
+    let(:john) { build :staff }
+
+    it 'validations staff' do
+      john.english_name = 'John'
+      john.is_leader = true
+      john.leader = jack.id
+      expect(john).not_to be_valid
+
+      john.is_leader = false
+      john.leader = jack.id
+      expect(john).to be_valid
+    end
+  end
 end
