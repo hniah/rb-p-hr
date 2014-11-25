@@ -1,6 +1,7 @@
 class Staff < User
 
   scope :to_options, -> { all.collect { |staff| [ staff.english_name, staff.id ] } }
+  scope :emails_cc, -> { all.collect { |staff| [ staff.english_name, staff.email ] } }
   scope :leaders, -> { where(is_leader: :true) }
 
   has_many :leaves

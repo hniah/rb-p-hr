@@ -14,7 +14,7 @@ class Leave < ActiveRecord::Base
 
   delegate :id, :english_name, :email, to: :staff, prefix: true, allow_nil: true
 
-  attr_accessor :start_time, :end_time, :total_value, :start_date, :end_date
+  attr_accessor :start_time, :end_time, :total_value, :start_date, :end_date, :emails_cc
 
   belongs_to :staff
 
