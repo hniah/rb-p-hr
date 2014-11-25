@@ -9,11 +9,11 @@ class Admin::LeavesController < Admin::BaseController
 
   def new
     @leave = Leave.new
+    @cc_to
   end
 
   def create
     @leave = Leave.new(leave_param)
-
     if @leave.save
       LeaveNotifier.new_leave(@leave).deliver
       redirect_to admin_leaves_path, notice: t('.message.success')
@@ -97,6 +97,6 @@ class Admin::LeavesController < Admin::BaseController
   end
 
   def leave_param
-    params.require(:leave).permit(:reason, :staff_id, :category, :start_date, :end_date, :start_time, :end_time, :total_value, :reason_note, :status, :sub_cate)
+    params.require(:leave).permit(:reason, :staff_id, :category, :start_date, :end_date, :start_time, :end_time, :total_value, :reason_note, :status, :sub_cate, emails_cc:[])
   end
 end

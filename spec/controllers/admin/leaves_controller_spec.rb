@@ -125,11 +125,21 @@ describe Admin::LeavesController do
 
   describe 'POST #create' do
     context 'Success' do
-      let(:leave_param) { attributes_for(:leave, staff_id: staff.id, start_time: '8:30', end_time: '12:00', start_date: '2014-09-19', end_date: '2014-09-22', total_value: 1.5) }
+      let(:leave_param) { attributes_for(:leave, staff_id: martin.id, start_time: '8:30', 
+                                                  end_time: '12:00', start_date: '2014-09-19', 
+                                                  end_date: '2014-09-22', total_value: 1.5, 
+                                                  emails_cc: ['john@futureworkz.com', 'jack@futureworkz.com']
+                                        ) 
+                        }
+      let(:leader) { create :user, email: 'khoa@futureworkz.com' }
+      let!(:martin) { create :user, email: 'martin@futureworkz.com', leader: leader.id }
       let(:leave) { Leave.first }
       let(:last_email) { ActionMailer::Base.deliveries.last }
-      let!(:EMAIL_NOTIFIER) { create :setting, key: 'EMAIL_NOTIFIER', value: 'jack@futureworkz.com' }
-
+      let!(:EMAIL_NOTIFIER) { create :setting, key: 'EMAIL_NOTIFIER', 
+                                                value: 'jack@futureworkz.com' }
+     
+      let(:cc) { leave_param[:emails_cc].push(leader.email) }
+                                               
       def do_request
         post :create, leave: leave_param
       end
@@ -139,8 +149,9 @@ describe Admin::LeavesController do
         do_request
 
         expect(response).to redirect_to admin_leaves_path
-        expect(leave.staff).to eq staff
         expect(last_email.to).to eq [Setting['EMAIL_NOTIFIER']]
+        expect(last_email.cc.size).to eq 3
+        expect(last_email.cc).to match_array cc
         expect(last_email.body).to have_content 'New leave application'
         expect(last_email.body).to have_content leave.reason
         expect(leave.reload.total). to eq -1.5
