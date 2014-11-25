@@ -2,7 +2,15 @@ class LeaveNotifier < SystemNotifier
 
   def new_leave(leave)
     @leave = leave
-    mail(to: Setting['EMAIL_NOTIFIER'], subject: t('mail.hr.subject')) do |format|
+    @leader = Staff.find_by_id(leave.staff.leader)
+
+    if @leader
+      @cc = leave.emails_cc.push(@leader.email)
+    else
+      @cc = leave.emails_cc
+    end
+        
+    mail(to: Setting['EMAIL_NOTIFIER'], cc: @cc, subject: t('mail.hr.subject')) do |format|
       format.html { render 'notifier/leave/new_leave' }
     end
   end
