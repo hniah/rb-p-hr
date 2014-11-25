@@ -13,7 +13,6 @@ describe 'Display New Leave form' do
       visit admin_leaves_path
 
       click_on 'Add New Leave'
-
       select 'Annual', from: 'Category'
       fill_in 'Reason', with: 'Lorem lorem'
       fill_in 'Note', with: 'Lorem lorem'
@@ -23,6 +22,7 @@ describe 'Display New Leave form' do
       get_element('select-end-time').set('17:30')
       fill_in 'Total', with: 1.0
       select staff.english_name, from: 'Staff'
+      select staff.english_name, from: 'Emails cc'
       click_on 'Create Leave'
 
       expect(page).to have_content 'Leaves List'
