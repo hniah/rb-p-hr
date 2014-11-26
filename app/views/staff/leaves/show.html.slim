@@ -22,6 +22,10 @@
             = "  : #{@leave.end_day.strftime('%d/%m/%Y')} #{@leave.end_time}"
         tr
           td
+            strong= 'Sent date'
+          td= @leave.created_at.strftime('%d/%m/%Y %H:%M:%S') 
+        tr
+          td
             strong= 'Reason Leave'
           td= @leave.reason
         tr
