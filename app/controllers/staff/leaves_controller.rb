@@ -5,7 +5,7 @@ class Staff::LeavesController < Staff::BaseController
 
   def new
     @leave = Leave.new
-    @leader = User.find(current_staff.leader) if current_staff.leader   
+    @leader = User.find(current_staff.leader) if current_staff.leader.presence
   end
 
   def create
