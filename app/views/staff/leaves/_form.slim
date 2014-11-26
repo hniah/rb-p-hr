@@ -15,7 +15,7 @@
   .form-group
     = f.label :emails_cc, class: 'control-label'
     br
-    = f.select :emails_cc, Staff.emails_cc, {include_blank: t('leave.message.select_staff')}, { class: 'form-control multi-staff-select', multiple: true}  
+    = f.select :emails_cc, Staff.emails_cc_exclude(current_user.id)  , {include_blank: t('leave.message.select_staff')}, { class: 'form-control multi-staff-select', multiple: true}  
   = f.input :total_value, label: 'Total', as: :number, input_html: { step: 0.5, min: 0.0 }
   = f.input :reason, input_html: { rows: 5, class: 'form-control' }
   = f.input :reason_note, label: 'Note', input_html: { rows: 5, class: 'form-control' }
