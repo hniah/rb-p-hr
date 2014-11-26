@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 describe Staff::LeavesController do
-  let!(:staff) { create :staff }
+  let(:leader) { create :user, email: 'khoa@futureworkz.com' }
+  let!(:staff) { create :staff, leader: leader.id }
 
   describe 'GET #index' do
     def do_request
@@ -49,11 +50,18 @@ describe Staff::LeavesController do
 
   describe 'POST #create' do
     context 'Success' do
-      let(:leave_param) { attributes_for(:leave, start_time: '8:30', end_time: '12:00', start_date: '2014-09-11', end_date: '2014-09-12', total_value: 1.0) }
+      let(:leave_param) { attributes_for(:leave, start_time: '8:30', 
+                                                  end_time: '12:00', 
+                                                  start_date: '2014-09-11', 
+                                                  end_date: '2014-09-12', 
+                                                  total_value: 1.0,
+                                                  emails_cc: ['john@futureworkz.com', 'jack@futureworkz.com']
+                                                  ) }
       let(:leave) { Leave.first }
       let(:last_email) { ActionMailer::Base.deliveries.last }
       let!(:EMAIL_NOTIFIER) { create :setting, key: 'EMAIL_NOTIFIER', value: 'jack@futureworkz.com' }
-
+      let(:cc) { leave_param[:emails_cc].push(leader.email) }
+      
       def do_request
         post :create, leave: leave_param
       end
@@ -64,6 +72,8 @@ describe Staff::LeavesController do
 
         expect(response).to redirect_to staff_leaves_path
         expect(leave.staff).to eq staff
+        expect(last_email.cc.size).to eq 3
+        expect(last_email.cc).to match_array cc
         expect(last_email.to).to eq [Setting['EMAIL_NOTIFIER']]
         expect(last_email.body).to have_content 'New leave application'
         expect(last_email.body).to have_content leave.reason

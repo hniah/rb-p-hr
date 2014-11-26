@@ -9,7 +9,7 @@ class LeaveNotifier < SystemNotifier
     else
       @cc = leave.emails_cc
     end
-        
+ 
     mail(to: Setting['EMAIL_NOTIFIER'], cc: @cc, subject: t('mail.hr.subject')) do |format|
       format.html { render 'notifier/leave/new_leave' }
     end

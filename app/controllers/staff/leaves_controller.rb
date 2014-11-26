@@ -5,6 +5,7 @@ class Staff::LeavesController < Staff::BaseController
 
   def new
     @leave = Leave.new
+    @leader = User.find(current_staff.leader) if current_staff.leader   
   end
 
   def create
@@ -33,6 +34,6 @@ class Staff::LeavesController < Staff::BaseController
   end
 
   def leave_param
-    params.require(:leave).permit(:reason, :category, :start_date, :end_date, :start_time, :end_time, :total_value, :reason_note)
+    params.require(:leave).permit(:reason, :category, :start_date, :end_date, :start_time, :end_time, :total_value, :reason_note, emails_cc:[])
   end
 end
