@@ -74,4 +74,9 @@ class Leave < ActiveRecord::Base
     self.start_day = "#{start_date} #{start_time}"
     self.end_day = "#{end_date} #{end_time}"
   end
+
+  def belong_to?(user)
+    false if staff.id != user.id
+    true if staff.id == user.id
+  end
 end
