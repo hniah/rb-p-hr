@@ -79,4 +79,8 @@ class Leave < ActiveRecord::Base
     false if staff.id != user.id
     true if staff.id == user.id
   end
+
+  def is_pending?
+    status == 'pending'
+  end
 end
