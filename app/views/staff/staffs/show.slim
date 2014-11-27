@@ -39,6 +39,7 @@
       tr
         td{ colspan="2" }
           p= "Your leave days left #{pluralize(@staff.remaining_leave_days(Time.now.year), 'day')} in this year"
+          p= "Your sick leave days left #{pluralize(@staff.remaining_sick_days(Time.now.year), 'day')} in this year"
   .col-md-12
     h2 = 'My Leaves'
     table.list-table.table-bordered

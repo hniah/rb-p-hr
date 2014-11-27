@@ -6,6 +6,7 @@ class Leave < ActiveRecord::Base
   scope :rejected, -> { where(status: :rejected) }
   scope :pending, -> { where(status: :pending) }
   scope :annual, -> { where(category: :annual) }
+  scope :sick, -> { where(category: :sick) }
   scope :in_year,  -> (year) { where("DATE_PART('year', start_day) = :year AND DATE_PART('year', end_day) = :year", {year: year} )}
   scope :current_year, -> { in_year(Time.now.year) }
   scope :kind_options_start, -> { [['8:30', '8:30'], ['12:00', '12:00']] }

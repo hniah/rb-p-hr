@@ -16,6 +16,10 @@ class Staff < User
     self.leaves.in_year(year).annual.approved.sum(:total)
   end
 
+  def remaining_sick_days(year)
+    self.leaves.in_year(year).sick.approved.sum(:total)
+  end
+  
   def leader_or_not
     if is_leader && leader.present?
       errors.add(:leader, 'can not choose leader')
