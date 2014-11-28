@@ -83,16 +83,16 @@ Rails.application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   config.action_mailer.default_url_options = {host: 'futureworkz.com'}
-  #ActionMailer::Base.smtp_settings = {
-    #port: '465',
-    #address: 'smtp.gmail.com',
-    #user_name: ENV['FUTUREWORKZ_MAILER_USERNAME'],
-    #password: ENV['FUTUREWORKZ_MAILER_PASSWORD'],
-    #domain: 'futureworkz.com',
-    #authentication: :plain,
-    #ssl: true,
-    #from: 'mailer@futureworkz.com'
-  #}
+  ActionMailer::Base.smtp_settings = {
+    port: '465',
+    address: 'smtp.gmail.com',
+    user_name: ENV['FUTUREWORKZ_MAILER_USERNAME'],
+    password: ENV['FUTUREWORKZ_MAILER_PASSWORD'],
+    domain: 'futureworkz.com',
+    authentication: :plain,
+    ssl: true,
+    from: 'mailer@futureworkz.com'
+  }
   
   ActionMailer::Base.delivery_method = :smtp
 
