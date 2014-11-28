@@ -20,13 +20,6 @@ class Staff::LeavesController < Staff::BaseController
     end
   end
 
-  def edit
-    @leave = Leave.find(leave_id)
-    unless @leave.belong_to?(current_staff)
-      redirect_to staff_leaves_path, notice: 'You are not allow to edit this leave'
-    end
-  end
-
   def show
     @leave = Leave.find(leave_id)
   end

@@ -101,33 +101,6 @@ describe Staff::LeavesController do
     end
   end
 
-  describe 'GET #edit' do
-    let!(:leave) { create :leave}
-    
-    before { sign_in user }
-
-    def do_request
-      get :edit, id: leave.id
-    end
-    context 'leave belong to staff' do
-      let(:user) { leave.staff }
-      it 'render to leave edit form' do
-        do_request
-        expect(response).to render_template :edit
-        expect(assigns(:leave).staff).to match user
-        expect(assigns(:leave)).to match leave
-      end
-    end
-
-    context 'leave not belong to staff' do
-      let(:user) { create :user }
-      it 'render to leave list' do
-        do_request
-        expect(response).to redirect_to staff_leaves_path
-      end
-    end
-  end
-
   describe 'GET #show' do
     context 'show leave detail' do
       let(:leave) { create :leave }

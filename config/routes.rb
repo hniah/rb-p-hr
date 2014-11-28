@@ -50,7 +50,7 @@ Rails.application.routes.draw do
 
   namespace :staff do
     get 'profile', to: 'staffs#show'
-    resources :leaves, only: [:index, :new, :create, :show, :edit]
+    resources :leaves, only: [:index, :new, :create, :show]
     resources :lates, only: [:index]
   end
 
