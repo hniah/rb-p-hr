@@ -60,6 +60,6 @@ class Admin::StaffsController < Admin::BaseController
   end
 
   def staff_param
-    params.require(:staff).permit(:email, :name, :english_name, :personal_email, :address, :birthday, :note, :social_insurance, :phone_number, :started_on, :probation_end_on, :password, :password_confirmation, :designation, :is_admin, :is_leader, :leader)
+    params.require(:staff).permit(:email, :name, :english_name, :personal_email, :address, :birthday, :note, :social_insurance, :phone_number, :started_on, :probation_end_on, :password, :password_confirmation, :designation, :is_admin, :is_leader, :leader_id)
   end
 end

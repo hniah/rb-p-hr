@@ -125,14 +125,14 @@ describe Admin::LeavesController do
 
   describe 'POST #create' do
     context 'Success' do
-      let(:leave_param) { attributes_for(:leave, staff_id: martin.id, start_time: '8:30', 
-                                                  end_time: '12:00', start_date: '2014-09-19', 
-                                                  end_date: '2014-09-22', total_value: 1.5, 
-                                                  emails_cc: ['john@futureworkz.com', 'jack@futureworkz.com']
-                                        ) 
-                        }
+      let(:leave_param) do 
+        attributes_for(:leave, staff_id: martin.id, start_time: '8:30', 
+          end_time: '12:00', start_date: '2014-09-19', 
+          end_date: '2014-09-22', total_value: 1.5, 
+          emails_cc: ['john@futureworkz.com', 'jack@futureworkz.com']) 
+      end
       let(:leader) { create :user, email: 'khoa@futureworkz.com' }
-      let!(:martin) { create :user, email: 'martin@futureworkz.com', leader: leader.id }
+      let!(:martin) { create :user, email: 'martin@futureworkz.com', leader: leader }
       let(:leave) { Leave.first }
       let(:last_email) { ActionMailer::Base.deliveries.last }
       let!(:EMAIL_NOTIFIER) { create :setting, key: 'EMAIL_NOTIFIER', 

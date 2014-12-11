@@ -11,8 +11,12 @@ describe User do
     it { is_expected.to validate_presence_of :designation }
   end
 
+  describe 'associations' do
+    it { is_expected.to belong_to :leader }
+  end
+
   context 'validation email'  do
-    let(:user){ build(:user) }
+    let(:user) { build(:user) }
 
     it 'validates email address' do
       user.email = 'martin@futureworkz.com'

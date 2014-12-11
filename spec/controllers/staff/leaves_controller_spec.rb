@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Staff::LeavesController do
   let(:leader) { create :user, email: 'khoa@futureworkz.com' }
-  let!(:staff) { create :staff, leader: leader.id }
+  let!(:staff) { create :staff, leader: leader }
 
   describe 'GET #index' do
     def do_request

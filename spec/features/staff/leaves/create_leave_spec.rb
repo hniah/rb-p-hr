@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Display New Leave form' do
   context 'Staff logged in' do
-    let!(:staff) { create :staff, leader: leader.id }
+    let!(:staff) { create :staff, leader: leader }
     let!(:staff_cc) { create :staff}
     let!(:leader) { create :user, email: 'khoa@futureworkz.com' }
     let!(:EMAIL_NOTIFIER) { create :setting, key: 'EMAIL_NOTIFIER', value: 'jack@futureworkz.com' }
