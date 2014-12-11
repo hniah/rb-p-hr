@@ -1,6 +1,4 @@
 = semantic_bootstrap_nested_form_for leave, url: staff_leaves_path do |f|
-  - if !leader.nil?
-    p.text-danger This leave will be automatically cc to your team leader #{leader.email}.
   .form-group
     = f.label :category, class: 'control-label'
     br
@@ -13,9 +11,11 @@
     .form-group
       = f.select :end_time, Leave.kind_options_end, {}, { class: 'form-control', data: {test: 'select-end-time'} }
   .form-group
-    = f.label :emails_cc, class: 'control-label'
+    = f.label :emails_cc, 'Cc', class: 'control-label'
     br
-    = f.select :emails_cc, Staff.emails_cc_exclude(current_user.id)  , {include_blank: t('leave.message.select_staff')}, { class: 'form-control multi-staff-select', multiple: true}  
+    = f.select :emails_cc, Staff.emails_cc_exclude(current_user.id)  , {include_blank: 'Select colleague'}, { class: 'form-control multi-staff-select', multiple: true}  
+    - if current_user.leader
+      p.help-block Please note that your team leader #{current_user.leader.english_name} will be automatically cc-ed
   = f.input :total_value, label: 'Total', as: :number, input_html: { step: 0.5, min: 0.0 }
   = f.input :reason, input_html: { rows: 5, class: 'form-control' }
   = f.input :reason_note, label: 'Note', input_html: { rows: 5, class: 'form-control' }
