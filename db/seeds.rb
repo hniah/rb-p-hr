@@ -5,7 +5,7 @@ Staff.all.each do |staff|
     total: 7,
     reason: 'Add 7 sick leave',
     status: :approved,
-    start_date: Time.now.beginning_of_year,
-    end_date: Time.now.beginning_of_year
+    start_day: Date.today.change(month: 2),
+    end_day: Date.today.change(month: 2)
   ).save!
 end
