@@ -1,11 +1,12 @@
 = display_page_title ('Leaves List')
 .container.content
-  .col-md-9
-  .col-md-3
+  .col-md-6
+  .col-md-6
     = form_tag(admin_leaves_path, method: :get, class: 'formtastic')
       .form-group
         .row
           .col-md-4
+            = label_tag :status, 'Filtered Status'
             = select_tag :status, options_for_select(Leave.status_options, status_value), class: 'form-control', onchange: 'this.form.submit()'
           .col-md-4
             = label_tag :sort_column, 'Sort By'
