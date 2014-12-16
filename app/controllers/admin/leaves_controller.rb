@@ -6,8 +6,10 @@ class Admin::LeavesController < Admin::BaseController
     if params['status'] == 'pending'
       @leaves = @leaves.pending
     end
+    @sort_column = sort_column
+    @sort_direction = sort_direction
 
-    @leaves = @leaves.order(sort_column => sort_direction)
+    @leaves = @leaves.order(@sort_column => @sort_direction)
     @leaves = @leaves.paginate(page: page)
   end
 
