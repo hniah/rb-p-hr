@@ -4,11 +4,15 @@
   .col-md-3
     = form_tag(admin_leaves_path, method: :get, class: 'formtastic')
       .form-group
-          = select_tag :status, options_for_select(Leave.status_options, status_value), class: 'form-control', onchange: 'this.form.submit()'
-          = label_tag :sort_column, 'Sort By'
-          = select_tag :sort_column, options_for_select([['Start Day', 'start_day'], ['created_at', 'created_at']], @sort_column), class: 'form-control', onchange: 'this.form.submit()'
-          = label_tag :sort_direction, 'Direction'
-          = select_tag :sort_direction, options_for_select([['Ascending', 'asc'], ['Descending', 'desc']], @sort_direction), class: 'form-control', onchange: 'this.form.submit()'
+        .row
+          .col-md-4
+            = select_tag :status, options_for_select(Leave.status_options, status_value), class: 'form-control', onchange: 'this.form.submit()'
+          .col-md-4
+            = label_tag :sort_column, 'Sort By'
+            = select_tag :sort_column, options_for_select([['Start Date', 'start_day'], ['Sent Date', 'created_at']], @sort_column), class: 'form-control', onchange: 'this.form.submit()'
+          .col-md-4
+            = label_tag :sort_direction, 'Direction'
+            = select_tag :sort_direction, options_for_select([['Ascending', 'asc'], ['Descending', 'desc']], @sort_direction), class: 'form-control', onchange: 'this.form.submit()'
   table.list-table.table-bordered
     thead
       tr

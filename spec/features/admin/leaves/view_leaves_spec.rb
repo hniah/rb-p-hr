@@ -18,7 +18,7 @@ describe 'View Leaves List' do
       expect(page).to have_content 'Leaves List'
       expect(page.all('tr').count).to eql(7)
 
-      select 'Start Day', from: 'Sort By'
+      select 'Start Date', from: 'Sort By'
       select 'Ascending', from: 'Direction'
 
       expect(page).to have_content 'Leaves List'
