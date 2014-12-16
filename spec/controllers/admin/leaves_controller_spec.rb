@@ -3,9 +3,17 @@ require 'rails_helper'
 describe Admin::LeavesController do
   let(:admin) { create :admin }
   let(:staff) { create :staff }
-  let(:leave) { create :leave, status: :pending, staff: staff, start_date: '19/09/2014 8:30', end_date: '20/09/2014 17:30' }
+  let(:leave) do
+    create :leave, 
+      status: :pending, 
+      staff: staff, 
+      start_date: '19/09/2014 8:30', 
+      end_date: '20/09/2014 17:30'
+  end
   let(:last_email) { ActionMailer::Base.deliveries.last }
-  let!(:EMAIL_NOTIFIER) { create :setting, key: 'EMAIL_NOTIFIER', value: 'jack@futureworkz.com' }
+  let!(:EMAIL_NOTIFIER) do
+    create :setting, key: 'EMAIL_NOTIFIER', value: 'jack@futureworkz.com'
+  end
 
   describe '#approve' do
     def do_request
@@ -108,12 +116,33 @@ describe Admin::LeavesController do
         expect(assigns(:leaves).size).to eq 4
       end
     end
+
+    context 'data filtering' do
+      let!(:last_leave) do
+        create :leave, 
+          start_day: Time.now.change(year: 2020), 
+          end_day: Time.now.change(year: 2021)
+      end
+
+      before { create_list :leave, 3 }
+      before { sign_in admin }
+
+      def do_request
+        get :index, sort_column: :start_day, sort_direction: :desc
+      end
+
+      it 'filters data by column names' do
+        do_request
+        expect(assigns(:leaves).first).to eq last_leave
+      end
+    end
   end
 
   describe 'GET #new' do
     def do_request
       get :new
     end
+
     it 'renders template new and assigns new leave' do
       sign_in admin
       do_request

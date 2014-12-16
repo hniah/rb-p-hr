@@ -5,7 +5,9 @@ describe 'Display New Leave form' do
   context 'Admin logged in' do
     let(:admin) { create(:admin) }
     let!(:staff) { create(:staff) }
-    let!(:EMAIL_NOTIFIER) { create :setting, key: 'EMAIL_NOTIFIER', value: 'jack@futureworkz.com' }
+    let!(:EMAIL_NOTIFIER) do
+      create :setting, key: 'EMAIL_NOTIFIER', value: 'jack@futureworkz.com'
+    end
 
     it 'Create new leave' do
       feature_login(admin)

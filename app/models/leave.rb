@@ -1,7 +1,6 @@
 class Leave < ActiveRecord::Base
   extend Enumerize
 
-  default_scope -> { order(id: :desc) }
   scope :approved, -> { where(status: :approved) }
   scope :rejected, -> { where(status: :rejected) }
   scope :pending, -> { where(status: :pending) }

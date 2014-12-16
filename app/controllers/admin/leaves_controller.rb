@@ -1,15 +1,18 @@
 class Admin::LeavesController < Admin::BaseController
 
   def index
-    @leaves = Leave.paginate(page: page)
+    @leaves = Leave.all
+
     if params['status'] == 'pending'
-      @leaves = Leave.pending.paginate(page: page)
+      @leaves = @leaves.pending
     end
+
+    @leaves = @leaves.order(sort_column => sort_direction)
+    @leaves = @leaves.paginate(page: page)
   end
 
   def new
     @leave = Leave.new
-    @cc_to
   end
 
   def create
@@ -88,7 +91,7 @@ class Admin::LeavesController < Admin::BaseController
 
   protected
   def page
-    params[:page]
+    params.fetch(:page, 1).to_i
   end
 
   def leave_id
@@ -100,7 +103,11 @@ class Admin::LeavesController < Admin::BaseController
   end
 
   def leave_param
-    params.require(:leave).permit(:reason, :staff_id, :category, :start_date, :end_date, :start_time, :end_time, :total_value, :reason_note, :status, :sub_cate, emails_cc:[])
+    params.require(:leave).permit(
+      :reason, :staff_id, :category, :start_date, 
+      :end_date, :start_time, :end_time, :total_value, 
+      :reason_note, :status, :sub_cate, emails_cc:[]
+    )
   end
 
   def self_cc?
@@ -109,5 +116,13 @@ class Admin::LeavesController < Admin::BaseController
       true if leave_param['emails_cc'].include? @staff.email
     end
     false
+  end
+
+  def sort_column
+    params.fetch(:sort_column, 'start_day').to_sym
+  end
+
+  def sort_direction
+    params.fetch(:sort_direction, 'desc').to_sym
   end
 end
