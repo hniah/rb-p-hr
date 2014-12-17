@@ -1,10 +1,9 @@
 require 'rails_helper'
 
-describe SystemNotifier do
+describe LeaveNotifier do
   describe 'notify hr' do
     let(:leave) { create :leave }
     let!(:EMAIL_NOTIFIER) { create :setting, key: 'EMAIL_NOTIFIER', value: 'jack@futureworkz.com' }
-
     let(:last_email) { ActionMailer::Base.deliveries.last }
 
     context 'notify hr when leave come' do
