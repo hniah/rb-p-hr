@@ -82,19 +82,18 @@ Rails.application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
-  config.action_mailer.default_url_options = {host: 'futureworkz.com'}
-#   ActionMailer::Base.smtp_settings = {
-#     port: '465',
-#     address: 'smtp.gmail.com',
-#     user_name: ENV['FUTUREWORKZ_MAILER_USERNAME'],
-#     password: ENV['FUTUREWORKZ_MAILER_PASSWORD'],
-#     domain: 'futureworkz.com',
-#     authentication: :plain,
-#     ssl: true,
-#     from: 'mailer@futureworkz.com'
-#   }
+  config.action_mailer.default_url_options = {host: 'hr.utureworkz.com'}
+  ActionMailer::Base.smtp_settings = {
+    port: '465',
+    address: 'smtp.gmail.com',
+    user_name: ENV['FUTUREWORKZ_MAILER_USERNAME'],
+    password: ENV['FUTUREWORKZ_MAILER_PASSWORD'],
+    domain: 'futureworkz.com',
+    authentication: :plain,
+    ssl: true
+  }
   
-#   ActionMailer::Base.delivery_method = :smtp
+  ActionMailer::Base.delivery_method = :smtp
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
