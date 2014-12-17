@@ -1,31 +1,40 @@
 html
   head
-  body
-    h2= 'New leave application'
+  body style="font-family: Arial, font-size: 13px"
+    p Dear HR,
+    p A leave application has been submitted via HR System. Please find detail below.
+
+    h3 = 'New leave application'
+
     table.list-table
       thead
         tr
           td
-            strong= 'Type'
-          td= @leave.category.text
+            strong = 'Category of Leave'
+          td = @leave.category.text
         tr
           td
-            strong= 'Staff'
-          td= @leave.staff_english_name
+            strong = 'Staff name'
+          td = @leave.staff_english_name
         tr
           td
-            strong= 'Date'
+            strong = 'Date'
           td
-            strong= 'Start'
-            = ": #{@leave.start_day.strftime('%d/%m/%Y')} #{@leave.start_time}"
+            strong
+              | From: #{@leave.start_day.strftime('%d/%m/%Y')} #{@leave.start_time}
             br
-            strong= 'End'
-            = "  : #{@leave.end_day.strftime('%d/%m/%Y')} #{@leave.end_time}"
+            strong
+              | To: #{@leave.end_day.strftime('%d/%m/%Y')} #{@leave.end_time}
         tr
           td
-            strong= 'Reason Leave'
-          td= @leave.reason
+            strong = 'Reason of Absence'
+          td = @leave.reason
         tr
           td
-            strong= 'Reason Note Leave'
-          td= @leave.reason_note
+            strong = 'Note'
+          td = @leave.reason_note
+
+    - if @leave.staff.leader.present?
+      p Dear #{@leave.staff.leader.name},
+      p
+      p Please advise if we could approve the leave.
