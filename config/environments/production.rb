@@ -83,6 +83,7 @@ Rails.application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   config.action_mailer.default_url_options = {host: 'hr.utureworkz.com'}
+
   config.action_mailer.smtp_settings = {
     port: '465',
     address: 'smtp.gmail.com',
@@ -93,7 +94,7 @@ Rails.application.configure do
     ssl: true
   }
   
-  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.delivery_method = :smtp
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
