@@ -1,6 +1,6 @@
 class Staff::LeavesController < Staff::BaseController
   def index
-    @leaves = current_staff.leaves.paginate(page: page)
+    @leaves = current_staff.leaves.order(start_day: :desc).paginate(page: page)
   end
 
   def new
