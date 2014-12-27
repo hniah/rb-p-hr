@@ -1,6 +1,6 @@
 html
   head
-  body style="font-family: Arial, font-size: 13px"
+  body
     p Dear HR,
     p A leave application has been submitted via HR System. Please find detail below.
 
@@ -35,6 +35,6 @@ html
           td = @leave.reason_note
 
     - if @leave.staff.leader.present?
-      p Dear #{@leave.staff.leader.name},
+      p Dear #{@leave.staff.leader.english_name},
       p
       p Please advise if we could approve the leave.
