@@ -52,6 +52,21 @@ body {
 }
 
 #content {
-  margin-left: 180px;
-  background-color: #FFF;
+  min-width: 400px;
+  min-height: 620px;
+  margin-bottom: 100px;
+  padding-bottom: 50px;
+  overflow: hidden;
+  position: relative;
+  background: #fff;
+  margin-left: 177px;
+  border-left: 1px solid #dae3e9;
+  border-bottom: 1px solid #dae3e9;
+  box-shadow: -3px 3px 3px -2px #f1f1f3;
+  border-radius: 0px 0px 0px 5px;
+  -webkit-transition: margin-left .3s ease;
+  -moz-transition: margin-left .3s ease;
+  -o-transition: margin-left .3s ease;
+  -ms-transition: margin-left .3s ease;
+  transition: margin-left .3s ease;
 }
