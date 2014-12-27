@@ -10,6 +10,7 @@ describe LeaveNotifier do
       it 'notify hr when leave come' do
         LeaveNotifier.new_leave(leave).deliver
         expect(last_email.to).to eq ['jack@futureworkz.com']
+        expect(last_email.reply_to).to eq 'Futureworkz Human Resource hr@futureworkz.com'
         expect(last_email.subject).to eq 'New Leave Application'
         expect(last_email.body).to include 'Sickly'
       end
@@ -18,9 +19,8 @@ describe LeaveNotifier do
 
   describe 'notify staff when leave is approved' do
     let(:leave) { create :leave }
-    before do
-      LeaveNotifier.approved(leave).deliver
-    end
+
+    before { LeaveNotifier.approved(leave).deliver }
 
     let(:last_email) { ActionMailer::Base.deliveries.last }
 
