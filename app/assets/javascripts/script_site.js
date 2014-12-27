@@ -25,4 +25,5 @@ $(document).on('ready page:load', function() {
     dateFormat: 'dd/mm/yy'
   });
 
+  $('[data-toggle="tooltip"]').tooltip()
 })

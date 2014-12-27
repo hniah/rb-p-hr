@@ -1,0 +1,23 @@
+nav.navbar.navbar-default
+  .container-fluid
+    .navbar-header
+      .navbar-brand
+        = link_to 'Futureworkz HR System', root_path
+    ul.nav.navbar-nav.navbar-right.settings
+      li.setting = link_to fa_icon('envelope'),
+        [:new, :feedback],
+        title: 'Feedback',
+        data: {toggle: 'tooltip', placement: 'bottom'}
+      li.setting = link_to fa_icon('plus'),
+        new_staff_leave_path,
+        title: 'Submit new leave',
+        data: {toggle: 'tooltip', placement: 'bottom'}
+      li.setting = link_to fa_icon('user'), 
+        staff_profile_path, 
+        title: 'Your account',
+        data: { toggle: 'tooltip', placement: 'bottom' }
+      li.setting = link_to fa_icon('share'), 
+        destroy_user_session_path, 
+        method: :delete, 
+        title: 'Log out',
+        data: {toggle: 'tooltip', placement: 'bottom', confirm: 'Are you sure you want to sign out?'}

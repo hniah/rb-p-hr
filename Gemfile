@@ -39,15 +39,16 @@ gem 'simple-navigation'
 gem 'simple-navigation-bootstrap'
 gem 'nested_form'
 gem 'paper_trail', '~> 3.0.5'
-gem 'nunify'
 gem 'redcarpet'
 gem 'jquery-ui-rails'
+gem 'font-awesome-rails'
 
 group :development do
   gem 'spring'
   gem 'better_errors'
   gem 'pry'
   gem 'letter_opener'
+  gem 'binding_of_caller'
 end
 
 group :production do

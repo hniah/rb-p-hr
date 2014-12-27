@@ -5,6 +5,17 @@ html
     == javascript_include_tag 'application', data: { turbolinks_track: true }
     == csrf_meta_tags
   body
+    header#header
+      = render partial: 'shared/header'
+    section#main-body
+      .container-fluid
+        .row
+          #sidebar-nav = render_navigation expand_all: true
+          #content
+            .container-fluid
+              .flash-messages= flash_messages
+              .row == yield
+          
     .wrapper.container-fluid
       .header.row
         .container
@@ -25,7 +36,7 @@ html
             .navbar.navbar-default
               .navbar-header
                 = link_to(image_tag('futureworkz-logo.png', height: 30), root_path)
-              = render_navigation expand_all: true, renderer: :bootstrap
+              = render_navigation expand_all: true
       .main-body
         .container
           .flash-messages= flash_messages
