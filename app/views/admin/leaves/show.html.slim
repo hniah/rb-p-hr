@@ -1,9 +1,6 @@
-= display_page_title('Leave Detail')
-.container.content
-  .col-md-12
-    .headline
-      h2= 'Leave Detail'
-    table.list-table
+.table-wrapper.col-md-12
+    h1 Leave ##{@leave.id} Detail
+    table.table.table-hover
       thead
         tr
           td
@@ -34,26 +31,23 @@
           td
             strong= 'Reason Note Leave'
           td= @leave.reason_note
-  .col-md-12
-    .headline
-      h2= 'Staff History'
-    .history
-      table.list-table.table-bordered
-        thead
-          tr
-            th= '#'
-            th.col-md-2= 'User'
-            th= 'Action'
-            th= 'Changeset'
-            th= 'Time'
-        - @versions.each_with_index do |version, index|
-          tr
-            td= index + 1
-            td.col-md-2
-              = version.creator_name
-            td
-              = version.event
-            td
-              = version_diff(version, @leave)
-            td
-              = version.created_at.strftime('%d/%m/%Y %H:%M:%S')
+    h1 Staff History
+    table.table.table-hover
+      thead
+        tr
+          th= '#'
+          th.col-md-2= 'User'
+          th= 'Action'
+          th= 'Changeset'
+          th= 'Time'
+      - @versions.each_with_index do |version, index|
+        tr
+          td= index + 1
+          td.col-md-2
+            = version.creator_name
+          td
+            = version.event
+          td
+            = version_diff(version, @leave)
+          td
+            = version.created_at.strftime('%d/%m/%Y %H:%M:%S')

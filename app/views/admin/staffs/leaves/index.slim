@@ -1,6 +1,6 @@
-= display_page_title ('Leaves List')
-.container.content
-  table.list-table.table-bordered
+.table-wrapper.col-md-12
+  h1 List of Leaves
+  table.table.table-hover
     thead
       tr
         th= Leave.human_attribute_name('category')
@@ -39,7 +39,6 @@
             = semantic_form_for leave, url: approve_admin_leave_path(leave.id) do |f|
               = f.submit Leave.human_attribute_name('approve'), class: 'list-approve-button'
               = link_to Leave.human_attribute_name('reject'), reject_admin_leave_path(leave.id), class: 'list-delete-button', data: {test: "reject-leave-#{leave.id}"}
-  = link_to 'Back', admin_staff_path(@staff.id),  class: 'btn-u btn-u-default'
-  .content
-    .pagination
-      = bootstrap_paginate(@leaves)
+  = link_to 'Back to Staff Info', admin_staff_path(@staff.id),  class: 'btn btn-gray'
+  .pagination
+    = bootstrap_paginate(@leaves)

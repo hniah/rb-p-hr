@@ -23,7 +23,7 @@
         th= Leave.human_attribute_name('total')
         th.col-md-3= Leave.human_attribute_name('reason')
         th= Leave.human_attribute_name('staff')
-        th.col-md-2= Leave.human_attribute_name('rejection_note')
+        th Action
     tbody
       - @leaves.each do |leave|
         tr
@@ -44,8 +44,8 @@
             = list_button(name: 'Delete', action: :delete, admin: :admin, resource: leave)
             = list_button(name: 'Detail', action: :detail, admin: :admin, resource: leave)
             - if leave.status.pending?
-              = simple_form_for leave, url: approve_admin_leave_path(leave.id) do |f|
-                = f.submit Leave.human_attribute_name('approve'), class: 'list-approve-button'
-                = link_to Leave.human_attribute_name('reject'), reject_admin_leave_path(leave.id), class: 'list-delete-button', data: {test: "reject-leave-#{leave.id}"}
+              = simple_form_for leave, url: approve_admin_leave_path(leave.id), html: {style: 'display: inline'} do |f|
+                = f.submit Leave.human_attribute_name('approve'), class: 'list-approve-button inline'
+              = link_to Leave.human_attribute_name('reject'), reject_admin_leave_path(leave.id), class: 'list-delete-button', data: {test: "reject-leave-#{leave.id}"}
   .pagination
     = bootstrap_paginate(@leaves)

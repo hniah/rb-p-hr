@@ -1,6 +1,6 @@
-=display_page_title('Staff History')
-.container.content
-  table.list-table.table-bordered
+.table-wrapper.col-md-12
+  h1 Staff History
+  table.table.table-hover
     thead
       tr
         th= '#'
@@ -20,8 +20,7 @@
             = version_diff(version, @staff)
           td
             = version.created_at.strftime('%d-%m-%Y %H:%M:%S')
-  = link_to 'Back', admin_staff_path(@staff.id),  class: 'btn-u btn-u-default'
-  .content
-    .pagination
-      = bootstrap_paginate(@versions)
+  = link_to 'Back to Staff Info', admin_staff_path(@staff.id),  class: 'btn btn-gray'
+  .pagination
+    = bootstrap_paginate(@versions)
 
