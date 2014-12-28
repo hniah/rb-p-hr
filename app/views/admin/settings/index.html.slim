@@ -21,7 +21,7 @@
               = f.input :key, label: false, input_html: { class: 'col-md-3', data: {test: 'fill-in-key'} }, placeholder: 'Key'
               = f.input :value, label: false, input_html: { rows: 1, class: 'form-control', class: 'col-md-4', data: {test: 'fill-in-value'} }, placeholder: 'Value'
               .btn-group
-                = f.submit 'Add value', class: 'btn btn-primary'
+                = f.submit 'Create Setting', class: 'btn btn-primary'
                 = link_to 'Cancel', '#',class: 'btn btn-gray cancel_form'
   = link_to 'Add new', '#', class: 'btn btn-success add_new_form', data: {test: 'add-new-setting'}
   .pagination

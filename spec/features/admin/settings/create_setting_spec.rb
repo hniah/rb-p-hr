@@ -14,9 +14,9 @@ describe 'Display add setting form' do
 
     get_element("fill-in-key").set('email_notifier')
     get_element("fill-in-value").set('martin@futureworkz.com')
-    click_on 'Add'
+    click_on 'Create Setting'
 
-    expect(page).to have_content 'Settings List'
+    expect(page).to have_content 'List of Settings'
     expect(page).to have_content 'Setting is successfully created.'
     expect(page).to have_content 'email_notifier'
   end

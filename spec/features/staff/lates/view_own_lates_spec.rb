@@ -9,9 +9,11 @@ describe 'Staff can view his own lates' do
 
   it 'displays list of lates' do
     visit root_path
-    click_on 'My Account'
+    get_element('my-account').click
 
-    click_on 'View all my lates'
+    p page.body
+
+    click_on 'View all your lates'
 
     expect(page).to have_content late.note
     expect(page.all('tr').count).to eql(4)

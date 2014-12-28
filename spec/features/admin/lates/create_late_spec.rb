@@ -10,9 +10,9 @@ describe 'Admin can create late feature' do
     visit root_path
     click_on 'Add New Late'
 
-    expect(page).to have_content 'Create a new Late'
+    expect(page).to have_content 'Add New Late'
 
-    fill_in 'Date', with: '20/08/2014'
+    fill_in 'late[date]', with: '20/08/2014'
     fill_in 'Note', with: 'This is a note'
     select admin.english_name, from: 'Staff'
     click_on 'Create Late'

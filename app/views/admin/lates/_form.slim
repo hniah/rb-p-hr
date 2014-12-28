@@ -1,7 +1,7 @@
 .form-wrapper
   .section
     = simple_form_for [:admin, late] do |f|
-      = f.association :staff
+      = f.association :staff, label_method: :english_name
       = f.input :date, html5: true
       = f.input :note
       .btn-group

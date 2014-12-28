@@ -7,9 +7,9 @@ describe 'Show staff profile' do
     feature_login staff
     visit root_path
 
-    click_on 'My Account'
+    get_element('my-account').click
 
-    expect(page).to have_content 'My account'
+    expect(page).to have_content 'Your Account'
     expect(page).to have_content staff.name
     expect(page).to have_content staff.english_name
   end

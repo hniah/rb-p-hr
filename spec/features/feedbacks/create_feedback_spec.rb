@@ -9,7 +9,7 @@ describe 'User submit feedback feature' do
       feature_login staff
       visit root_url
 
-      click_on 'Feedback/Bug Report'
+      get_element('feedback-button').click
 
       select 'Feedback', from: 'Kind'
       fill_in 'Content', with: 'This is a feedback'

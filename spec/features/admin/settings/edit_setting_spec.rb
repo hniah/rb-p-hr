@@ -16,7 +16,7 @@ describe 'Admin edit setting' do
     fill_in 'Value', with: 'mailer@futureworkz.com'
     click_on 'Update Setting'
 
-    expect(page).to have_content 'Settings List'
+    expect(page).to have_content 'List of Settings'
     expect(page).to have_content 'EMAIL_DEFAULT_FROM'
     expect(page).to have_content 'Setting is successfully updated'
   end

@@ -7,7 +7,7 @@ nav.navbar.navbar-default
       li.setting = link_to fa_icon('envelope'),
         [:new, :feedback],
         title: 'Feedback',
-        data: {toggle: 'tooltip', placement: 'bottom'}
+        data: {test: 'feedback-button', toggle: 'tooltip', placement: 'bottom'}
       - unless current_user.is_admin?
         li.setting = link_to fa_icon('plus'),
           new_staff_leave_path,
@@ -24,7 +24,7 @@ nav.navbar.navbar-default
         li.setting = link_to fa_icon('user'), 
           staff_profile_path, 
           title: 'Your account',
-          data: { toggle: 'tooltip', placement: 'bottom' }
+          data: {test: 'my-account', toggle: 'tooltip', placement: 'bottom' }
       li.setting = link_to fa_icon('share'), 
         destroy_user_session_path, 
         method: :delete, 

@@ -20,13 +20,11 @@ class Admin::LeavesController < Admin::BaseController
   def create
     @leave = Leave.new(leave_param)
 
-    if @leave.save && !self_cc?
+    if @leave.save
       LeaveNotifier.new_leave(@leave).deliver
       redirect_to admin_leaves_path, notice: t('.message.success')
     else
-      flash[:alert] = t('.message.failure') if !self_cc? 
-      flash[:alert] = 'you can not send mail your self' if self_cc? 
-      
+      flash[:alert] = t('.message.failure')
       render :new
     end
   end
@@ -110,14 +108,6 @@ class Admin::LeavesController < Admin::BaseController
       :end_date, :start_time, :end_time, :total_value, 
       :reason_note, :status, :sub_cate, emails_cc:[]
     )
-  end
-
-  def self_cc?
-    if leave_param['staff_id'].present?
-      @staff = User.find(leave_param['staff_id']) 
-      true if leave_param['emails_cc'].include? @staff.email
-    end
-    false
   end
 
   def sort_column

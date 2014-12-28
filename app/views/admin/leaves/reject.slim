@@ -1,7 +1,7 @@
-= display_page_title('Reject Leave')
-.container.content
-  .col-md-6
-    = semantic_form_for @leave, url: reject_action_admin_leave_path(@leave.id) do |f|
-      = f.input :rejection_note, input_html: { rows: 2 }
-      = f.submit 'Reject Leave', class: 'btn-u'
-      = link_to 'Back', admin_leaves_path, class: 'btn-u btn-u-default'
+.col-md-6
+  h1 Reject Leave ##{@leave.id}
+  = simple_form_for @leave, url: reject_action_admin_leave_path(@leave.id) do |f|
+    = f.input :rejection_note, input_html: { rows: 2 }
+    .btn-group
+      = f.submit 'Reject Leave', class: 'btn btn-danger'
+      = link_to 'Back', admin_leaves_path, class: 'btn btn-gray'

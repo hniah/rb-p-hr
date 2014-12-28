@@ -29,7 +29,7 @@ describe Users::OmniauthCallbacksController do
 
         expect { do_request }.not_to change(User, :count)
         expect(controller.user_signed_in?).to be_falsey
-        expect(response).to redirect_to root_path
+        expect(response).to redirect_to new_user_session_path
       end
     end
   end

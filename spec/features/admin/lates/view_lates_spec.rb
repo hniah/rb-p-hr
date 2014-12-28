@@ -11,7 +11,7 @@ describe 'Admin view lates list' do
     visit root_path
     click_on 'Late List'
 
-    expect(page).to have_content('List of Late')
+    expect(page).to have_content('List of Lates')
     expect(page).to have_content late.staff.english_name
   end
 end
