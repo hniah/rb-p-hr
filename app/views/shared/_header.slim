@@ -8,14 +8,23 @@ nav.navbar.navbar-default
         [:new, :feedback],
         title: 'Feedback',
         data: {toggle: 'tooltip', placement: 'bottom'}
-      li.setting = link_to fa_icon('plus'),
-        new_staff_leave_path,
-        title: 'Submit new leave',
-        data: {toggle: 'tooltip', placement: 'bottom'}
-      li.setting = link_to fa_icon('user'), 
-        staff_profile_path, 
-        title: 'Your account',
-        data: { toggle: 'tooltip', placement: 'bottom' }
+      - unless current_user.is_admin?
+        li.setting = link_to fa_icon('plus'),
+          new_staff_leave_path,
+          title: 'Submit new leave',
+          data: {toggle: 'tooltip', placement: 'bottom'}
+      - if current_user.is_admin?
+        li.setting 
+          = link_to fa_icon('bell'),
+            admin_leaves_path,
+            title: "8 pending leaves",
+            data: {toggle: 'tooltip', placement: 'bottom'}
+          span.badge.count 8
+      - else
+        li.setting = link_to fa_icon('user'), 
+          staff_profile_path, 
+          title: 'Your account',
+          data: { toggle: 'tooltip', placement: 'bottom' }
       li.setting = link_to fa_icon('share'), 
         destroy_user_session_path, 
         method: :delete, 

@@ -1,10 +1,10 @@
-= display_page_title('Feedback/Bug Report')
-.container.content
-  .col-md-5
+.col-md-6.form-wrapper
+  h1 Feedback/Bug Report
+  .section
     = semantic_form_for @feedback do |f|
       .form-group
         = f.label :kind, class: 'control-label'
         br
         = f.select :kind, Feedback.kind.options, class: 'form-control'
       = f.input :content
-      = f.submit
+      = f.submit class: 'btn btn-danger'

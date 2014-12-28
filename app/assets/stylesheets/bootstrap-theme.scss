@@ -1,4 +1,5 @@
 @import 'shared/_side-menu';
+@import 'shared/ui-elements';
 @import url(http://fonts.googleapis.com/css?family=Open+Sans);
 
 body {
@@ -12,6 +13,7 @@ body {
   i.fa {
     font-size: 22px;
   }
+
 
   .navbar-brand {
     a {
@@ -30,6 +32,16 @@ body {
     border: 0;
     border-radius: 0;
     li {
+      position: relative;
+
+      .count {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        z-index: 10;
+        background-color: #35bac4;
+        color: #FFF;
+      }
       > a {
         color: #d6d6d6;
         border-left: 1px solid #101417;

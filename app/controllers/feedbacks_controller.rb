@@ -1,4 +1,4 @@
-class FeedbacksController < ApplicationController
+class FeedbacksController < LoggedInController
   before_filter :authenticate_user!
 
   def new

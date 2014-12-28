@@ -1,5 +1,4 @@
-class Admin::BaseController < ApplicationController
-  before_filter :authenticate_user!
+class Admin::BaseController < LoggedInController
   before_filter :authenticate_admin!
 
   def authenticate_admin!

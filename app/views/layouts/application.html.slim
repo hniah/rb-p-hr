@@ -5,39 +5,8 @@ html
     == javascript_include_tag 'application', data: { turbolinks_track: true }
     == csrf_meta_tags
   body
-    header#header
-      = render partial: 'shared/header'
     section#main-body
       .container-fluid
         .row
-          #sidebar-nav = render_navigation expand_all: true
-          #content
-            .container-fluid
-              .flash-messages= flash_messages
-              .row == yield
-          
-    .wrapper.container-fluid
-      .header.row
-        .container
-          .topbar
-            .container
-              ul.loginbar.pull-right
-                - if current_user.present?
-                  li= "#{current_user.email}"
-                  - if !current_user.is_admin?
-                    li.topbar-devider
-                      li= link_to 'My Account', staff_profile_path
-                  li.topbar-devider
-                  li= link_to 'Help', :help
-                  li.topbar-devider
-                  li= link_to 'Logout', destroy_user_session_path, method: :delete, data: {confirm: 'Are you sure you want to sign out?'}
-                - else
-                  li= link_to 'Sign in with Google', user_omniauth_authorize_path(:google_oauth2)
-            .navbar.navbar-default
-              .navbar-header
-                = link_to(image_tag('futureworkz-logo.png', height: 30), root_path)
-              = render_navigation expand_all: true
-      .main-body
-        .container
           .flash-messages= flash_messages
-        == yield
+          .content-body == yield

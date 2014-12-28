@@ -1,6 +1,4 @@
-class Staff::BaseController < ApplicationController
-  before_filter :authenticate_user!
-
+class Staff::BaseController < LoggedInController
   protected
   def current_staff
     current_user.becomes(Staff)
