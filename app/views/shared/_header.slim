@@ -21,7 +21,7 @@ nav.navbar.navbar-default
             data: {toggle: 'tooltip', placement: 'bottom'}
           span.badge.count 8
       - else
-        li.setting = link_to fa_icon('user'), 
+        li.setting = link_to gravatar_tag(current_user.personal_email, size: 24, html: {class: 'avatar'}),
           staff_profile_path, 
           title: 'Your account',
           data: {test: 'my-account', toggle: 'tooltip', placement: 'bottom' }

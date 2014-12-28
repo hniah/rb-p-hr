@@ -41,6 +41,7 @@ gem 'paper_trail', '~> 3.0.5'
 gem 'redcarpet'
 gem 'jquery-ui-rails'
 gem 'font-awesome-rails'
+gem 'gravatarify', '~> 3.0.0'
 
 group :development do
   gem 'spring'
