@@ -1,20 +1,20 @@
-= display_page_title ('Leaves List')
-.container.content
-  .col-md-6
-  .col-md-6
-    = form_tag(admin_leaves_path, method: :get, class: 'formtastic')
-      .form-group
-        .row
-          .col-md-4
-            = label_tag :status, 'Filtered Status'
-            = select_tag :status, options_for_select(Leave.status_options, status_value), class: 'form-control', onchange: 'this.form.submit()'
-          .col-md-4
-            = label_tag :sort_column, 'Sort By'
-            = select_tag :sort_column, options_for_select([['Start Date', 'start_day'], ['Sent Date', 'created_at']], @sort_column), class: 'form-control', onchange: 'this.form.submit()'
-          .col-md-4
-            = label_tag :sort_direction, 'Direction'
-            = select_tag :sort_direction, options_for_select([['Ascending', 'asc'], ['Descending', 'desc']], @sort_direction), class: 'form-control', onchange: 'this.form.submit()'
-  table.list-table.table-bordered
+.table-wrapper
+  h1 Leaves List
+  .col-md-6.filter-block
+    .row
+      = form_tag(admin_leaves_path, method: :get)
+        .form-group
+          .row
+            .col-md-4
+              = label_tag :status, 'Filtered Status'
+              = select_tag :status, options_for_select(Leave.status_options, status_value), class: 'form-control', onchange: 'this.form.submit()'
+            .col-md-4
+              = label_tag :sort_column, 'Sort By'
+              = select_tag :sort_column, options_for_select([['Start Date', 'start_day'], ['Sent Date', 'created_at']], @sort_column), class: 'form-control', onchange: 'this.form.submit()'
+            .col-md-4
+              = label_tag :sort_direction, 'Direction'
+              = select_tag :sort_direction, options_for_select([['Ascending', 'asc'], ['Descending', 'desc']], @sort_direction), class: 'form-control', onchange: 'this.form.submit()'
+  table.table.table-hover
     thead
       tr
         th= Leave.human_attribute_name('category')
@@ -24,7 +24,6 @@
         th.col-md-3= Leave.human_attribute_name('reason')
         th= Leave.human_attribute_name('staff')
         th.col-md-2= Leave.human_attribute_name('rejection_note')
-        th.col-md-2= Leave.human_attribute_name('action')
     tbody
       - @leaves.each do |leave|
         tr
@@ -40,13 +39,10 @@
           td= pluralize(leave.total.abs, 'day')
           td= leave.reason
           td= leave.staff_english_name
-          td= leave.rejection_note
           td
             = list_button(name: 'Edit', action: :edit, admin: :admin, resource: leave)
             = list_button(name: 'Delete', action: :delete, admin: :admin, resource: leave)
             = list_button(name: 'Detail', action: :detail, admin: :admin, resource: leave)
-            br
-            br
             - if leave.status.pending?
               = semantic_form_for leave, url: approve_admin_leave_path(leave.id) do |f|
                 = f.submit Leave.human_attribute_name('approve'), class: 'list-approve-button'

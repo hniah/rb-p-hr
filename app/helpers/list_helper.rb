@@ -23,7 +23,7 @@ module ListHelper
   end
 
   def list_detail_button_options(resource)
-    {method: :get, class: 'list-edit-button', data: {test: "view-#{resource_class(resource)}-#{resource.id}"}}
+    {method: :get, class: 'list-detail-button', data: {test: "view-#{resource_class(resource)}-#{resource.id}"}}
   end
 
   def bootstrap_paginate(resources)

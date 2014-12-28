@@ -1,6 +1,7 @@
 @import 'shared/_side-menu';
 @import 'shared/_ui-elements';
 @import 'shared/_form';
+@import 'shared/_table';
 @import url(http://fonts.googleapis.com/css?family=Open+Sans);
 
 body {
@@ -10,11 +11,9 @@ body {
 }
 
 #header {
-
   i.fa {
     font-size: 22px;
   }
-
 
   .navbar-brand {
     a {

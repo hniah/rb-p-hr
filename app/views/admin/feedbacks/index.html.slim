@@ -1,11 +1,11 @@
-= display_page_title ('Feedbacks List')
-.container.content
-  table.list-table.table-bordered
+.table-wrapper
+  h1 Feedback List
+  table.table.table-hover
     thead
       tr
         th= Feedback.human_attribute_name('kind')
         th= Feedback.human_attribute_name('content')
-        th= Feedback.human_attribute_name('staff_id')
+        th Sent by
     tbody
       - @feedbacks.each do |feedback|
         tr

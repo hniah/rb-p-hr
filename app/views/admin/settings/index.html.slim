@@ -1,6 +1,6 @@
-= display_page_title ('Settings List')
-.container.content
-  table.list-table.table-bordered
+.table-wrapper
+  h1 List of Settings
+  table.table.table-hover
     thead
       tr
         th.col-md-4= Setting.human_attribute_name('key')
@@ -15,13 +15,14 @@
             = list_button(name: 'Edit', action: :edit, admin: :admin, resource: setting)
             = list_button(name: 'Delete', action: :delete, admin: :admin, resource: setting)
       tr.add-new-setting{ style="display:none" }
-        td{ colspan="3" }
+        td colspan="3"
           .form-inline
-            = semantic_form_for [:admin, @setting]  do |f|
-              = f.input :key, label: false, input_html: { style: 'resize: none; width: 365px;', data: {test: 'fill-in-key'} }
-              = f.input :value, label: false, input_html: { rows: 1, class: 'form-control', style: 'resize: none; width: 365px;', data: {test: 'fill-in-value'} }
-              = f.submit 'Add', class: 'btn-u'
-              = link_to 'Cancel', '#',class: 'btn-u btn-u-default cancel_form'
-  = link_to 'Add new', '#', class: 'btn-u add_new_form', data: {test: 'add-new-setting'}
+            = simple_form_for [:admin, @setting]  do |f|
+              = f.input :key, label: false, input_html: { class: 'col-md-3', data: {test: 'fill-in-key'} }, placeholder: 'Key'
+              = f.input :value, label: false, input_html: { rows: 1, class: 'form-control', class: 'col-md-4', data: {test: 'fill-in-value'} }, placeholder: 'Value'
+              .btn-group
+                = f.submit 'Add value', class: 'btn btn-primary'
+                = link_to 'Cancel', '#',class: 'btn btn-gray cancel_form'
+  = link_to 'Add new', '#', class: 'btn btn-success add_new_form', data: {test: 'add-new-setting'}
   .pagination
     = bootstrap_paginate(@settings)

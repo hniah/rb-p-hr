@@ -1,24 +1,22 @@
-= semantic_form_for [:admin, staff] do |f|
+= simple_form_for [:admin, staff] do |f|
   = f.input :designation
   = f.input :name
   = f.input :english_name
   = f.input :email
   = f.input :personal_email
-  = f.input :birthday, as: :date_picker
+  = f.input :birthday, html5: true
   = f.input :address, input_html: { rows: 2 }
   = f.input :phone_number
   = f.input :social_insurance
-  = f.input :started_on, as: :date_picker
-  = f.input :probation_end_on, as: :date_picker
+  = f.input :started_on, html5: true
+  = f.input :probation_end_on, html5: true
   = f.input :note, input_html: { rows: 2 }
   = f.input :is_admin, as: :boolean
   = f.input :is_leader, as: :boolean
-  .form-group
-    = f.label :leader, class: 'control-label'
-    br
-    = f.select :leader_id, Staff.leaders.to_options, {include_blank: t('staff.message.select_leader')}, { class: 'form-control' }
-  = f.submit class: 'btn-u'
+  = f.association :leader, collection: Staff.leaders.to_options, prompt: 'Select Leader'
   - if staff.id.nil?
     = f.hidden_field :password, class: 'form-control', value: '123123123'
     = f.hidden_field :password_confirmation, class: 'form-control', value: '123123123'
-  = link_to 'Back', admin_staffs_path, class: 'btn-u btn-u-default'
+  .btn-group
+    = f.submit class: 'btn btn-primary'
+    = link_to 'Back', admin_staffs_path, class: 'btn btn-gray'

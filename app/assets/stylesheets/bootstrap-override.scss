@@ -6,23 +6,26 @@
   margin: 20px 0;
 }
 
-.list-table {
-  @extend .table;
-  @extend .table-striped;;
-  @extend .table-hover;
-}
-
 .list-edit-button {
   @extend .btn;
   @extend .btn-warning;
   @extend .btn-xs;
   margin: 0 2px;
+  text-decoration: none;
+}
+.list-detail-button {
+  @extend .btn;
+  @extend .btn-info;
+  @extend .btn-xs;
+  margin: 0 2px;
+  text-decoration: none;
 }
 .list-delete-button {
   @extend .btn;
   @extend .btn-danger;
   @extend .btn-xs;
   margin: 0 2px;
+  text-decoration: none;
 }
 .list-approve-button {
   @extend .btn;
