@@ -27,8 +27,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 gem 'slim' #Layout engine
 gem 'enumerize' # Enum in Rails
-gem 'formtastic', '~> 3.0.0'
-gem 'formtastic-bootstrap'
+gem 'simple_form'
 gem 'rails_utils' # Generate flash message (Bootstrap)
 gem 'will_paginate', '~> 3.0' # Rails pagination
 gem 'will_paginate-bootstrap' # Bootstrap renderer for will_paginate
