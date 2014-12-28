@@ -24,7 +24,7 @@ SimpleNavigation::Configuration.run do |navigation|
       submenu.item :new, 'Add New Leave', new_admin_leave_path
     end
 
-    primary.item :lates, fa_icon('clock-o', text: '<span>Late</span>'.html_safe), '#', if: -> { current_user.is_admin? } do |submenu|
+    primary.item :lates, fa_icon('clock-o', text: '<span>Late</span>'.html_safe), '#', class: 'has-submenu', if: -> { current_user.is_admin? } do |submenu|
       submenu.dom_class = 'submenu'
       submenu.item :index, 'Late List', admin_lates_path
       submenu.item :new, 'Add New Late', new_admin_late_path

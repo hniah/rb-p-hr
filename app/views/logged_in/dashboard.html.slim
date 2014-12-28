@@ -1,12 +1,6 @@
-= display_page_title('FutureWorkz HR System')
-.container.content
-  .col-md-6
-    - if user_signed_in?
-      p= "Hi #{current_user.english_name},"
-      p= 'Thank you for logging in!'
-      p If this is the first time you visit the website, please read #{link_to 'the Help page', :help}.
-      p If you have any questions regarding the website, please feel free to send #{link_to 'Jack', 'mailto:jack@futureworkz.com'} or #{link_to 'Martin', 'mailto:martin@futureworkz.com'} a message.
-
-    - else
-      = link_to 'Click here to log in with your Google account', 
-          user_omniauth_authorize_path(:google_oauth2), class: 'btn-u btn-success'
+.col-md-12
+  h1 Futureworkz HR System
+  p= "Hi #{current_user.english_name},"
+  p= 'Thank you for logging in!'
+  p If this is the first time you visit the website, please read #{link_to 'the Help page', :help}.
+  p If you have any questions regarding the website, please feel free to send #{link_to 'Jack', 'mailto:jack@futureworkz.com'} or #{link_to 'Martin', 'mailto:martin@futureworkz.com'} a message.
