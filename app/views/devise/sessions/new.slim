@@ -6,4 +6,7 @@
 
       p If you are not sure what you could do, please ask Jackie for help.
       
-      = link_to 'Click here to sign in with your Google Account', user_omniauth_authorize_path(:google_oauth2), class: 'btn btn-success'
+      = button_to 'Sign in using your Google Account', 
+        user_omniauth_authorize_path(:google_oauth2), 
+        class: 'btn btn-success',
+        data: {disable_with: 'Signing you in...'}
