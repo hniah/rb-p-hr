@@ -1,5 +1,4 @@
-= display_page_title('Edit Leave')
-.container.content
-  .col-md-6
-    = render partial: 'admin/leaves/form', locals: { leave: @leave }
+.col-md-6
+  h1 Edit leave ##{@leave.id}
+  = render partial: 'admin/leaves/form', locals: { leave: @leave }
 
