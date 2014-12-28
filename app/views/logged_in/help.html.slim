@@ -1,21 +1,20 @@
-= display_page_title('Help - Q&A')
-.container.content
-  .col-md-6
-    ol
-      li 
-        p 
-          strong How can I submit my leaves?
-        p - Click on Add New Leave at the top menu bar.
-        p - Select your category of leave.
-        p - Select your leave date.
-        p - Submit the form.
-      li
-        p
-          strong I can't log in with my Google account!!!!!
-        p The system only allows emails having @futureworkz.com so please check if you are using the company Google account.
-      li
-        p
-          strong I found BUGSSSS on the website.
-        p 
-          = "Thank you. Please submit them to us."
-        p= link_to('Click here to go to the feedback form', [:new, :feedback])
+.col-md-6
+  h1 Help - Q&A
+  ol
+    li 
+      p 
+        strong How can I submit my leaves?
+      p - Click on Add New Leave at the top menu bar.
+      p - Select your category of leave.
+      p - Select your leave date.
+      p - Submit the form.
+    li
+      p
+        strong I can't log in with my Google account!!!!!
+      p The system only allows emails having @futureworkz.com so please check if you are using the company Google account.
+    li
+      p
+        strong I found BUGSSSS on the website.
+      p 
+        = "Thank you. Please submit them to us."
+      p= link_to('Click here to go to the feedback form', [:new, :feedback])

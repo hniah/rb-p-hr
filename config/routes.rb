@@ -8,7 +8,8 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'logged_in#dashboard'
-  get 'help' => 'application#help'
+  get :help, to: 'logged_in#help'
+  get :pcc, to: 'logged_in#pcc'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -55,7 +56,6 @@ Rails.application.routes.draw do
   end
 
   resources :feedbacks, only: [:new, :create]
-  get :pcc, to: 'application#pcc'
 
   # Example resource route with sub-resources:
   #   resources :products do

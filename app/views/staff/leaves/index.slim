@@ -14,7 +14,8 @@
       - @leaves.each do |leave|
         tr
           td= leave.category.text
-          td= leave.status.text
+          td
+            span.badge.success = leave.status.text
           td
             = ldate(leave.start_day.to_date)
             br
