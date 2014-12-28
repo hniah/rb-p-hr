@@ -1,6 +1,9 @@
-= display_page_title('Sign in with google')
 .container
-  .col-md-5
-    .row
-      br
-      = link_to 'Click here to sign in with your Google Account', user_omniauth_authorize_path(:google_oauth2), class: 'btn-u '
+  .row
+    .jumbotron style="margin-top: 80px"
+      = image_tag 'futureworkz-logo.png'
+      h1 FutureWorkz HR System
+
+      p If you are not sure what you could do, please ask Jackie for help.
+      
+      = link_to 'Click here to sign in with your Google Account', user_omniauth_authorize_path(:google_oauth2), class: 'btn btn-success'

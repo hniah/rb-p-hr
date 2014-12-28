@@ -11,8 +11,6 @@ describe 'Staff can view his own lates' do
     visit root_path
     get_element('my-account').click
 
-    p page.body
-
     click_on 'View all your lates'
 
     expect(page).to have_content late.note

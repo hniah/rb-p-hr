@@ -1,34 +1,33 @@
-= display_page_title('Leave Detail')
-.container.content
-  .col-md-12
-    table.list-table
-      thead
-        tr
-          td
-            strong= Leave.human_attribute_name('category')
-          td= @leave.category.text
-        tr
-          td
-            strong= Leave.human_attribute_name('staff')
-          td= @leave.staff_english_name
-        tr
-          td
-            strong= 'Leave Days'
-          td
-            strong= 'Start'
-            = ": #{@leave.start_day.strftime('%d/%m/%Y')} #{@leave.start_time}"
-            br
-            strong= 'End'
-            = "  : #{@leave.end_day.strftime('%d/%m/%Y')} #{@leave.end_time}"
-        tr
-          td
-            strong= 'Sent date'
-          td= @leave.created_at.strftime('%d/%m/%Y %H:%M:%S') 
-        tr
-          td
-            strong= 'Reason Leave'
-          td= @leave.reason
-        tr
-          td
-            strong= 'Reason Note Leave'
-          td= @leave.reason_note
+.col-md-12.table-wrapper
+  h1 Leave ##{@leave.id} Detail
+  table.table.table-hover
+    thead
+      tr
+        td.col-md-3
+          strong= Leave.human_attribute_name('category')
+        td= @leave.category.text
+      tr
+        td
+          strong= Leave.human_attribute_name('staff')
+        td= @leave.staff_english_name
+      tr
+        td
+          strong= 'Leave Days'
+        td
+          strong= 'Start'
+          = ": #{@leave.start_day.strftime('%d/%m/%Y')} #{@leave.start_time}"
+          br
+          strong= 'End'
+          = "  : #{@leave.end_day.strftime('%d/%m/%Y')} #{@leave.end_time}"
+      tr
+        td
+          strong= 'Sent date'
+        td= @leave.created_at.strftime('%d/%m/%Y %H:%M:%S') 
+      tr
+        td
+          strong= 'Reason Leave'
+        td= @leave.reason
+      tr
+        td
+          strong= 'Reason Note Leave'
+        td= @leave.reason_note

@@ -1,9 +1,8 @@
-.form-wrapper
-  .section
-    = simple_form_for [:admin, late] do |f|
-      = f.association :staff, label_method: :english_name
-      = f.input :date, html5: true
-      = f.input :note
-      .btn-group
-        = f.submit class: 'btn btn-primary'
-        = link_to 'Back', admin_lates_path, class: 'btn btn-gray'
+.form-wrapper.col-md-6
+  = simple_form_for [:admin, late] do |f|
+    = f.association :staff, label_method: :english_name
+    = f.input :date, html5: true
+    = f.input :note
+    .btn-group
+      = f.submit class: 'btn btn-primary'
+      = link_to 'Back', admin_lates_path, class: 'btn btn-gray'
