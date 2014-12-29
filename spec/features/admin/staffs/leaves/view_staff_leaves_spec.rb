@@ -11,7 +11,7 @@ describe 'View all staff leaves' do
 
     get_element("view-staff-#{staff.id}").click
 
-    click_on 'View all my leaves'
+    click_on 'View all leaves'
 
     expect(page).to have_content 'Leaves List'
     expect(page).to have_content staff.english_name

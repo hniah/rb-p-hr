@@ -8,7 +8,7 @@ describe 'Log in with Google account' do
     it 'logs admin in' do
       visit root_path
 
-      click_on 'Click here to sign in with your Google Account'
+      click_on 'Sign in using your Google Account'
 
       expect(page).to have_content 'Successfully authenticated from Google account'
     end
@@ -20,7 +20,7 @@ describe 'Log in with Google account' do
     it 'does not allow him to login in' do
       visit root_path
 
-      click_on 'Click here to sign in with your Google Account'
+      click_on 'Sign in using your Google Account'
 
       expect(page).to have_content 'Could not authenticate you from Google.'
     end

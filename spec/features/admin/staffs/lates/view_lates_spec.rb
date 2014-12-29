@@ -16,7 +16,7 @@ describe 'Admin view staff lates list' do
 
     click_on 'View all my lates'
 
-    expect(page).to have_content('List of Late')
+    expect(page).to have_content('List of Lates')
     expect(page).to have_content staff.english_name
   end
 end
