@@ -13,7 +13,7 @@
   .form-group
     = f.label :emails_cc, 'Cc', class: 'control-label'
     br
-    = f.select :emails_cc, Staff.emails_cc_exclude(current_user.id)  , {include_blank: 'Select colleague'}, { class: 'form-control multi-staff-select', multiple: true}  
+    = f.select :emails_cc, Staff.emails_cc_exclude(current_user.id)  , {}, { class: 'form-control multi-staff-select', multiple: true, title: 'Select colleague'}
     - if current_user.leader
       p.help-block Please note that your team leader #{current_user.leader.english_name} will be automatically cc-ed
   = f.input :total_value, label: 'Total', as: :integer, input_html: { step: 0.5, min: 0.0 }, html5: true
@@ -22,3 +22,5 @@
   .btn-group
     = f.submit 'Submit leave', class: 'btn btn-primary'
     = link_to 'Back', staff_leaves_path, class: 'btn btn-gray'
+javascript:
+  $('#leave_emails_cc').selectpicker();
