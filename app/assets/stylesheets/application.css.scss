@@ -1,6 +1,7 @@
-@import 'bootstrap';
-
+@import "bootstrap-sprockets";
+@import "bootstrap";
 @import "font-awesome";
 @import 'bootstrap-override';
 @import 'bootstrap-theme';
 @import 'jquery-ui/datepicker';
+@import 'bootstrap-select.min';

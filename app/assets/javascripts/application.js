@@ -17,3 +17,4 @@
 //= require jquery_nested_form
 //= require script_site
 //= require jquery-ui/datepicker
+//= require bootstrap-select

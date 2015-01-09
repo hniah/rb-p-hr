@@ -57,4 +57,24 @@ select.multi-staff-select{
 .text-danger{
   color:red;
 }
+.bootstrap-select{
+  .filter-option.pull-left{
+    color: #555555;
+  }
+  &.open,&:hover{
+    button{
+      &.selectpicker{
+        background: #fff;
+        box-shadow: none;
+      }
+    }
+  }
+  button {
+    &.selectpicker {
+      text-transform: capitalize;
+      font-size: 14px;
+    }
+  }
+
+}
 
