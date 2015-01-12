@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 describe LeaveDays do
+
+  before do
+    allow(Date).to receive(:today) { Date.new(2014,1,1) }
+  end
+
   describe 'Add 14 leave days for staff when new year comes' do
     let!(:staffs) { create_list :staff, 2 }
 
@@ -12,8 +17,8 @@ describe LeaveDays do
     context 'Add 14 leave days for staff when new year comes' do
       it 'Add 14 leave days for staff when new year comes' do
         expect(Leave.count).to eq 4
-        expect(I18n.l(Leave.last.start_day)).to eq "01/01/#{Time.now.year}"
-        expect(I18n.l(Leave.last.end_day)).to eq "31/12/#{Time.now.year}"
+        expect(I18n.l(Leave.last.start_day)).to eq "01/01/#{Date.today.year}"
+        expect(I18n.l(Leave.last.end_day)).to eq "31/12/#{Date.today.year}"
         expect(Leave.order(id: :desc).last.sub_cate).to eq 'normal'
       end
     end

@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 describe Staff do
+
+  before do
+    allow(Date).to receive(:today) { Date.new(2014,12,31) }
+  end
   context 'associations' do
     it { is_expected.to have_many :leaves }
     it { is_expected.to have_many :feedbacks }
@@ -15,7 +19,7 @@ describe Staff do
 
     context 'calculator remaining leave days for staff' do
       it 'calculator remaining leave days for staff' do
-        expect(martin.remaining_leave_days(Time.now.year)).to eq 8
+        expect(martin.remaining_leave_days(Date.today.year)).to eq 8
       end
     end
   end
@@ -25,7 +29,7 @@ describe Staff do
     let!(:total_leave_in_year) { create :leave, category: :sick, start_day: '2014-01-01 8:30', end_day: '2014-12-31 17:30', total: 14, staff: martin }
     let!(:leaves_current_year) { create_list :leave, 2, category: :sick, start_day: '2014-01-01 8:30', end_day: '2014-12-31 17:30', total: -3.0, staff: martin }
     it 'calculator remaining sick leave days for staff' do
-      expect(martin.remaining_sick_days(Time.now.year)).to eq 8
+      expect(martin.remaining_sick_days(Date.today.year)).to eq 8
     end
   end
 end
