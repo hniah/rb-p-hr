@@ -66,6 +66,7 @@ class Admin::LeavesController < Admin::BaseController
 
     if @leave.update(status: :approved)
       LeaveNotifier.approved(@leave).deliver
+      LeaveNotifier.warning_sick_leave(@leave).deliver if @leave.amount_sick_date > 7
       redirect_to admin_leaves_path, notice: t('.message.success')
     else
       flash[:alert] = t('.message.failure')

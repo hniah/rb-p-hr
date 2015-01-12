@@ -32,6 +32,9 @@ en:
       subject: 'Your Sick Leave is Approved'
     late:
       subject: 'Staff has more than 10 lates this year'
+    warning_sick:
+      subject: 'Sick leave of more than 7 times'
+
   date:
     formats:
       default: "%d/%m/%Y"

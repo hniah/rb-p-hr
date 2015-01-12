@@ -6,7 +6,7 @@ class LeaveNotifier < SystemNotifier
 
     @cc = leave.emails_cc
     @cc = @cc.push(@leader.email) if @leader
- 
+
     mail(to: Setting['EMAIL_NOTIFIER'], cc: @cc, subject: t('mail.hr.subject')) do |format|
       format.html { render 'notifier/leave/new_leave' }
     end
@@ -33,6 +33,13 @@ class LeaveNotifier < SystemNotifier
     mail(to: leave.staff_email, subject: t('mail.reject.subject')) do |format|
       format.html {render 'notifier/leave/rejected_leave'
       }
+    end
+  end
+
+  def warning_sick_leave(leave)
+    @leave = leave
+    mail(to: leave.staff_email, cc: Setting['EMAIL_NOTIFIER'], subject: t('mail.warning_sick.subject')) do |format|
+      format.html {render 'notifier/leave/warning_sick_leave'}
     end
   end
 end
