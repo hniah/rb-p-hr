@@ -35,9 +35,13 @@ class Admin::LeavesController < Admin::BaseController
 
   def update
     @leave = Leave.find(leave_id)
+    last_status = @leave.status
     @leave.attributes = leave_param
 
     if @leave.save
+      if last_status != :approved && @leave.status.approved?
+        send_notify
+      end
       redirect_to admin_leaves_path, notice: t('.message.success')
     else
       flash[:alert] = t('.message.failure')
@@ -65,9 +69,7 @@ class Admin::LeavesController < Admin::BaseController
     @leave = Leave.find(leave_id)
 
     if @leave.update(status: :approved)
-      LeaveNotifier.approved(@leave).deliver
-      LeaveNotifier.warning_sick_leave(@leave).deliver if @leave.category.sick? && @leave.amount_sick_date > 7
-      LeaveNotifier.warning_urgent_leave(@leave).deliver if @leave.sub_cate.present? && @leave.sub_cate.urgent? && @leave.amount_urgent_leave > 5
+      send_notify
       redirect_to admin_leaves_path, notice: t('.message.success')
     else
       flash[:alert] = t('.message.failure')
@@ -118,5 +120,12 @@ class Admin::LeavesController < Admin::BaseController
 
   def sort_direction
     params.fetch(:sort_direction, 'desc').to_sym
+  end
+
+  private
+  def send_notify
+    LeaveNotifier.approved(@leave).deliver
+    LeaveNotifier.warning_sick_leave(@leave).deliver if @leave.category.sick? && @leave.amount_sick_date > 7
+    LeaveNotifier.warning_urgent_leave(@leave).deliver if @leave.sub_cate.present? && @leave.sub_cate.urgent? && @leave.amount_urgent_leave > 5
   end
 end
