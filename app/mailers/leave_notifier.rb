@@ -45,9 +45,15 @@ class LeaveNotifier < SystemNotifier
 
   def warning_urgent_leave(leave)
     @leave = leave
-    mail(to: leave.staff_email, cc: Setting['EMAIL_NOTIFIER'], subject: t('mail.warning_urgent_leave.subject')) do |format|
+    mail(to: leave.staff_email, cc: Setting['EMAIL_NOTIFIER'], subject: t('mail.warning_urgent.subject')) do |format|
       format.html {render 'notifier/leave/warning_urgent_leave'}
     end
   end
 
+  def warning_3_least_days(leave)
+    @leave = leave
+    mail(to: leave.staff_email, subject: t('mail.warning_3_least_days.subject')) do |format|
+      format.html {render 'notifier/leave/warning_3_least_days'}
+    end
+  end
 end

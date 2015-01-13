@@ -99,6 +99,40 @@ describe Staff::LeavesController do
         expect(flash[:alert]).to_not be_nil
       end
     end
+
+    context 'Warning staff when staff try to apply at least 3 working days' do
+      before do
+        allow(Date).to receive(:today) { Date.new(2014,9,9) }
+      end
+      let(:leave_param) { attributes_for(:leave, start_time: '8:30',
+                                         category: :annual,
+                                         end_time: '12:00',
+                                         start_date: '2014-09-11',
+                                         end_date: '2014-09-12',
+                                         total_value: 1.0,
+                                         emails_cc: ['john@futureworkz.com', 'jack@futureworkz.com']
+      ) }
+      let(:leave) { Leave.first }
+      let(:last_email) { ActionMailer::Base.deliveries.last }
+      let!(:EMAIL_NOTIFIER) { create :setting, key: 'EMAIL_NOTIFIER', value: 'jack@futureworkz.com' }
+      let(:cc) { leave_param[:emails_cc].push(leader.email) }
+
+      def do_request
+        post :create, leave: leave_param
+      end
+
+      it 'creates leave, redirect to list, sets notice flash, send mail notify' do
+        sign_in staff
+        do_request
+
+        expect(response).to redirect_to staff_leaves_path
+        expect(leave.staff).to eq staff
+        expect(last_email.body).to have_content 'least 3 working days'
+        expect(leave.reload.start_time).to eq '08:30'
+        expect(leave.reload.end_time).to eq '12:00'
+        expect(flash[:notice]).to_not be_nil
+      end
+    end
   end
 
   describe 'GET #show' do

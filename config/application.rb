@@ -23,5 +23,6 @@ module FutureworkzHr
     # config.i18n.default_locale = :de
 
     WillPaginate.per_page = 20
+    config.autoload_paths += %W(#{config.root}/lib)
   end
 end

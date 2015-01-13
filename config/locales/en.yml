@@ -36,6 +36,8 @@ en:
       subject: 'You have taken more than 7 sick leaves'
     warning_urgent:
       subject: 'You have taken more than 5 urgent leaves'
+    warning_3_least_days:
+      subject: 'You try to apply at least 3 working days'
 
   date:
     formats:

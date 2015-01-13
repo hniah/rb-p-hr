@@ -13,6 +13,7 @@ class Staff::LeavesController < Staff::BaseController
 
     if @leave.save
       LeaveNotifier.new_leave(@leave).deliver
+      LeaveNotifier.warning_3_least_days(@leave).deliver if @leave.category.annual? && UtilDate.business_days_between(Date.today, @leave.start_day.to_date) < 3
       redirect_to staff_leaves_path, notice: t('.message.success')
     else
       flash[:alert] = t('.message.failure')
