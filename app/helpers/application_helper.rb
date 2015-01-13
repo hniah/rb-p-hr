@@ -6,4 +6,9 @@ module ApplicationHelper
   def label_name(key)
     t("helpers.label.#{key}")
   end
+
+  def to_unsigned_integer(num)
+    num = 0 if num < 0
+    return num
+  end
 end

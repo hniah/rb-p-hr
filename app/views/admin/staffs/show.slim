@@ -36,7 +36,8 @@
       td= @staff.note
     tr
       td{ colspan="2" }
-        = "Your leave days left #{pluralize(@staff.remaining_leave_days(Time.now.year), 'day')} in this year"
+        p= "Your leave days left #{pluralize(to_unsigned_integer(@staff.remaining_leave_days(Time.now.year)), 'day')} in this year"
+        p= "Your sick leave days left #{pluralize(to_unsigned_integer(@staff.remaining_sick_days(Time.now.year)), 'day')} in this year"
   = link_to 'Back to Staff List', admin_staffs_path, class: 'btn btn-info'
 
   h1 = 'My Leaves'

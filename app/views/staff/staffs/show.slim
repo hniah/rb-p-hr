@@ -36,8 +36,8 @@
       td= @staff.note
     tr
       td{ colspan="2" }
-        p= "Your leave days left #{pluralize(@staff.remaining_leave_days(Time.now.year), 'day')} in this year"
-        p= "Your sick leave days left #{pluralize(@staff.remaining_sick_days(Time.now.year), 'day')} in this year"
+        p= "Your leave days left #{pluralize(to_unsigned_integer(@staff.remaining_leave_days(Time.now.year)), 'day')} in this year"
+        p= "Your sick leave days left #{pluralize(to_unsigned_integer(@staff.remaining_sick_days(Time.now.year)), 'day')} in this year"
 
   h1 Your List of Leaves
   table.table.table-hover
