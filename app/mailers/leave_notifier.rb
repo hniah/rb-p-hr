@@ -42,4 +42,12 @@ class LeaveNotifier < SystemNotifier
       format.html {render 'notifier/leave/warning_sick_leave'}
     end
   end
+
+  def warning_urgent_leave(leave)
+    @leave = leave
+    mail(to: leave.staff_email, cc: Setting['EMAIL_NOTIFIER'], subject: t('mail.warning_urgent_leave.subject')) do |format|
+      format.html {render 'notifier/leave/warning_urgent_leave'}
+    end
+  end
+
 end

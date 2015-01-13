@@ -33,7 +33,9 @@ en:
     late:
       subject: 'Staff has more than 10 lates this year'
     warning_sick:
-      subject: 'Sick leave of more than 7 times'
+      subject: 'You have taken more than 7 sick leaves'
+    warning_urgent:
+      subject: 'You have taken more than 5 urgent leaves'
 
   date:
     formats:

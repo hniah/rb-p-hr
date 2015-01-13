@@ -34,7 +34,7 @@ describe Admin::LeavesController do
       end
     end
 
-    context 'Notify User and Admin when Sick leave of more than 7 times in a period of a year' do
+    context 'Notify User and Admin when Sick leave of more than 7 days in a period of a year' do
       before do
         allow(Date).to receive(:today) { Date.new(2014,9,19) }
       end
@@ -52,6 +52,32 @@ describe Admin::LeavesController do
         expect(last_email.body).to have_content "Dear #{leave.staff_english_name}"
         expect(last_email.to).to eq ["#{leave.staff_email}"]
         expect(last_email.body).to have_content 'more than 7 sick leaves'
+        expect(last_email.cc).to eq [Setting['EMAIL_NOTIFIER']]
+      end
+    end
+
+    context 'Notify User and Admin when urgent leave of more than 7 days in a period of a year' do
+      before do
+        allow(Date).to receive(:today) { Date.new(2014,9,19) }
+      end
+
+      let!(:sick_leaves_prev_year) { create_list :leave, 6, category: :annual, sub_cate: :urgent, reason: 'Urgent',status: :approved, total: -1,staff: staff, start_date: '19/01/2013 8:30',end_date: '20/01/2013 17:30' }
+      let!(:sick_leaves_current_year) { create_list :leave, 5, category: :annual,sub_cate: :urgent, reason: 'Urgent',status: :approved, total: -1,staff: staff, start_date: '19/01/2014 8:30',end_date: '20/01/2014 17:30' }
+
+
+      it 'Admin approves a leave' do
+        sign_in admin
+        leave.category = :annual
+        leave.sub_cate = :urgent
+        leave.save
+
+        do_request
+
+        expect(response).to redirect_to admin_leaves_path
+        expect(leave.reload.status.text).to eq 'Approved'
+        expect(last_email.body).to have_content "Dear #{leave.staff_english_name}"
+        expect(last_email.to).to eq ["#{leave.staff_email}"]
+        expect(last_email.body).to have_content 'more than 5 urgent leaves'
         expect(last_email.cc).to eq [Setting['EMAIL_NOTIFIER']]
       end
     end

@@ -6,6 +6,7 @@ class Leave < ActiveRecord::Base
   scope :pending, -> { where(status: :pending) }
   scope :annual, -> { where(category: :annual) }
   scope :sick, -> { where(category: :sick) }
+  scope :urgent, -> { where(sub_cate: :urgent) }
   scope :in_year,  -> (year) { where("DATE_PART('year', start_day) = :year AND DATE_PART('year', end_day) = :year", {year: year} )}
   scope :current_year, -> { in_year(Date.today.year) }
   scope :kind_options_start, -> { [['8:30', '8:30'], ['12:00', '12:00']] }
@@ -85,5 +86,9 @@ class Leave < ActiveRecord::Base
 
   def amount_sick_date
     - self.staff.leaves.sick.approved.current_year.sum(:total)
+  end
+
+  def amount_urgent_leave
+    self.staff.leaves.annual.urgent.approved.current_year.count(:id)
   end
 end

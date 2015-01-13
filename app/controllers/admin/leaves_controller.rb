@@ -66,7 +66,8 @@ class Admin::LeavesController < Admin::BaseController
 
     if @leave.update(status: :approved)
       LeaveNotifier.approved(@leave).deliver
-      LeaveNotifier.warning_sick_leave(@leave).deliver if @leave.amount_sick_date > 7
+      LeaveNotifier.warning_sick_leave(@leave).deliver if @leave.category.sick? && @leave.amount_sick_date > 7
+      LeaveNotifier.warning_urgent_leave(@leave).deliver if @leave.sub_cate.present? && @leave.sub_cate.urgent? && @leave.amount_urgent_leave > 5
       redirect_to admin_leaves_path, notice: t('.message.success')
     else
       flash[:alert] = t('.message.failure')
