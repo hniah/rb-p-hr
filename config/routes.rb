@@ -56,6 +56,11 @@ Rails.application.routes.draw do
   end
 
   resources :feedbacks, only: [:new, :create]
+  resource :annuals do
+    collection do
+      get 'add_annual_leave_days'
+    end
+  end
 
   # Example resource route with sub-resources:
   #   resources :products do

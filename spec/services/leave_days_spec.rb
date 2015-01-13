@@ -16,7 +16,7 @@ describe LeaveDays do
 
     context 'Add 14 leave days for staff when new year comes' do
       it 'Add 14 leave days for staff when new year comes' do
-        expect(Leave.count).to eq 4
+        expect(Leave.count).to eq 6
         expect(I18n.l(Leave.last.start_day)).to eq "01/01/#{Date.today.year}"
         expect(I18n.l(Leave.last.end_day)).to eq "31/12/#{Date.today.year}"
         expect(Leave.order(id: :desc).last.sub_cate).to eq 'normal'
@@ -51,7 +51,7 @@ describe LeaveDays do
     context 'Add cumulative leave days for staff when new year comes' do
       let(:leave) { martin.leaves.order(id: :desc).first }
       it 'Add cumulative leave days for staff when new year comes' do
-        expect(martin.leaves.count).to eq 6
+        expect(martin.leaves.count).to eq 7
         expect(leave.total).to eq 7
         expect(leave.sub_cate).to eq 'carry_over'
       end
