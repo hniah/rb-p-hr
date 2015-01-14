@@ -10,9 +10,7 @@
         th= Leave.human_attribute_name('total')
         th.col-md-3= Leave.human_attribute_name('reason')
         th= Leave.human_attribute_name('staff')
-        th.col-md-2= Leave.human_attribute_name('rejection_note')
-        - if current_user.is_admin?
-          th= Leave.human_attribute_name('action')
+        th= Leave.human_attribute_name('action')
     - @leaves.each do |leave|
       tr
         td= leave.category.text
@@ -28,17 +26,14 @@
         td= pluralize(leave.total.abs, 'day')
         td= leave.reason
         td= leave.staff_english_name
-        td= leave.rejection_note
         td
           - if leave.sub_cate != 'carry-over leaves'
             = list_button(name: 'Edit', action: :edit, admin: :admin, resource: leave)
             = list_button(name: 'Delete', action: :delete, admin: :admin, resource: leave)
-          br
-          br
           - if leave.status.pending?
-            = semantic_form_for leave, url: approve_admin_leave_path(leave.id) do |f|
+            = simple_form_for leave, url: approve_admin_leave_path(leave.id), html: {style: 'display: inline'} do |f|
               = f.submit Leave.human_attribute_name('approve'), class: 'list-approve-button'
-              = link_to Leave.human_attribute_name('reject'), reject_admin_leave_path(leave.id), class: 'list-delete-button', data: {test: "reject-leave-#{leave.id}"}
+            = link_to Leave.human_attribute_name('reject'), reject_admin_leave_path(leave.id), class: 'list-delete-button', data: {test: "reject-leave-#{leave.id}"}
   = link_to 'Back to Staff Info', admin_staff_path(@staff.id),  class: 'btn btn-gray'
   .pagination
     = bootstrap_paginate(@leaves)
