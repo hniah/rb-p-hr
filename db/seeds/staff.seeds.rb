@@ -1,4 +1,5 @@
 puts 'Start seeding staff'
+leave_data = { reason: 'Add Leave days for new year', status: :approved, category: :annual, start_day: "01-01-#{Time.now.year} 08:30".to_date, end_day: "31-12-#{Time.now.year} 17:30".to_date, total: 14, sub_cate: 'normal'}
 
 staffs_data = [
     {name: 'Nguyen Thi Hong Trang', english_name: 'Jenifer'},
@@ -41,6 +42,11 @@ staffs_data.each do |staff_data|
   staff.started_on = Date.today
   staff.probation_end_on = Date.today
   staff.save!
+
+  puts 'Adds annual and carry-over leaves'
+  leave = Leave.find_or_initialize_by(leave_data.merge(staff_id: staff.id))
+  leave.save
+  puts 'Leaves seeded'
 end
 
 puts 'Staff seeded'
