@@ -6,6 +6,11 @@ class Admin::LeavesController < Admin::BaseController
     if params['status'] == 'pending'
       @leaves = @leaves.pending
     end
+
+    if params['category'].present?
+      @leaves = @leaves.category_by(params['category'])
+    end
+
     @sort_column = sort_column
     @sort_direction = sort_direction
 

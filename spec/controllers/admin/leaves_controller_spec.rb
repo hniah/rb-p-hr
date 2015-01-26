@@ -185,6 +185,28 @@ describe Admin::LeavesController do
         expect(assigns(:leaves).first).to eq last_leave
       end
     end
+
+    context 'fetches all leaves when filter category is annual' do
+      let!(:admin) { create :admin }
+
+      before do
+        create_list(:leave, 2, staff: staff, status: :approved, category: :annual)
+        create_list(:leave, 2, staff: admin.becomes(Staff), status: :approved)
+      end
+
+      def do_request
+        get :index, category: 'annual'
+      end
+
+      it 'fetches all leaves when filter is all' do
+        sign_in admin
+
+        do_request
+
+        expect(response).to render_template :index
+        expect(assigns(:leaves).size).to eq 2
+      end
+    end
   end
 
   describe 'GET #new' do

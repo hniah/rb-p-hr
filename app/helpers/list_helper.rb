@@ -37,4 +37,8 @@ module ListHelper
   def status_value
     params[:status] ? params[:status] : ''
   end
+
+  def category_value
+    params[:category] ? params[:category] : ''
+  end
 end

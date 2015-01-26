@@ -12,6 +12,7 @@ class Leave < ActiveRecord::Base
   scope :kind_options_start, -> { [['8:30', '8:30'], ['12:00', '12:00']] }
   scope :kind_options_end, -> { [['12:00', '12:00'], ['17:30', '17:30']] }
   scope :status_options, -> { [['Please choose status', ''], ['All', 'all'], ['Pending', :pending]] }
+  scope :category_by,  -> (category) { where(category: category) }
 
   delegate :id, :english_name, :email, to: :staff, prefix: true, allow_nil: true
 

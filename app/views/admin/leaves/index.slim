@@ -1,17 +1,20 @@
 .table-wrapper
   h1 Leaves List
-  .col-md-6.filter-block
+  .col-md-8.filter-block
     .row
       = form_tag(admin_leaves_path, method: :get)
         .form-group
           .row
-            .col-md-4
+            .col-md-3
+              = label_tag :category, 'Filtered Category'
+              = select_tag :category, options_for_select(Leave.category.values.collect{|v| [v.capitalize,v]}.unshift(['Please choose category','']), category_value), class: 'form-control', onchange: 'this.form.submit()'
+            .col-md-3
               = label_tag :status, 'Filtered Status'
               = select_tag :status, options_for_select(Leave.status_options, status_value), class: 'form-control', onchange: 'this.form.submit()'
-            .col-md-4
+            .col-md-3
               = label_tag :sort_column, 'Sort By'
               = select_tag :sort_column, options_for_select([['Start Date', 'start_day'], ['Sent Date', 'created_at']], @sort_column), class: 'form-control', onchange: 'this.form.submit()'
-            .col-md-4
+            .col-md-3
               = label_tag :sort_direction, 'Direction'
               = select_tag :sort_direction, options_for_select([['Ascending', 'asc'], ['Descending', 'desc']], @sort_direction), class: 'form-control', onchange: 'this.form.submit()'
   table.table.table-hover
